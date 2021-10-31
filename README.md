@@ -1,17 +1,18 @@
 # SOEN6441_Project
 
-1st Team member:
-Name, Student ID
-Individual Task #
+o	1st Team member:
+	Yun Ni, 40179775
+	Individual Task #1
 
-2nd Team member:
-Name, Student ID
-Individual Task #
+o	2nd Team member:
+	Rui Wang, 40169195
+	Individual Task #2
 
-3rd Team member:
-Name, Student ID
-Individual Task #
+o	3rd Team member:
+	Shiyu Lin, 40050199
+	Individual Task #3
 
-4th Team member:
-Name, Student ID
-Individual Task #
+o	4th Team member:
+	Bingyue Li, 40204699
+	Individual Task #4
+
