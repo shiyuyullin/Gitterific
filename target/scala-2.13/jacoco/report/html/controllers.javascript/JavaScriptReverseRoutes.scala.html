@@ -18,52 +18,62 @@ package controllers.javascript {
     }
 
   
-    // @LINE:6
-<span class="nc" id="L22">    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
-<span class="nc" id="L23">      &quot;controllers.HomeController.index&quot;,</span>
+    // @LINE:10
+<span class="nc" id="L22">    def issue: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
+<span class="nc" id="L23">      &quot;controllers.HomeController.issue&quot;,</span>
 <span class="nc" id="L24">      &quot;&quot;&quot;</span>
         function() {
-<span class="nc" id="L26">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + &quot;&quot;&quot;&quot;})</span>
+<span class="nc" id="L26">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;issue&quot;})</span>
+        }
+      &quot;&quot;&quot;
+    )
+  
+    // @LINE:6
+<span class="nc" id="L32">    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
+<span class="nc" id="L33">      &quot;controllers.HomeController.index&quot;,</span>
+<span class="nc" id="L34">      &quot;&quot;&quot;</span>
+        function() {
+<span class="nc" id="L36">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + &quot;&quot;&quot;&quot;})</span>
         }
       &quot;&quot;&quot;
     )
   
     // @LINE:8
-<span class="nc" id="L32">    def tutorial: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
-<span class="nc" id="L33">      &quot;controllers.HomeController.tutorial&quot;,</span>
-<span class="nc" id="L34">      &quot;&quot;&quot;</span>
+<span class="nc" id="L42">    def tutorial: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
+<span class="nc" id="L43">      &quot;controllers.HomeController.tutorial&quot;,</span>
+<span class="nc" id="L44">      &quot;&quot;&quot;</span>
         function() {
-<span class="nc" id="L36">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;tutorial&quot;})</span>
+<span class="nc" id="L46">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;tutorial&quot;})</span>
         }
       &quot;&quot;&quot;
     )
   
     // @LINE:7
-<span class="nc" id="L42">    def explore: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
-<span class="nc" id="L43">      &quot;controllers.HomeController.explore&quot;,</span>
-<span class="nc" id="L44">      &quot;&quot;&quot;</span>
+<span class="nc" id="L52">    def explore: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
+<span class="nc" id="L53">      &quot;controllers.HomeController.explore&quot;,</span>
+<span class="nc" id="L54">      &quot;&quot;&quot;</span>
         function() {
-<span class="nc" id="L46">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;explore&quot;})</span>
+<span class="nc" id="L56">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;explore&quot;})</span>
         }
       &quot;&quot;&quot;
     )
   
   }
 
-  // @LINE:12
-<span class="nc" id="L54">  class ReverseAssets(_prefix: =&gt; String) {</span>
+  // @LINE:14
+<span class="nc" id="L64">  class ReverseAssets(_prefix: =&gt; String) {</span>
 
     def _defaultPrefix: String = {
-<span class="nc bnc" id="L57" title="All 2 branches missed.">      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</span>
     }
 
   
-    // @LINE:12
-<span class="nc" id="L62">    def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
-<span class="nc" id="L63">      &quot;controllers.Assets.versioned&quot;,</span>
-<span class="nc" id="L64">      &quot;&quot;&quot;</span>
+    // @LINE:14
+<span class="nc" id="L72">    def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(</span>
+<span class="nc" id="L73">      &quot;controllers.Assets.versioned&quot;,</span>
+<span class="nc" id="L74">      &quot;&quot;&quot;</span>
         function(file1) {
-<span class="nc" id="L66">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;assets/&quot; + (&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[Asset]].javascriptUnbind + &quot;&quot;&quot;)(&quot;file&quot;, file1)})</span>
+<span class="nc" id="L76">          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;assets/&quot; + (&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[Asset]].javascriptUnbind + &quot;&quot;&quot;)(&quot;file&quot;, file1)})</span>
         }
       &quot;&quot;&quot;
     )
@@ -71,5 +81,5 @@ package controllers.javascript {
   }
 
 
-<span class="nc" id="L74">}</span>
+<span class="nc" id="L84">}</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
