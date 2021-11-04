@@ -1,0 +1,14 @@
+@(titles : List[String], wordCount : HashMap[String, Integer])
+
+<html>
+<head>
+    <title>issues</title>
+</head>
+<body>
+@for( (k,v) <- wordCount){
+
+<p>Word: @k, Count: @v</p>
+
+}
+</body>
+</html>

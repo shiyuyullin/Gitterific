@@ -1,24 +1,28 @@
-[0m[[0m[0minfo[0m] [0m[0mInstrumenting 21 classes to /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/jacoco/instrumented-classes[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting products: /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes[0m
+[0m[[0m[0minfo[0m] [0m[0mInstrumenting 25 classes to /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/jacoco/instrumented-classes[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting products: /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes[0m
 [0m[[0m[0mdebug[0m] [0m[0mFound jacoco agent: Vector()[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/ReverseHomeController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/routes$javascript.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/HomeController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/ReverseAssets.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/javascript/ReverseHomeController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/javascript/ReverseAssets.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/controllers/routes.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/main$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/tutorial.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/index.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/commonSidebar.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/index$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/commonSidebar$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/tutorial$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/main.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/explore$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/views/html/explore.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/router/RoutesPrefix.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/router/RoutesPrefix$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/router/Routes$$anonfun$routes$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting /Users/linshiyu/Downloads/SOEN6441_Project/target/scala-2.13/classes/router/Routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/routes$javascript.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/ReverseAssets.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/javascript/ReverseAssets.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/javascript/ReverseHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/HomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/ReverseHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/Issues$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/Issues.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/RoutesPrefix.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/Routes$$anonfun$routes$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/RoutesPrefix$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/Routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/index.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/index$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/commonSidebar$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/explore$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/tutorial.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/explore.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/tutorial$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/commonSidebar.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/issue$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/issue.class[0m

@@ -11,47 +11,53 @@ import _root_.play.libs.F
 package controllers {
 
   // @LINE:6
-<span class="fc" id="L14">  class ReverseHomeController(_prefix: =&gt; String) {</span>
+<span class="nc" id="L14">  class ReverseHomeController(_prefix: =&gt; String) {</span>
     def _defaultPrefix: String = {
-<span class="pc bpc" id="L16" title="1 of 2 branches missed.">      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</span>
     }
 
+  
+    // @LINE:10
+    def issue: Call = {
+      
+<span class="nc" id="L23">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;issue&quot;)</span>
+    }
   
     // @LINE:6
     def index: Call = {
       
-<span class="fc" id="L23">      Call(&quot;GET&quot;, _prefix)</span>
+<span class="nc" id="L29">      Call(&quot;GET&quot;, _prefix)</span>
     }
   
     // @LINE:8
     def tutorial: Call = {
       
-<span class="fc" id="L29">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;tutorial&quot;)</span>
+<span class="nc" id="L35">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;tutorial&quot;)</span>
     }
   
     // @LINE:7
     def explore: Call = {
       
-<span class="fc" id="L35">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;explore&quot;)</span>
+<span class="nc" id="L41">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;explore&quot;)</span>
     }
   
   }
 
-  // @LINE:12
-<span class="fc" id="L41">  class ReverseAssets(_prefix: =&gt; String) {</span>
+  // @LINE:14
+<span class="nc" id="L47">  class ReverseAssets(_prefix: =&gt; String) {</span>
     def _defaultPrefix: String = {
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</span>
     }
 
   
-    // @LINE:12
+    // @LINE:14
     def versioned(file:Asset): Call = {
-<span class="fc bfc" id="L49" title="All 2 branches covered.">      implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map((&quot;path&quot;, &quot;/public&quot;))); _rrc</span>
-<span class="fc" id="L50">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;assets/&quot; + implicitly[play.api.mvc.PathBindable[Asset]].unbind(&quot;file&quot;, file))</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">      implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map((&quot;path&quot;, &quot;/public&quot;))); _rrc</span>
+<span class="nc" id="L56">      Call(&quot;GET&quot;, _prefix + { _defaultPrefix } + &quot;assets/&quot; + implicitly[play.api.mvc.PathBindable[Asset]].unbind(&quot;file&quot;, file))</span>
     }
   
   }
 
 
-<span class="fc" id="L56">}</span>
+<span class="nc" id="L62">}</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
