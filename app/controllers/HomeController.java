@@ -1,19 +1,18 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import model.Issues;
 
+import java.net.http.HttpRequest;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
+import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.mvc.*;
 import play.libs.ws.*;
-
-import model.Issues;
-
-import java.util.concurrent.CompletionStage;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -34,8 +33,12 @@ public class HomeController extends Controller {
         return (client.getIssues());
     }
 
-    public Result keyword(){
-        return ok("temp");
+    public Result keyword(Http.Request request){
+
+        DynamicForm requestData = formFactory.form().bindFromRequest(request);
+        String temp = requestData.get("keywords");
+        return ok(temp);
+
     }
 
 
