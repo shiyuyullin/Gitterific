@@ -24,84 +24,52 @@ import scala.jdk.CollectionConverters._
 object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template0[play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/():play.twirl.api.HtmlFormat.Appendable = {
+  def apply():play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*2.1*/("""
+Seq[Any](format.raw/*2.1*/("""<html>
 
-"""),_display_(/*4.2*/main("Welcome")/*4.17*/ {_display_(Seq[Any](format.raw/*4.19*/("""
-"""),_display_(/*5.2*/defining(play.core.PlayVersion.current)/*5.41*/ { version =>_display_(Seq[Any](format.raw/*5.54*/("""
+    <head>
+        <title>Search</title>
+        <style>
+            .welcomeHeader """),format.raw/*7.28*/("""{"""),format.raw/*7.29*/("""
+                """),format.raw/*8.17*/("""background-color: #92d13d;
+                height: 150px;
+            """),format.raw/*10.13*/("""}"""),format.raw/*10.14*/("""
+            """),format.raw/*11.13*/("""h1 """),format.raw/*11.16*/("""{"""),format.raw/*11.17*/("""
+                """),format.raw/*12.17*/("""color: white;
+                padding-top: 55px;
+                padding-left: 55px;
+            """),format.raw/*15.13*/("""}"""),format.raw/*15.14*/("""
+            """),format.raw/*16.13*/("""form """),format.raw/*16.18*/("""{"""),format.raw/*16.19*/("""
+                """),format.raw/*17.17*/("""padding-top: 300px;
+                padding-left: 30%;
+            """),format.raw/*19.13*/("""}"""),format.raw/*19.14*/("""
+            """),format.raw/*20.13*/("""input"""),format.raw/*20.18*/("""{"""),format.raw/*20.19*/("""
+                """),format.raw/*21.17*/("""height: 45px;
+                width: 600px;
+            """),format.raw/*23.13*/("""}"""),format.raw/*23.14*/("""
+        """),format.raw/*24.9*/("""</style>
+    </head>
 
-"""),format.raw/*7.1*/("""<section id="content">
-  <div class="wrapper doc">
-    <article>
-      <h2>Welcome to the Hello World Tutorial!</h2>
-      <p>This tutorial introduces Play Framework, describes how Play web applications work, and walks you through steps
-        to create page that displays a Hello World greeting.</p>
-      <p>If you loaded this page from the web server running on <code>localhost:9000</code>, congratulations! You have
-        successfully built and run a Play application. If not, you likely opened the source <code>index.scala.html</code>
-        file. Please follow the directions in the <code>README.md</code> file in the top-level project directory to run
-        the tutorial.</p>
+    <body>
+        <div class="welcomeHeader">
+            <h1>Welcome to Gitterific</h1>
+        </div>
 
-      <h3 id="introduction">Introduction to Play</h3>
-      <p>As illustrated below, Play is a full-stack framework with all of the components you need to build a Web
-        Application or a REST service, including:</p>
-      <ul>
-        <li>An integrated HTTP server</li>
-        <li>Form handling</li>
-        <li>Cross-Site Request Forgery (CSRF) protection</li>
-        <li>A powerful routing mechanism</li>
-        <li>I18n support, and more.</li>
-      </ul>
+        <div>
+            <form action="/keyword" method="post">
+                <input type="text" placeholder="Search..">
+                <button type="submit" style="height:45px; width: 50px">search</button>
+            </form>
+        </div>
 
-      <img src="assets/images/play-stack.png" alt="Play Stack" class="small-5 medium-4 large-3" />
-
-      <p>Play integrates with many object relational mapping (ORM) layers. It has out-of-the-box support for <a href="https://www.playframework.com/documentation/"""),_display_(/*31.164*/version),format.raw/*31.171*/("""/Anorm"
-          target="_blank">Anorm</a>, <a href="https://www.playframework.com/documentation/"""),_display_(/*32.92*/version),format.raw/*32.99*/("""/JavaEbean" target="_blank">JavaEbean</a>,
-        <a href="https://www.playframework.com/documentation/"""),_display_(/*33.63*/version),format.raw/*33.70*/("""/PlaySlick" target="_blank">PlaySlick</a>, and
-        <a href="https://www.playframework.com/documentation/"""),_display_(/*34.63*/version),format.raw/*34.70*/("""/JavaJPA" target="_blank">JPA</a>. See <a href="https://www.playframework.com/documentation/"""),_display_(/*34.163*/version),format.raw/*34.170*/("""/JavaDatabase"
-          target="_blank">Accessing an SQL Database</a> for more information. Many customers use NoSQL, other ORMs or
-        even access data from a REST service.</p>
+    </body>
 
 
-      <p>Play APIs are available in both Java and Scala. The Framework uses <a href="https://akka.io" target="_blank">Akka</a>
-        and <a href="https://doc.akka.io/docs/akka-http/current/index.html" target="_blank">Akka HTTP</a> under the
-        hood. This endows Play applications with a stateless, non-blocking, event-driven architecture that provides
-        horizontal and vertical scalability and uses resources more efficiently. Play projects contain Scala
-        components, but because Play has a Java API, Java developers do not need to learn Scala to use Play
-        successfully.</p>
-
-      <p>Here are just a few of the reasons developers love using Play Framework:</p>
-      <ul>
-        <li>Its Model-View-Controller (MVC) architecture is familiar and easy to learn.</li>
-        <li>Direct support of common web development tasks and hot reloading saves precious development time.</li>
-        <li>A large active community promotes knowledge sharing.</li>
-        <li>Use of <a href="https://github.com/playframework/twirl">Twirl templates</a> to render pages. The Twirl
-          template language is:
-          <ol>
-            <li>Easy to learn</li>
-            <li>Requires no special editor</li>
-            <li>Provides type safety</li>
-            <li>Is compiled so that errors display in the browser</li>
-          </ol>
-        </li>
-      </ul>
-
-      <p>To learn more about Play's benefits, visit the <a href="https://www.playframework.com" target="_blank">Play
-          website</a>.</p>
-
-      <h3 id="next-steps">Next steps</h3>
-      <p>Now, let's <a href=""""),_display_(/*66.31*/routes/*66.37*/.HomeController.explore),format.raw/*66.60*/("""">explore the tutorial Play application</a>.</p>
-    </article>
-    <aside>
-      """),_display_(/*69.8*/commonSidebar()),format.raw/*69.23*/("""
-    """),format.raw/*70.5*/("""</aside>
-  </div>
-</section>
-""")))}),format.raw/*73.2*/("""
-""")))}))
+</html>"""))
       }
     }
   }
@@ -118,9 +86,9 @@ Seq[Any](format.raw/*2.1*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/index.scala.html
-                  HASH: dabeb8562593d4cf1716bde419018ff423815827
-                  MATRIX: 900->1|996->4|1024->7|1047->22|1086->24|1113->26|1160->65|1210->78|1238->80|2687->1501|2716->1508|2842->1607|2870->1614|3002->1719|3030->1726|3166->1835|3194->1842|3315->1935|3344->1942|5152->3723|5167->3729|5211->3752|5320->3835|5356->3850|5388->3855|5448->3885
-                  LINES: 27->1|32->2|34->4|34->4|34->4|35->5|35->5|35->5|37->7|61->31|61->31|62->32|62->32|63->33|63->33|64->34|64->34|64->34|64->34|96->66|96->66|96->66|99->69|99->69|100->70|103->73
+                  HASH: 6240db58011266aaf2e7e9855b2df60e2ff17e22
+                  MATRIX: 989->1|1108->93|1136->94|1180->111|1278->181|1307->182|1348->195|1379->198|1408->199|1453->216|1578->313|1607->314|1648->327|1681->332|1710->333|1755->350|1850->417|1879->418|1920->431|1953->436|1982->437|2027->454|2111->510|2140->511|2176->520
+                  LINES: 32->2|37->7|37->7|38->8|40->10|40->10|41->11|41->11|41->11|42->12|45->15|45->15|46->16|46->16|46->16|47->17|49->19|49->19|50->20|50->20|50->20|51->21|53->23|53->23|54->24
                   -- GENERATED --
               */
           

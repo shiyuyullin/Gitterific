@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
+import play.data.FormFactory;
 import play.mvc.*;
 import play.libs.ws.*;
 
@@ -22,22 +23,20 @@ public class HomeController extends Controller {
 
     @Inject WSClient ws;
     @Inject Materializer materializer;
+    @Inject FormFactory formFactory;
 
     public Result index() {
         return ok(views.html.index.render());
-    }
-    
-    public Result explore() {
-        return ok(views.html.explore.render());
-    }
-    
-    public Result tutorial() {
-        return ok(views.html.tutorial.render());
     }
 
     public CompletionStage<Result> issue(){
         Issues client = new Issues(ws);
         return (client.getIssues());
     }
+
+    public Result keyword(){
+        return ok("temp");
+    }
+
 
 }
