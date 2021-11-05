@@ -23,16 +23,16 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "issue")
     }
   
+    // @LINE:10
+    def keyword(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "keyword")
+    }
+  
     // @LINE:5
     def index: Call = {
       
       Call("GET", _prefix)
-    }
-  
-    // @LINE:10
-    def keyword: Call = {
-      
-      Call("POST", _prefix + { _defaultPrefix } + "keyword")
     }
   
   }

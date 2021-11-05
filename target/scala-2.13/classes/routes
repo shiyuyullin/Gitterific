@@ -7,5 +7,5 @@ GET     /                           controllers.HomeController.index
 GET    /issue                       controllers.HomeController.issue
 
 + nocsrf
-POST   /keyword                     controllers.HomeController.keyword
+POST   /keyword                     controllers.HomeController.keyword(request: Request)
 

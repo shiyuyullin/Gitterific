@@ -28,22 +28,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:5
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
     // @LINE:10
     def keyword: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.keyword",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "keyword"})
+        }
+      """
+    )
+  
+    // @LINE:5
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
         }
       """
     )
