@@ -1,4 +1,5 @@
-@import helper._
+@import model.GeneralRepoInfo
+@(listOfRepo : List[GeneralRepoInfo])
 
 <html>
 
@@ -35,6 +36,14 @@
                 <input type="text" placeholder="Search.." name="keywords">
                 <button type="submit" style="height:45px; width: 50px">search</button>
             </form>
+        </div>
+
+        <div>
+            @if(!listOfRepo.isEmpty()){
+                @for(repo <- listOfRepo){
+                    <h>@repo.getAuthorName(), @repo.getRepoName(), @repo.getTopics()</h>
+                }
+            }
         </div>
 
     </body>

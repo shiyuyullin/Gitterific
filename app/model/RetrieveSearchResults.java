@@ -35,7 +35,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                 .map(node -> new GeneralRepoInfo(node.get("owner").get("login").toString(), node.get("name").toString(), node.get("topics").toString()))
                 .collect(Collectors.toList()));
 
-        return listOfRepos.thenApply(repo -> ok(repo.get(0).getAuthorName() + repo.get(0).getRepoName() + repo.get(0).getTopics()));
+        return listOfRepos.thenApply(repo -> ok(views.html.index.render(repo)));
     }
 
     private String formatKeywordString(String keywords){
