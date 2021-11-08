@@ -5,8 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c78ea4e2-e3e5-47d1-99ac-ca81db88208c" name="Changes" comment="adding index page functionality (not working fully)">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/model/GeneralRepoInfo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/model/RetrieveSearchResults.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/project/target/config-classes/$a9331c6f30d44690d1ba$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/project/target/config-classes/$a9331c6f30d44690d1ba.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/project/target/config-classes/$a9331c6f30d44690d1ba.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/project/target/config-classes/$f4e3407b5cd608d9abe3$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/project/target/config-classes/$f4e3407b5cd608d9abe3.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/project/target/config-classes/$f4e3407b5cd608d9abe3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$0f71f25525ea3019469a$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$0f71f25525ea3019469a.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$0f71f25525ea3019469a.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$214b7663f715ee0192d4$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$214b7663f715ee0192d4.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$214b7663f715ee0192d4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$436373c271d043b73af9$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$436373c271d043b73af9.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$436373c271d043b73af9.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$495e805a76f6ad0c6d51$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$495e805a76f6ad0c6d51.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$495e805a76f6ad0c6d51.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$5f82c2033f255099032f$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$5f82c2033f255099032f.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$5f82c2033f255099032f.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$6576821da57a7ae8d328$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$6576821da57a7ae8d328.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$6576821da57a7ae8d328.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$c94ec7eef1b31600a43a$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$c94ec7eef1b31600a43a.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$c94ec7eef1b31600a43a.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$e8dace5c420cf3029e3a$.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$e8dace5c420cf3029e3a.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/target/config-classes/$e8dace5c420cf3029e3a.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/model/GeneralRepoInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/model/Profile.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/model/Repos.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/model/RetrieveSearchResults.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__aopalliance_aopalliance_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__aopalliance_aopalliance_1_0_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__ch_qos_logback_logback_classic_1_2_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__ch_qos_logback_logback_classic_1_2_3_jar.xml" afterDir="false" />
@@ -318,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636405088326</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding index page functionality (not working fully)">
+      <created>1636408131446</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1636408131446</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
