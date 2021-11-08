@@ -1,14 +1,13 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import model.Issues;
 
-import java.net.http.HttpRequest;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
+import model.RetrieveSearchResults;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.mvc.*;
@@ -33,11 +32,12 @@ public class HomeController extends Controller {
         return (client.getIssues());
     }
 
-    public Result keyword(Http.Request request){
+    public CompletionStage<Result> keyword(Http.Request request){
 
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
-        String temp = requestData.get("keywords");
-        return ok(temp);
+        String keywords = requestData.get("keywords");
+        RetrieveSearchResults client = new RetrieveSearchResults(ws);
+        return client.searchForRepo(keywords);
 
     }
 
