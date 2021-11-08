@@ -14,7 +14,11 @@ import java.util.stream.StreamSupport;
 
 import static play.mvc.Results.ok;
 
-
+/**
+ * @author Shiyu Lin
+ * This model will handle the individual part 3, which is to fetch the available issues
+ * and counting all unique words in descending order.
+ */
 public class Issues implements WSBodyReadables, WSBodyWritables{
 
     private final WSClient ws;
@@ -25,6 +29,11 @@ public class Issues implements WSBodyReadables, WSBodyWritables{
         this.ws = ws;
     }
 
+    /**
+     * The method will form an http request using WSClient, processing the response
+     * (getting the titles, and counting all unique words in descending order).
+     * @return CompletionStage<Result> the actual web page
+     */
     public CompletionStage<Result> getIssues(){
 
         WSRequest request = ws.url("https://api.github.com/repos/octocat/hello-world/issues")
@@ -44,6 +53,12 @@ public class Issues implements WSBodyReadables, WSBodyWritables{
         return listOfTitles.thenApply(titles -> ok(views.html.issue.render(titles, sortWordCount())));
     }
 
+    /**
+     * Processing a list of titles asynchronously. Replace all special characters by a space, and
+     * generate an array for each title using split(" "), merge them together and form a Stream<String>
+     * then count each word in that stream.
+     * @param listOfTitles
+     */
     private void uniqueDescending(CompletionStage<List<String>> listOfTitles){
 
         CompletionStage<Stream<String>> stringStream = listOfTitles.thenApply(
@@ -56,6 +71,12 @@ public class Issues implements WSBodyReadables, WSBodyWritables{
         stringStream.thenAccept(streamOfStrings -> streamOfStrings.forEach(this::addToWordCount));
     }
 
+    /**
+     * Given a string, use the content of the string as the key, check if it has a corresponding value.
+     * If yes, incremental the value by 1, if no, create a new entry with key = content of the string and
+     * value = 1
+     * @param word
+     */
     private void addToWordCount(String word){
         if(word.length() != 0 && wordCount.get(word) != null){
             Integer currentCount = wordCount.get(word);
@@ -66,7 +87,10 @@ public class Issues implements WSBodyReadables, WSBodyWritables{
         }
     }
 
-
+    /**
+     * Sorting a hashmap based on the "value" of key:value
+     * @return HashMap<String,Integer>
+     */
     private HashMap<String,Integer> sortWordCount(){
         Set<Map.Entry<String, Integer>> set = wordCount.entrySet();
         List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(set);
