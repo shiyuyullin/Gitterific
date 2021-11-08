@@ -11,8 +11,3 @@ o	2nd Team member:
 o	3rd Team member:
 	Shiyu Lin, 40050199
 	Individual Task #3
-
-o	4th Team member:
-	Bingyue Li, 40204699
-	Individual Task #4
-
