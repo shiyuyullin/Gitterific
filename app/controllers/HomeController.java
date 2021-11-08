@@ -1,7 +1,10 @@
 package controllers;
 
+import model.GeneralRepoInfo;
 import model.Issues;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
@@ -24,7 +27,8 @@ public class HomeController extends Controller {
     @Inject FormFactory formFactory;
 
     public Result index() {
-        return ok(views.html.index.render());
+        List<GeneralRepoInfo> temp = Arrays.asList();
+        return ok(views.html.index.render(temp));
     }
 
     public CompletionStage<Result> issue(){

@@ -1,0 +1,13 @@
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/index.scala.html:13:16: not found: type GeneralRepoInfo[0m
+[0m[[0m[31merror[0m] [0m[0m            h1 {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/index.scala.html:2:21: not found: type GeneralRepoInfo[0m
+[0m[[0m[31merror[0m] [0m[0m@(listOfRepo : List[GeneralRepoInfo])[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/index.scala.html:43:22: missing parameter type[0m
+[0m[[0m[31merror[0m] [0m[0m                @for(repo <- listOfRepo){[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/index.scala.html:52:8: not found: type GeneralRepoInfo[0m
+[0m[[0m[31merror[0m] [0m[0m</html>[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
