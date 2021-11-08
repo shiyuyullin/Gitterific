@@ -1,0 +1,33 @@
+@(titles : List[String], wordCount : HashMap[String, Integer])
+
+<html>
+    <head>
+        <title>issues</title>
+        <style>
+            .row {
+                display: flex;
+            }
+            .column {
+                flex: 50%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="row">
+            <div class="column">
+                @for( (k,v) <- wordCount){
+
+                <p>Word: @k, Count: @v</p>
+
+                }
+            </div>
+            <div class="column">
+                @for(title <- titles){
+                    <p>title : @title</p>
+                }
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,43 @@
+@import helper._
+
+<html>
+
+    <head>
+        <title>Search</title>
+        <style>
+            .welcomeHeader {
+                background-color: #92d13d;
+                height: 150px;
+            }
+            h1 {
+                color: white;
+                padding-top: 55px;
+                padding-left: 55px;
+            }
+            form {
+                padding-top: 300px;
+                padding-left: 30%;
+            }
+            input{
+                height: 45px;
+                width: 600px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="welcomeHeader">
+            <h1>Welcome to Gitterific</h1>
+        </div>
+
+        <div>
+            <form action="/keyword" method="post">
+                <input type="text" placeholder="Search.." name="keywords">
+                <button type="submit" style="height:45px; width: 50px">search</button>
+            </form>
+        </div>
+
+    </body>
+
+
+</html>
