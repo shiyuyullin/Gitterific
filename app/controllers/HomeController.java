@@ -1,16 +1,13 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import model.Issues;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
-import model.RepositoryInfo;
+import model.RetrieveSearchResults;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.mvc.*;
@@ -38,10 +35,9 @@ public class HomeController extends Controller {
     public CompletionStage<Result> keyword(Http.Request request){
 
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
-        String temp = requestData.get("keywords");
-        RepositoryInfo repo = new RepositoryInfo(ws);
-        return repo.searchForRepo(temp);
-
+        String keywords = requestData.get("keywords");
+        RetrieveSearchResults client = new RetrieveSearchResults(ws);
+        return client.searchForRepo(keywords);
 
     }
 

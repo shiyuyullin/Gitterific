@@ -1,30 +1,11 @@
-2021-11-08 15:30:20,150 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2021-11-08 16:24:54,321 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
 
-2021-11-08 15:30:20,185 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-8 - Application started (Dev) (no global state)
-2021-11-08 15:30:58,981 [WARN] from play.shaded.ahc.io.netty.util.HashedWheelTimer in AsyncHttpClient-timer-1-1 - An exception was thrown by TimerTask.
-java.lang.IllegalStateException: cannot be started once stopped
-	at play.shaded.ahc.io.netty.util.HashedWheelTimer.start(HashedWheelTimer.java:341)
-	at play.shaded.ahc.io.netty.util.HashedWheelTimer.newTimeout(HashedWheelTimer.java:416)
-	at play.shaded.ahc.org.asynchttpclient.netty.channel.DefaultChannelPool.scheduleNewIdleChannelDetector(DefaultChannelPool.java:95)
-	at play.shaded.ahc.org.asynchttpclient.netty.channel.DefaultChannelPool.access$900(DefaultChannelPool.java:43)
-	at play.shaded.ahc.org.asynchttpclient.netty.channel.DefaultChannelPool$IdleChannelDetector.run(DefaultChannelPool.java:378)
-	at play.shaded.ahc.io.netty.util.HashedWheelTimer$HashedWheelTimeout.expire(HashedWheelTimer.java:672)
-	at play.shaded.ahc.io.netty.util.HashedWheelTimer$HashedWheelBucket.expireTimeouts(HashedWheelTimer.java:747)
-	at play.shaded.ahc.io.netty.util.HashedWheelTimer$Worker.run(HashedWheelTimer.java:472)
-	at play.shaded.ahc.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-11-08 15:30:59,161 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-
-2021-11-08 15:30:59,167 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-8 - Application started (Dev) (no global state)
-2021-11-08 15:56:41,992 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-10-thread-6 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
-2021-11-08 15:56:41,992 [INFO] from play.core.server.AkkaHttpServer in pool-10-thread-6 - Stopping Akka HTTP server...
-2021-11-08 15:56:41,993 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-15 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2021-11-08 15:56:42,016 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-18 - Running provided shutdown stop hooks
+2021-11-08 16:24:54,359 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-7 - Application started (Dev) (no global state)
+2021-11-08 16:27:26,201 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-10-thread-3 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2021-11-08 16:27:26,203 [INFO] from play.core.server.AkkaHttpServer in pool-10-thread-3 - Stopping Akka HTTP server...
+2021-11-08 16:27:26,207 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-2 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2021-11-08 16:27:26,251 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-12 - Running provided shutdown stop hooks
