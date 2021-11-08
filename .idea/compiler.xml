@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SOEN6441_Project" options="-encoding utf8 -g" />
-    </option>
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf8 -g" />
   </component>
 </project>
