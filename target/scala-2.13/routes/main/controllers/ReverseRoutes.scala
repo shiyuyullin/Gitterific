@@ -26,7 +26,7 @@ package controllers {
     // @LINE:10
     def keyword(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "keyword")
+      Call("POST", _prefix)
     }
   
     // @LINE:5

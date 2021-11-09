@@ -35,8 +35,8 @@ public class Issues implements WSBodyReadables, WSBodyWritables{
     public CompletionStage<Result> renderResult(CompletionStage<List<String>> listOfTitles){
 
         // The error does not matter, app will run just fine
-        return listOfTitles.thenApply(titles -> ok(views.html.issue.render(titles, sortWordCount(countUniqueWords(titles)))));
-
+        CompletionStage<Result> result = listOfTitles.thenApply(titles -> ok(views.html.issue.render(titles, sortWordCount(countUniqueWords(titles)))));
+        return result;
     }
 
     /**

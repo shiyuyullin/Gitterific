@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import akka.stream.Materializer;
 
 import model.RetrieveSearchResults;
+import play.cache.AsyncCacheApi;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.mvc.*;

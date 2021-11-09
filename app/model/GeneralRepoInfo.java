@@ -75,4 +75,8 @@ public class GeneralRepoInfo {
     public Date getCreatedDate() {
         return createdDate;
     }
+
+    public String toString(){
+        return this.getAuthorName() + " " + this.getRepoName() + " " + this.getTopics();
+    }
 }

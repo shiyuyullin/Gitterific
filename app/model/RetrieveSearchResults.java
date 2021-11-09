@@ -1,7 +1,9 @@
 package model;
 import javax.inject.Inject;
+import javax.swing.text.html.Option;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import play.cache.*;
 import play.mvc.*;
 import play.libs.ws.*;
 
@@ -14,6 +16,7 @@ import static play.mvc.Results.ok;
 
 public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
 
+    public static List<GeneralRepoInfo> repoList = Arrays.asList();
     private final WSClient ws;
 
     @Inject
@@ -41,6 +44,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                     )
                 .collect(Collectors.toList()));
         CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
+
         return sortedByCreatedDate.thenApply(repo -> ok(views.html.index.render(repo,keywords)));
     }
 

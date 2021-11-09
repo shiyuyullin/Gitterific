@@ -33,7 +33,7 @@ package controllers.javascript {
       "controllers.HomeController.keyword",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "keyword"})
+          return _wA({method:"POST", url:"""" + _prefix + """"})
         }
       """
     )

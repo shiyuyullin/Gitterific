@@ -37,7 +37,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue""", """controllers.HomeController.issue"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """keyword""", """controllers.HomeController.keyword(request:Request)"""),
+    ("""POST""", this.prefix, """controllers.HomeController.keyword(request:Request)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -83,7 +83,7 @@ class Routes(
 
   // @LINE:10
   private[this] lazy val controllers_HomeController_keyword2_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("keyword")))
+    PathPattern(List(StaticPart(this.prefix)))
   )
   private[this] lazy val controllers_HomeController_keyword2_invoker = createInvoker(
     
@@ -95,7 +95,7 @@ class Routes(
       "keyword",
       Seq(classOf[play.mvc.Http.Request]),
       "POST",
-      this.prefix + """keyword""",
+      this.prefix + """""",
       """""",
       Seq("""nocsrf""")
     )
