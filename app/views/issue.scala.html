@@ -1,4 +1,4 @@
-@(titles : List[String], wordCount : HashMap[String, Integer])
+@(titles: List[String], wordCount : HashMap[String,Long])
 
 <html>
     <head>
@@ -27,15 +27,13 @@
         </div>
         <div class="row">
             <div class="column">
-                @for( (k,v) <- wordCount){
-
-                <p>Word: @k, Count: @v</p>
-
+                @for((k,v) <- wordCount){
+                    <p>@k @v</p>
                 }
             </div>
             <div class="column">
                 @for(title <- titles){
-                    <p>title : @title</p>
+                    <p>title: @title</p>
                 }
             </div>
         </div>

@@ -14,3 +14,5 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies += ehcache
+
+libraryDependencies += "org.mockito" % "mockito-core" % "4.0.0" % Test

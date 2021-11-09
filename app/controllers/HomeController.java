@@ -5,6 +5,7 @@ import model.Issues;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
@@ -33,7 +34,7 @@ public class HomeController extends Controller {
 
     public CompletionStage<Result> issue(){
         Issues client = new Issues(ws);
-        return (client.getIssues());
+        return client.renderResult(client.getIssuesTitles());
     }
 
     public CompletionStage<Result> keyword(Http.Request request){

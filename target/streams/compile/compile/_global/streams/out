@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/issue.scala.html:1:9: object * is not a member of package java.util[0m
+[0m[[0m[31merror[0m] [0m[0m@import java.util.*[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
