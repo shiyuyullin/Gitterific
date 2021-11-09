@@ -10,10 +10,21 @@
             .column {
                 flex: 50%;
             }
+            h1 {
+                color: white;
+                padding-top: 55px;
+                padding-left: 55px;
+            }
+            .welcomeHeader {
+                background-color: #92d13d;
+                height: 150px;
+            }
         </style>
     </head>
     <body>
-
+        <div class="welcomeHeader">
+            <h1>Word-level Statistics</h1>
+        </div>
         <div class="row">
             <div class="column">
                 @for( (k,v) <- wordCount){

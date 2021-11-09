@@ -1,6 +1,8 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.text.*;
 import java.util.List;
 
 /**
@@ -9,20 +11,31 @@ import java.util.List;
  */
 public class GeneralRepoInfo {
 
+    private static SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
+
     private String authorName;
     private String repoName;
     private String topics;
+    private Date createdDate;
 
     public GeneralRepoInfo() {
         authorName = "";
         repoName = "";
         topics = "";
+        createdDate = null;
     }
 
-    public GeneralRepoInfo(String authorName, String repoName, String topics) {
+    public GeneralRepoInfo(String authorName, String repoName, String topics, String createdDate) {
         this.authorName = authorName;
         this.repoName = repoName;
         this.topics = topics;
+        try{
+            this.createdDate = sdf.parse(createdDate);
+        }
+        catch (ParseException e){
+            System.out.println("Error occurred when parsing date.");
+        }
+
     }
 
     public void setAuthorName(String authorName) {
@@ -37,6 +50,16 @@ public class GeneralRepoInfo {
         this.topics = topics;
     }
 
+    public void setCreatedDate(String createdDate) {
+        try{
+            System.out.println(createdDate);
+            this.createdDate = sdf.parse(createdDate);
+        }
+        catch (ParseException e){
+            System.out.println("Error occurred when parsing date.");
+        }
+    }
+
     public String getAuthorName() {
         return authorName;
     }
@@ -47,5 +70,9 @@ public class GeneralRepoInfo {
 
     public String getTopics() {
         return topics;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
     }
 }

@@ -1,5 +1,5 @@
 @import model.GeneralRepoInfo
-@(listOfRepo : List[GeneralRepoInfo])
+@(listOfRepo : List[GeneralRepoInfo], keywords: String)
 
 <html>
 
@@ -10,14 +10,20 @@
                 background-color: #92d13d;
                 height: 150px;
             }
+            .result {
+                padding-left: 15%;
+                padding-right: 15%;
+                padding-top: 3%;
+            }
             h1 {
                 color: white;
                 padding-top: 55px;
                 padding-left: 55px;
             }
             form {
-                padding-top: 300px;
-                padding-left: 30%;
+                padding-top: 5%;
+                padding-left: 25%;
+                padding-right: 20%;
             }
             input{
                 height: 45px;
@@ -34,14 +40,15 @@
         <div>
             <form action="/keyword" method="post">
                 <input type="text" placeholder="Search.." name="keywords">
-                <button type="submit" style="height:45px; width: 50px">search</button>
+                <button type="submit" style="height:45px; width: 60px">search</button>
             </form>
         </div>
 
-        <div>
+        <div class="result">
             @if(!listOfRepo.isEmpty()){
+                <p>Search terms: @keywords</p>
                 @for(repo <- listOfRepo){
-                    <h>@repo.getAuthorName(), @repo.getRepoName(), @repo.getTopics()</h>
+                    <p>@repo.getAuthorName(), @repo.getRepoName(), @repo.getTopics(), @repo.getCreatedDate()</p>
                 }
             }
         </div>
