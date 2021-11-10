@@ -22,10 +22,10 @@ import play.core.j.PlayFormsMagicForJava._
 import scala.jdk.CollectionConverters._
 /*1.2*/import model.GeneralRepoInfo
 
-object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[List[GeneralRepoInfo],String,play.twirl.api.HtmlFormat.Appendable] {
+object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[List[List[GeneralRepoInfo]],List[String],play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*2.2*/(listOfRepo : List[GeneralRepoInfo], keywords: String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*2.2*/(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
@@ -74,14 +74,19 @@ Seq[Any](format.raw/*3.1*/("""
             </form>
         </div>
 
+
+
         <div class="result">
-            """),_display_(/*48.14*/if(!listOfRepo.isEmpty())/*48.39*/{_display_(Seq[Any](format.raw/*48.40*/("""
-                """),format.raw/*49.17*/("""<p>Search terms: """),_display_(/*49.35*/keywords),format.raw/*49.43*/("""</p>
-                """),_display_(/*50.18*/for(repo <- listOfRepo) yield /*50.41*/{_display_(Seq[Any](format.raw/*50.42*/("""
-                    """),format.raw/*51.21*/("""<p>"""),_display_(/*51.25*/repo/*51.29*/.getAuthorName()),format.raw/*51.45*/(""", """),_display_(/*51.48*/repo/*51.52*/.getRepoName()),format.raw/*51.66*/(""", """),_display_(/*51.69*/repo/*51.73*/.getTopics()),format.raw/*51.85*/(""", """),_display_(/*51.88*/repo/*51.92*/.getCreatedDate()),format.raw/*51.109*/("""</p>
-                """)))}),format.raw/*52.18*/("""
-            """)))}),format.raw/*53.14*/("""
-        """),format.raw/*54.9*/("""</div>
+            """),_display_(/*50.14*/if(searchKeywords.size != 0)/*50.42*/{_display_(Seq[Any](format.raw/*50.43*/("""
+                """),_display_(/*51.18*/for(i <- searchKeywords.size()-1 to 0 by -1) yield /*51.62*/{_display_(Seq[Any](format.raw/*51.63*/("""
+                    """),format.raw/*52.21*/("""<br>
+                    <p>Search terms: """),_display_(/*53.39*/searchKeywords/*53.53*/.get(i)),format.raw/*53.60*/("""</p>
+                    """),_display_(/*54.22*/for(repo <- allRepos.get(i)) yield /*54.50*/{_display_(Seq[Any](format.raw/*54.51*/("""
+                        """),format.raw/*55.25*/("""<P>"""),_display_(/*55.29*/repo),format.raw/*55.33*/("""</P>
+                    """)))}),format.raw/*56.22*/("""
+                """)))}),format.raw/*57.18*/("""
+            """)))}),format.raw/*58.14*/("""
+        """),format.raw/*59.9*/("""</div>
 
     </body>
 
@@ -91,9 +96,9 @@ Seq[Any](format.raw/*3.1*/("""
     }
   }
 
-  def render(listOfRepo:List[GeneralRepoInfo],keywords:String): play.twirl.api.HtmlFormat.Appendable = apply(listOfRepo,keywords)
+  def render(allRepos:List[List[GeneralRepoInfo]],searchKeywords:List[String]): play.twirl.api.HtmlFormat.Appendable = apply(allRepos,searchKeywords)
 
-  def f:((List[GeneralRepoInfo],String) => play.twirl.api.HtmlFormat.Appendable) = (listOfRepo,keywords) => apply(listOfRepo,keywords)
+  def f:((List[List[GeneralRepoInfo]],List[String]) => play.twirl.api.HtmlFormat.Appendable) = (allRepos,searchKeywords) => apply(allRepos,searchKeywords)
 
   def ref: this.type = this
 
@@ -103,9 +108,9 @@ Seq[Any](format.raw/*3.1*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/index.scala.html
-                  HASH: a9ab35db2992adc96469733b065b131564e8ca5f
-                  MATRIX: 610->1|965->31|1113->86|1140->87|1259->179|1287->180|1332->197|1430->267|1459->268|1500->281|1536->289|1565->290|1610->307|1738->407|1767->408|1808->421|1839->424|1868->425|1913->442|2038->539|2067->540|2108->553|2141->558|2170->559|2215->576|2343->676|2372->677|2413->690|2446->695|2475->696|2520->713|2604->769|2633->770|2669->779|3122->1205|3156->1230|3195->1231|3240->1248|3285->1266|3314->1274|3363->1296|3402->1319|3441->1320|3490->1341|3521->1345|3534->1349|3571->1365|3601->1368|3614->1372|3649->1386|3679->1389|3692->1393|3725->1405|3755->1408|3768->1412|3807->1429|3860->1451|3905->1465|3941->1474
-                  LINES: 23->1|28->2|33->3|34->4|39->9|39->9|40->10|42->12|42->12|43->13|43->13|43->13|44->14|47->17|47->17|48->18|48->18|48->18|49->19|52->22|52->22|53->23|53->23|53->23|54->24|57->27|57->27|58->28|58->28|58->28|59->29|61->31|61->31|62->32|78->48|78->48|78->48|79->49|79->49|79->49|80->50|80->50|80->50|81->51|81->51|81->51|81->51|81->51|81->51|81->51|81->51|81->51|81->51|81->51|81->51|81->51|82->52|83->53|84->54
+                  HASH: f891072ec2ae2ef436eec4b0662168d0616d6403
+                  MATRIX: 610->1|977->31|1140->101|1167->102|1286->194|1314->195|1359->212|1457->282|1486->283|1527->296|1563->304|1592->305|1637->322|1765->422|1794->423|1835->436|1866->439|1895->440|1940->457|2065->554|2094->555|2135->568|2168->573|2197->574|2242->591|2370->691|2399->692|2440->705|2473->710|2502->711|2547->728|2631->784|2660->785|2696->794|3151->1222|3188->1250|3227->1251|3272->1269|3332->1313|3371->1314|3420->1335|3490->1378|3513->1392|3541->1399|3594->1425|3638->1453|3677->1454|3730->1479|3761->1483|3786->1487|3843->1513|3892->1531|3937->1545|3973->1554
+                  LINES: 23->1|28->2|33->3|34->4|39->9|39->9|40->10|42->12|42->12|43->13|43->13|43->13|44->14|47->17|47->17|48->18|48->18|48->18|49->19|52->22|52->22|53->23|53->23|53->23|54->24|57->27|57->27|58->28|58->28|58->28|59->29|61->31|61->31|62->32|80->50|80->50|80->50|81->51|81->51|81->51|82->52|83->53|83->53|83->53|84->54|84->54|84->54|85->55|85->55|85->55|86->56|87->57|88->58|89->59
                   -- GENERATED --
               */
           

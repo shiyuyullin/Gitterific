@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.text.*;
@@ -10,6 +11,9 @@ import java.util.List;
  * Generally, it should contain the username of the author, the name of the repository, and topics (if available)
  */
 public class GeneralRepoInfo {
+
+    public static List<String> searchKeywords = new ArrayList<>();
+    public static List<List<GeneralRepoInfo>> repoList = new ArrayList<>();
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
 
@@ -77,6 +81,6 @@ public class GeneralRepoInfo {
     }
 
     public String toString(){
-        return this.getAuthorName() + " " + this.getRepoName() + " " + this.getTopics();
+        return this.getAuthorName() + " " + this.getRepoName() + " " + this.getTopics() + " " + this.getCreatedDate();
     }
 }

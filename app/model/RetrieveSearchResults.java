@@ -45,7 +45,11 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                 .collect(Collectors.toList()));
         CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
 
-        return sortedByCreatedDate.thenApply(repo -> ok(views.html.index.render(repo,keywords)));
+        return sortedByCreatedDate.thenApply(repo -> {
+            GeneralRepoInfo.repoList.add(repo);
+            GeneralRepoInfo.searchKeywords.add(keywords);
+            return ok(views.html.index.render(GeneralRepoInfo.repoList,GeneralRepoInfo.searchKeywords));
+        });
     }
 
     private String formatKeywordString(String keywords){

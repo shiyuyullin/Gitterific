@@ -30,7 +30,7 @@ public class HomeController extends Controller {
 
     public Result index() {
         List<GeneralRepoInfo> temp = Arrays.asList();
-        return ok(views.html.index.render(temp, ""));
+        return ok(views.html.index.render(GeneralRepoInfo.repoList,GeneralRepoInfo.searchKeywords));
     }
 
     public CompletionStage<Result> issue(){

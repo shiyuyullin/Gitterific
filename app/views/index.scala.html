@@ -1,5 +1,5 @@
 @import model.GeneralRepoInfo
-@(listOfRepo : List[GeneralRepoInfo], keywords: String)
+@(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String])
 
 <html>
 
@@ -44,11 +44,16 @@
             </form>
         </div>
 
+
+
         <div class="result">
-            @if(!listOfRepo.isEmpty()){
-                <p>Search terms: @keywords</p>
-                @for(repo <- listOfRepo){
-                    <p>@repo.getAuthorName(), @repo.getRepoName(), @repo.getTopics(), @repo.getCreatedDate()</p>
+            @if(searchKeywords.size != 0){
+                @for(i <- searchKeywords.size()-1 to 0 by -1){
+                    <br>
+                    <p>Search terms: @searchKeywords.get(i)</p>
+                    @for(repo <- allRepos.get(i)){
+                        <P>@repo</P>
+                    }
                 }
             }
         </div>
