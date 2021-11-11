@@ -51,14 +51,26 @@
                 @for(i <- searchKeywords.size()-1 to 0 by -1){
                     <br>
                     <p>Search terms: @searchKeywords.get(i)</p>
+                    <table style="width=100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
                     @for(repo <- allRepos.get(i)){
-                        <p>@repo.getAuthorName(), <a href="@routes.HomeController.repos(repo.getAuthorName()+"/"+repo.getRepoName())">@repo.getRepoName()</a>, @repo.getTopics(), @repo.getCreatedDate()</p>
 
-                        authorName;
-                        private String repoName;
-                        private String topics;
-                        private Date createdDate;
+                            <tr>
+                                <td style="width: 15%">
+                                <a href="#">@repo.getAuthorName()</a>
+                                </td>
+                                <td style="width: 15%">
+                                    <a href="@routes.HomeController.repos(repo.getAuthorName()+"/"+repo.getRepoName())">@repo.getRepoName()</a>
+                                </td >
+                                <td style="width: 40%">
+                                @repo.getTopics()
+                                </td>
+                                <td style="width: 30%">
+                                @repo.getCreatedDate()
+                                </td>
+
+                            </tr>
                     }
+                    </table>
                 }
             }
         </div>
