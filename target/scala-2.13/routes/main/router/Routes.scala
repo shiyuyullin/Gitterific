@@ -37,6 +37,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue""", """controllers.HomeController.issue"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """name<[^/]+>""", """controllers.HomeController.repos(name:String)"""),
     ("""POST""", this.prefix, """controllers.HomeController.keyword(request:Request)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -81,11 +82,29 @@ class Routes(
     )
   )
 
-  // @LINE:10
-  private[this] lazy val controllers_HomeController_keyword2_route = Route("POST",
+  // @LINE:8
+  private[this] lazy val controllers_HomeController_repos2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("repo/"), DynamicPart("name", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_HomeController_repos2_invoker = createInvoker(
+    HomeController_0.repos(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "repos",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """repo/""" + "$" + """name<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:11
+  private[this] lazy val controllers_HomeController_keyword3_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix)))
   )
-  private[this] lazy val controllers_HomeController_keyword2_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_keyword3_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
       HomeController_0.keyword(fakeValue[play.mvc.Http.Request]),
@@ -116,10 +135,16 @@ class Routes(
         controllers_HomeController_issue1_invoker.call(HomeController_0.issue)
       }
   
-    // @LINE:10
-    case controllers_HomeController_keyword2_route(params@_) =>
+    // @LINE:8
+    case controllers_HomeController_repos2_route(params@_) =>
+      call(params.fromPath[String]("name", None)) { (name) =>
+        controllers_HomeController_repos2_invoker.call(HomeController_0.repos(name))
+      }
+  
+    // @LINE:11
+    case controllers_HomeController_keyword3_route(params@_) =>
       call { 
-        controllers_HomeController_keyword2_invoker.call(
+        controllers_HomeController_keyword3_invoker.call(
           req => HomeController_0.keyword(req))
       }
   }

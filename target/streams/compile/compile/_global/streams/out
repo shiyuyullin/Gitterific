@@ -1,5 +1,2 @@
-[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/model/RetrieveSearchResults.java:51:1: method render in class views.html.index cannot be applied to given types;[0m
-[0m[[0m[31merror[0m] [0m[0m  required: java.util.List<java.util.List<model.GeneralRepoInfo>>,java.util.List<java.lang.String>[0m
-[0m[[0m[31merror[0m] [0m[0m  found: java.util.List<model.GeneralRepoInfo>,java.lang.String,java.util.List<java.util.List<model.GeneralRepoInfo>>[0m
-[0m[[0m[31merror[0m] [0m[0m  reason: actual and formal argument lists differ in length[0m
-[0m[[0m[31merror[0m] [0m[0mviews.html.index.render[0m
+[0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock.[0m

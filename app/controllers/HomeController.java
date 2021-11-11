@@ -3,6 +3,7 @@ package controllers;
 import model.GeneralRepoInfo;
 import model.Issues;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
+import model.Repos;
 import model.RetrieveSearchResults;
 import play.cache.AsyncCacheApi;
 import play.data.DynamicForm;
@@ -45,6 +47,11 @@ public class HomeController extends Controller {
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
         return client.searchForRepo(keywords);
 
+    }
+
+    public Result repos(String repo) {
+        Repos repos =  new Repos(repo);
+        return ok(views.html.repos.render(repos));
     }
 
 
