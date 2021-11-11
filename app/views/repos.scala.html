@@ -1,0 +1,80 @@
+@import model.Repos
+@(repo : Repos)
+
+<html>
+    <head>
+        <title>Repository</title>
+        <style>
+                .row {
+                    display: flex;
+                }
+                .column {
+                    flex: 50%;
+                }
+                h1 {
+                    color: white;
+                    padding-top: 55px;
+                    padding-left: 55px;
+                }
+                .welcomeHeader {
+                    background-color: #92d13d;
+                    height: 150px;
+                }
+        </style>
+    </head>
+    <body>
+        <div class="welcomeHeader">
+            <h1>Repository</h1>
+        </div>
+
+
+        <div>
+            <table>
+                <tr>
+                    <th>Respository Name</th>
+                    <th>@repo.getRepoName</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>@repo.getID
+                </tr>
+                <tr>
+                    <th>Author Name</th>
+                    <th>@repo.getAuthorName</th>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <th>@repo.getDescription</th>
+                </tr>
+                <tr>
+                    <th>Topics</th>
+                    <th>@repo.getTopics</th>
+                </tr>
+                <tr>
+                    <th>Visibility</th>
+                    <th>@repo.getVisibility</th>
+                </tr>
+                <tr>
+                    <th>Default Branch</th>
+                    <th>@repo.getDefault_branch</th>
+                </tr>
+                <tr>
+                    <th>Created Date</th>
+                    <th>@repo.getCreatedDate</th>
+                </tr>
+                <tr>
+                    <th>Updated Date</th>
+                    <th>@repo.getUpdateDate</th>
+                </tr>
+                <tr>
+                    <th>Pushed Date</th>
+                    <th>@repo.getPushedDate</th>
+                </tr>
+
+
+            </table>
+        </div>
+
+
+    </body>
+</html>
