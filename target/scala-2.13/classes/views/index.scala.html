@@ -1,0 +1,81 @@
+@import model.GeneralRepoInfo
+@(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String])
+
+<html>
+
+    <head>
+        <title>Search</title>
+        <style>
+            .welcomeHeader {
+                background-color: #92d13d;
+                height: 150px;
+            }
+            .result {
+                padding-left: 15%;
+                padding-right: 15%;
+                padding-top: 3%;
+            }
+            h1 {
+                color: white;
+                padding-top: 55px;
+                padding-left: 55px;
+            }
+            form {
+                padding-top: 5%;
+                padding-left: 25%;
+                padding-right: 20%;
+            }
+            input{
+                height: 45px;
+                width: 600px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="welcomeHeader">
+            <h1>Welcome to Gitterific</h1>
+        </div>
+
+        <div>
+            <form action="/" method="post">
+                <input type="text" placeholder="Search.." name="keywords">
+                <button type="submit" style="height:45px; width: 60px">search</button>
+            </form>
+        </div>
+
+
+
+        <div class="result">
+            @if(searchKeywords.size != 0){
+                @for(i <- searchKeywords.size()-1 to 0 by -1){
+                    <br>
+                    <p>Search terms: @searchKeywords.get(i)</p>
+                    <table style="width=100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
+                    @for(repo <- allRepos.get(i)){
+
+                            <tr>
+                                <td style="width: 15%">
+                                <a href="#">@repo.getAuthorName()</a>
+                                </td>
+                                <td style="width: 15%">
+                                    <a href="@routes.HomeController.repos(repo.getAuthorName()+"/"+repo.getRepoName())">@repo.getRepoName()</a>
+                                </td >
+                                <td style="width: 40%">
+                                @repo.getTopics()
+                                </td>
+                                <td style="width: 30%">
+                                @repo.getCreatedDate()
+                                </td>
+
+                            </tr>
+                    }
+                    </table>
+                }
+            }
+        </div>
+
+    </body>
+
+
+</html>

@@ -1,9 +1,9 @@
 package controllers;
 
-import model.GeneralRepoInfo;
-import model.Issues;
+import model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +12,6 @@ import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
-import model.Repos;
-import model.RetrieveSearchResults;
 import play.cache.AsyncCacheApi;
 import play.data.DynamicForm;
 import play.data.FormFactory;
@@ -51,7 +49,8 @@ public class HomeController extends Controller {
 
     public Result repos(String repo) {
         Repos repos =  new Repos(repo);
-        return ok(views.html.repos.render(repos));
+        List<Repo_issues> repo_issues = repos.issues();
+        return ok(views.html.repos.render(repos, repo_issues));
     }
 
 

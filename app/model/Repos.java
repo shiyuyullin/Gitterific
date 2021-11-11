@@ -1,7 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -10,8 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * This class is used to all available details for a repository
@@ -20,9 +19,10 @@ import java.util.HashMap;
 public class Repos {
     private static SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
 
+
     public Repos() {
     }
-
+    private String repoUrl;
     private String ID;
     private String authorName;
     private String repoName;
@@ -33,6 +33,17 @@ public class Repos {
     private Date updateDate;
     private Date pushedDate;
     private String visibility;
+
+
+    private List<Repo_issues> issues = new ArrayList<Repo_issues>();
+
+    public List<Repo_issues> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(ArrayList<Repo_issues> issues) {
+        this.issues = issues;
+    }
 
     public String getID() {
         return ID;
@@ -116,12 +127,10 @@ public class Repos {
 
 
 
-
-    public Repos(String url) {
-        String name = url.replaceAll("\"","");
-        String tempUrl = "https://api.github.com/repos/" + name.replaceAll(" ","+");
+    private JsonNode generateJN(String url){
+        JsonNode jn = null;
         String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json", tempUrl} ;
+                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;
         try {
             Process process = Runtime.getRuntime().exec(commands);
             BufferedReader reader = new BufferedReader(new
@@ -132,7 +141,24 @@ public class Repos {
                 response = response + line;
             }
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode jn = mapper.readTree(response);
+            jn = mapper.readTree(response);
+        }catch (IOException e) {
+            System.out.println("Json Error!");
+            e.printStackTrace();
+        }
+
+        return jn;
+
+    }
+
+    public Repos(String url) {
+
+        String name = url.replaceAll("\"","").replaceAll(" ","+");
+        this.repoUrl = name;
+        String tempUrl = "https://api.github.com/repos/" + repoUrl;
+
+        try {
+            JsonNode jn = generateJN(tempUrl);
             this.ID = jn.path("id").asText();
             this.authorName = jn.path("owner").path("login").asText();
             this.default_branch = jn.path("default_branch").asText();
@@ -145,13 +171,28 @@ public class Repos {
             this.pushedDate = sdf.parse(jn.path("pushed_at").toString());
 
 
-        } catch (IOException e) {
-            System.out.println("Json Error!");
-            e.printStackTrace();
         } catch (ParseException e) {
             System.out.println("Parse Error!");
             e.printStackTrace();
         }
+    }
+
+    public List<Repo_issues> issues(){
+        String tempUrl =  "https://api.github.com/repos/" + repoUrl + "/issues?per_page=20";
+        try {
+            JsonNode jn = generateJN(tempUrl);
+            for(JsonNode node:jn){
+                issues.add(new Repo_issues(node.path("body").asText(),
+                        node.path("user").path("login").asText(),
+                        node.path("title").asText(),
+                        sdf.parse(node.path("created_at").toString()) ));
+            }
+        } catch (ParseException e) {
+            System.out.println("Parse Error!");
+            e.printStackTrace();
+        }
+
+        return issues;
     }
 
 

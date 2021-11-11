@@ -7,14 +7,7 @@
     <head>
         <title>Repository</title>
         <style>
-                tbody{
-                    counter-reset: sectioncounter;
-                }
 
-                .SortClass:before{
-                    content:counter(sectioncounter);
-                    counter-increment: sectioncounter;
-                }
                 .main{
                     text-align: center;
                     margin-top: 50px;
@@ -22,7 +15,6 @@
                     bottom: 0;
                     left: 0;
                     right: 0;
-                    font-weight: bold;
 
                 }
                 .row {
@@ -93,31 +85,18 @@
 
 
             </table>
-            <br /><br />
-            <a style="font-size: large">20 Latest Issues</a>
-            <br /><br />
-            <table style="margin: auto; width: 80% ">
-                <tr>
-                    <th>No.</th>
-                    <th>Title</th>
-                    <th>User Name</th>
-                    <th>Description</th>
-                    <th>Created Date</th>
-                </tr>
+
+            <table style="margin: auto; width: 80%">
                 @for(issue <- issues){
                     <tr>
-                        <td class = SortClass></td>
-                        <td style="width: 15%">@issue.getIssue_title</td>
-                        <td style="width: 10%">@issue.getIssue_name</td>
-                        <td style="width: 60%">@issue.getIssue_description</td>
-                        <td style="width: 15%">@issue.getIssue_createdDate</td>
+                        <td style="width: 20%">@issue.getIssue_title</td>
+                        <td>@issue.getIssue_name</td>
+                        <td>@issue.getIssue_description</td>
+                        <td>@issue.getIssue_createdDate</td>
                     </tr>
                 }
             </table>
-
-
         </div>
-        <a style="text-align: left; margin-left:10%" href="@routes.HomeController.issue">Issues Page</a>
 
 
 
