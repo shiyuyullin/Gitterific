@@ -1,5 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/yunni/Desktop/SOEN6441_Project/app/model/ProcessProfile.java:58:1: method render in class views.html.users cannot be applied to given types;[0m
-[0m[[0m[31merror[0m] [0m[0m  required: model.Profile,java.util.List<model.Profile_Repo>[0m
-[0m[[0m[31merror[0m] [0m[0m  found:    model.Profile[0m
-[0m[[0m[31merror[0m] [0m[0m  reason: actual and formal argument lists differ in length[0m
-[0m[[0m[31merror[0m] [0m[0mviews.html.users.render[0m
