@@ -2,17 +2,13 @@ package controllers;
 
 import model.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
-import play.cache.AsyncCacheApi;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.mvc.*;
@@ -33,9 +29,9 @@ public class HomeController extends Controller {
         return ok(views.html.index.render(GeneralRepoInfo.repoList,GeneralRepoInfo.searchKeywords));
     }
 
-    public CompletionStage<Result> issue(){
-        Issues client = new Issues(ws);
-        return client.renderResult(client.getIssuesTitles());
+    public CompletionStage<Result> issue(String author, String repo){
+        ProcessIssues client = new ProcessIssues(ws);
+        return client.renderResult(client.getIssuesTitles(author,repo));
     }
 
     public CompletionStage<Result> keyword(Http.Request request){

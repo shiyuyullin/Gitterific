@@ -4,7 +4,7 @@
 
 GET     /                           controllers.HomeController.index
 
-GET    /issue                       controllers.HomeController.issue
+GET    /issue/:author/:repo         controllers.HomeController.issue(author: String, repo: String)
 GET   /repo/:name                   controllers.HomeController.repos(name : String)
 
 + nocsrf

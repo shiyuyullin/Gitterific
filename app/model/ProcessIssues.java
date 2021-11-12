@@ -18,12 +18,12 @@ import static play.mvc.Results.ok;
  * This model will handle the individual part 3, which is to fetch the available issues
  * and counting all unique words in descending order.
  */
-public class Issues implements WSBodyReadables, WSBodyWritables{
+public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
 
     private final WSClient ws;
 
     @Inject
-    public Issues(WSClient ws){
+    public ProcessIssues(WSClient ws){
         this.ws = ws;
     }
 
@@ -45,9 +45,10 @@ public class Issues implements WSBodyReadables, WSBodyWritables{
      * (getting the titles).
      * @return CompletionStage<List<String>> future list of titles
      */
-    public CompletionStage<List<String>> getIssuesTitles(){
+    public CompletionStage<List<String>> getIssuesTitles(String author, String repoName){
 
-        WSRequest request = ws.url("https://api.github.com/repos/octocat/hello-world/issues")
+        String url = "https://api.github.com/repos/" + author + "/" + repoName + "/issues";
+        WSRequest request = ws.url(url)
                 .addHeader("Accept", "application/vnd.github.v3+json");
 
         CompletionStage<WSResponse> response = request.get();

@@ -18,22 +18,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:5
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
+    // @LINE:11
+    def keyword: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.keyword",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
-    // @LINE:7
-    def issue: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.issue",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "issue"})
+          return _wA({method:"POST", url:"""" + _prefix + """"})
         }
       """
     )
@@ -48,12 +38,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:11
-    def keyword: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.keyword",
+    // @LINE:5
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.index",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + """"})
+          return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+    // @LINE:7
+    def issue: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.issue",
+      """
+        function(author0,repo1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "issue/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("author", author0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repo", repo1))})
         }
       """
     )
