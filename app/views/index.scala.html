@@ -47,7 +47,7 @@
 
 
         <div class="result">
-            @if(searchKeywords.size != 0){
+            @if(searchKeywords != null && searchKeywords.size != 0){
                 @for(i <- searchKeywords.size()-1 to 0 by -1){
                     <br>
                     <p>Search terms: @searchKeywords.get(i)</p>
@@ -56,7 +56,7 @@
 
                             <tr>
                                 <td style="width: 15%">
-                                    <a href="@routes.HomeController.userProfile(repo.getAuthorName()+"/"+repo.getRepoName())">@repo.getAuthorName()</a>
+                                    <a href="@routes.HomeController.userProfile(repo.getAuthorName)">@repo.getAuthorName</a>
                                 </td>
                                 <td style="width: 15%">
                                     <a href="@routes.HomeController.repos(repo.getAuthorName()+"/"+repo.getRepoName())">@repo.getRepoName()</a>

@@ -25,7 +25,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
     }
 
 
-    public CompletionStage<Result> searchForRepo(String keywords){
+    public CompletionStage<Result> searchForRepo(String keywords, String username){
 
         String formattedKeywords = formatKeywordString(keywords);
         WSRequest request = ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort:author-date-desc&per_page=10")
@@ -46,9 +46,9 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
 
         return sortedByCreatedDate.thenApply(repo -> {
-            GeneralRepoInfo.repoList.add(repo);
-            GeneralRepoInfo.searchKeywords.add(keywords);
-            return ok(views.html.index.render(GeneralRepoInfo.repoList,GeneralRepoInfo.searchKeywords));
+            GeneralRepoInfo.addRepoList(username, repo);
+            GeneralRepoInfo.addSearchKeywords(username, keywords);
+            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
         });
     }
 

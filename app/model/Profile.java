@@ -26,6 +26,18 @@ public class Profile {
     private String email;
     private String company;
 
+    public Profile(String login, String name, int followers, int following, String html_url, int id, String location, String email, String company) {
+        this.login = login;
+        this.name = name;
+        this.followers = followers;
+        this.following = following;
+        this.html_url = html_url;
+        this.id = id;
+        this.location = location;
+        this.email = email;
+        this.company = company;
+    }
+
     public int getId() {
         return id;
     }
@@ -57,8 +69,6 @@ public class Profile {
     public void setCompany(String company) {
         this.company = company;
     }
-
-    private ArrayList<Repos> repos;
 
     public String getLogin() {
         return login;
@@ -100,14 +110,6 @@ public class Profile {
         this.html_url = html_url;
     }
 
-    public ArrayList<Repos> getRepos() {
-        return repos;
-    }
-
-    public void setRepos(ArrayList<Repos> repos) {
-        this.repos = repos;
-    }
-
     @Override
     public String toString() {
         return "Profile{" +
@@ -116,41 +118,11 @@ public class Profile {
                 ", followers=" + followers +
                 ", following=" + following +
                 ", html_url='" + html_url + '\'' +
-                ", repos=" + repos +
+                ", id=" + id +
+                ", location='" + location + '\'' +
+                ", email='" + email + '\'' +
+                ", company='" + company + '\'' +
                 '}';
     }
-
-    public Profile(String url) {
-        String name = url.replaceAll("\"", "");
-        String tempUrl = "https://api.github.com/users/" + name.replaceAll(" ", "+");
-        String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json", tempUrl};
-        try {
-            Process process = Runtime.getRuntime().exec(commands);
-            BufferedReader reader = new BufferedReader(new
-                    InputStreamReader(process.getInputStream()));
-            String line;
-            String response = "";
-            while ((line = reader.readLine()) != null) {
-                response = response + line;
-            }
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode jsonNode = mapper.readTree(response);
-            this.login = jsonNode.path("login").asText();
-            this.id = jsonNode.path("id").asInt();
-            this.name = jsonNode.path("name").asText();
-            this.html_url = jsonNode.path("html_url").asText();
-            this.followers = jsonNode.path("followers").asInt();
-            this.following = jsonNode.path("following").asInt();
-            this.location = jsonNode.path("location").asText();
-            this.email = jsonNode.path("email").asText();
-            this.company = jsonNode.path("company").asText();
-
-        } catch (IOException e) {
-            System.out.println("Json Error!");
-            e.printStackTrace();
-        }
-    }
-
 }
 

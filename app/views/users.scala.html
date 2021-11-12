@@ -1,5 +1,7 @@
 @import model.Profile
-@(user : Profile )
+@import model.Profile_Repo
+@(user : Profile, repos : List[Profile_Repo])
+
 
 <html>
     <head>
@@ -50,7 +52,7 @@
             <table style="margin: auto;">
                 <tr>
                     <th>User Login Name</th>
-                    <th>@user.getId</th>
+                    <th>@user.getLogin</th>
                 </tr>
                 <tr>
                     <th>ID</th>
@@ -84,6 +86,35 @@
                     <th>Company</th>
                     <th>@user.getCompany</th>
                 </tr>
+            </table>
+
+            <br /><br />
+            <a style="font-size: large">User Repos</a>
+            <br /><br />
+            <table style="margin: auto; width: 80% ">
+                <tr>
+                    <th>name</th>
+                    <th>full_name</th>
+                    <th>isPrivate</th>
+                    <th>Description</th>
+                    <th>created_at</th>
+                    <th>html_url</th>
+                    <th>updated_at</th>
+                    <th>pushed_at</th>
+                </tr>
+                @for(repo <- repos){
+                    <tr>
+                        <td class = SortClass></td>
+                        <td style="width: 10%">@repo.getName</td>
+                        <td style="width: 10%">@repo.getFull_name</td>
+                        <td style="width: 10%">@repo.getPrivate</td>
+                        <td style="width: 15%">@repo.getHtml_url</td>
+                        <td style="width: 15%">@repo.getCreated_at</td>
+                        <td style="width: 15%">@repo.getUpdated_at</td>
+                        <td style="width: 15%">@repo.getPushed_at</td>
+                    </tr>
+                }
+
             </table>
         </div>
 
