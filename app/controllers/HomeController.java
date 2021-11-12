@@ -4,6 +4,7 @@ import model.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 
@@ -25,9 +26,13 @@ public class HomeController extends Controller {
     @Inject Materializer materializer;
     @Inject FormFactory formFactory;
 
-    public Result index() {
-        List<GeneralRepoInfo> temp = Arrays.asList();
-        return ok(views.html.index.render(GeneralRepoInfo.repoList,GeneralRepoInfo.searchKeywords));
+    public Result index(String username, Http.Request request) {
+        if(request.session().get("username").equals(Optional.empty())){
+            return ok(views.html.index.render(null, null)).addingToSession(request, "username", username);
+        }
+        else{
+            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
+        }
     }
 
     public CompletionStage<Result> issue(String author, String repo){
@@ -37,10 +42,11 @@ public class HomeController extends Controller {
 
     public CompletionStage<Result> keyword(Http.Request request){
 
+        System.out.println(request.session().get("username"));
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
         String keywords = requestData.get("keywords");
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
-        return client.searchForRepo(keywords);
+        return client.searchForRepo(keywords, request.session().get("username").get());
 
     }
 

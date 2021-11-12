@@ -1,10 +1,7 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 import java.text.*;
-import java.util.List;
 
 /**
  * This classes will be used to store the information for matched repository (results from search)
@@ -12,8 +9,8 @@ import java.util.List;
  */
 public class GeneralRepoInfo {
 
-    public static List<String> searchKeywords = new ArrayList<>();
-    public static List<List<GeneralRepoInfo>> repoList = new ArrayList<>();
+    private static HashMap<String, List<String>> SearchKeywords = new HashMap<>();
+    private static HashMap<String, List<List<GeneralRepoInfo>>> RepoList = new HashMap<>();
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
 
@@ -40,6 +37,36 @@ public class GeneralRepoInfo {
             System.out.println("Error occurred when parsing date.");
         }
 
+    }
+
+    public static List<String> getSearchKeywords(String username){
+        return SearchKeywords.get(username);
+    }
+
+    public static List<List<GeneralRepoInfo>> getRepoList(String username){
+        return RepoList.get(username);
+    }
+
+    public static void addSearchKeywords(String username, String keywords){
+        if(getSearchKeywords(username) == null){
+            List<String> keywordList = new ArrayList<>();
+            keywordList.add(keywords);
+            SearchKeywords.put(username, keywordList);
+        }
+        else{
+            getSearchKeywords(username).add(keywords);
+        }
+    }
+
+    public static void addRepoList(String username, List<GeneralRepoInfo> repoList){
+        if(getRepoList(username) == null){
+            List<List<GeneralRepoInfo>> listOfRepoList = new ArrayList<>();
+            listOfRepoList.add(repoList);
+            RepoList.put(username, listOfRepoList);
+        }
+        else{
+            getRepoList(username).add(repoList);
+        }
     }
 
     public void setAuthorName(String authorName) {

@@ -2,11 +2,12 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
 GET    /issue/:author/:repo         controllers.HomeController.issue(author: String, repo: String)
 GET   /repo/:name                   controllers.HomeController.repos(name : String)
 GET   /repo/:name                   controllers.HomeController.repos(name : String)
 GET   /user/:user                   controllers.HomeController.userProfile(user : String)
-GET   /:username                    controllers.HomeController.index(username: String, request: Request)
+GET   /:username                           controllers.HomeController.index(username: String, request: Request)
 
 
 + nocsrf

@@ -13,14 +13,14 @@ import _root_.play.libs.F
 
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
-  // @LINE:5
+  // @LINE:6
   HomeController_0: controllers.HomeController,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
-    // @LINE:5
+    // @LINE:6
     HomeController_0: controllers.HomeController
   ) = this(errorHandler, HomeController_0, "/")
 
@@ -35,11 +35,11 @@ class Routes(
   }
 
   def documentation = List(
-    ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""", """controllers.HomeController.issue(author:String, repo:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """name<[^/]+>""", """controllers.HomeController.repos(name:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """name<[^/]+>""", """controllers.HomeController.repos(name:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user/""" + "$" + """user<[^/]+>""", """controllers.HomeController.userProfile(user:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """""" + "$" + """username<[^/]+>""", """controllers.HomeController.index(username:String, request:Request)"""),
     ("""POST""", this.prefix, """controllers.HomeController.keyword(request:Request)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -48,29 +48,11 @@ class Routes(
   }}
 
 
-  // @LINE:5
-  private[this] lazy val controllers_HomeController_index0_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix)))
-  )
-  private[this] lazy val controllers_HomeController_index0_invoker = createInvoker(
-    HomeController_0.index,
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.HomeController",
-      "index",
-      Nil,
-      "GET",
-      this.prefix + """""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:7
-  private[this] lazy val controllers_HomeController_issue1_route = Route("GET",
+  // @LINE:6
+  private[this] lazy val controllers_HomeController_issue0_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("issue/"), DynamicPart("author", """[^/]+""",true), StaticPart("/"), DynamicPart("repo", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_issue1_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_issue0_invoker = createInvoker(
     HomeController_0.issue(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -79,6 +61,24 @@ class Routes(
       Seq(classOf[String], classOf[String]),
       "GET",
       this.prefix + """issue/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:7
+  private[this] lazy val controllers_HomeController_repos1_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("repo/"), DynamicPart("name", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_HomeController_repos1_invoker = createInvoker(
+    HomeController_0.repos(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "repos",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """repo/""" + "$" + """name<[^/]+>""",
       """""",
       Seq()
     )
@@ -103,28 +103,10 @@ class Routes(
   )
 
   // @LINE:9
-  private[this] lazy val controllers_HomeController_repos3_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("repo/"), DynamicPart("name", """[^/]+""",true)))
-  )
-  private[this] lazy val controllers_HomeController_repos3_invoker = createInvoker(
-    HomeController_0.repos(fakeValue[String]),
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.HomeController",
-      "repos",
-      Seq(classOf[String]),
-      "GET",
-      this.prefix + """repo/""" + "$" + """name<[^/]+>""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:10
-  private[this] lazy val controllers_HomeController_userProfile4_route = Route("GET",
+  private[this] lazy val controllers_HomeController_userProfile3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("user/"), DynamicPart("user", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_userProfile4_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_userProfile3_invoker = createInvoker(
     HomeController_0.userProfile(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -133,6 +115,26 @@ class Routes(
       Seq(classOf[String]),
       "GET",
       this.prefix + """user/""" + "$" + """user<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:10
+  private[this] lazy val controllers_HomeController_index4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), DynamicPart("username", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_HomeController_index4_invoker = createInvoker(
+    
+    (req:play.mvc.Http.Request) =>
+      HomeController_0.index(fakeValue[String], fakeValue[play.mvc.Http.Request]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "index",
+      Seq(classOf[String], classOf[play.mvc.Http.Request]),
+      "GET",
+      this.prefix + """""" + "$" + """username<[^/]+>""",
       """""",
       Seq()
     )
@@ -161,16 +163,16 @@ class Routes(
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
-    // @LINE:5
-    case controllers_HomeController_index0_route(params@_) =>
-      call { 
-        controllers_HomeController_index0_invoker.call(HomeController_0.index)
+    // @LINE:6
+    case controllers_HomeController_issue0_route(params@_) =>
+      call(params.fromPath[String]("author", None), params.fromPath[String]("repo", None)) { (author, repo) =>
+        controllers_HomeController_issue0_invoker.call(HomeController_0.issue(author, repo))
       }
   
     // @LINE:7
-    case controllers_HomeController_issue1_route(params@_) =>
-      call(params.fromPath[String]("author", None), params.fromPath[String]("repo", None)) { (author, repo) =>
-        controllers_HomeController_issue1_invoker.call(HomeController_0.issue(author, repo))
+    case controllers_HomeController_repos1_route(params@_) =>
+      call(params.fromPath[String]("name", None)) { (name) =>
+        controllers_HomeController_repos1_invoker.call(HomeController_0.repos(name))
       }
   
     // @LINE:8
@@ -180,15 +182,16 @@ class Routes(
       }
   
     // @LINE:9
-    case controllers_HomeController_repos3_route(params@_) =>
-      call(params.fromPath[String]("name", None)) { (name) =>
-        controllers_HomeController_repos3_invoker.call(HomeController_0.repos(name))
+    case controllers_HomeController_userProfile3_route(params@_) =>
+      call(params.fromPath[String]("user", None)) { (user) =>
+        controllers_HomeController_userProfile3_invoker.call(HomeController_0.userProfile(user))
       }
   
     // @LINE:10
-    case controllers_HomeController_userProfile4_route(params@_) =>
-      call(params.fromPath[String]("user", None)) { (user) =>
-        controllers_HomeController_userProfile4_invoker.call(HomeController_0.userProfile(user))
+    case controllers_HomeController_index4_route(params@_) =>
+      call(params.fromPath[String]("username", None)) { (username) =>
+        controllers_HomeController_index4_invoker.call(
+          req => HomeController_0.index(username, req))
       }
   
     // @LINE:14
