@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
+import org.checkerframework.checker.units.qual.C;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.mvc.*;
@@ -43,10 +44,11 @@ public class HomeController extends Controller {
 
     }
 
-    public Result repos(String repo) {
-        Repos repos =  new Repos(repo);
-        List<Repo_issues> repo_issues = repos.issues();
-        return ok(views.html.repos.render(repos, repo_issues));
+    public CompletionStage<Result> repos(String repo) {
+        return ProcessRepo.process(repo);
+//        Repos repos =  new Repos(repo);
+//        List<Repo_issues> repo_issues = repos.issues();
+//        return ok(views.html.repos.render(repos, repo_issues));
     }
 
 

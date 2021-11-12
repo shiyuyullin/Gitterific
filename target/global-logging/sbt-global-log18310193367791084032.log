@@ -2,8 +2,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(addDefaultCommands, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(early(initialize), None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(initialize, None, None)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(early(addPluginSbtFile="""/private/var/folders/3d/fmxkq0ss09j4xddzxmczrw1r0000gn/T/idea5.sbt"""), None, None)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(addPluginSbtFile="""/private/var/folders/3d/fmxkq0ss09j4xddzxmczrw1r0000gn/T/idea5.sbt""", None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(early(addPluginSbtFile="""/private/var/folders/3d/fmxkq0ss09j4xddzxmczrw1r0000gn/T/idea11.sbt"""), None, None)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(addPluginSbtFile="""/private/var/folders/3d/fmxkq0ss09j4xddzxmczrw1r0000gn/T/idea11.sbt""", None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(boot, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(writeSbtVersion, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(reload, None, None)[0m
@@ -11,8 +11,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(onFailure loadFailed, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(loadp, None, None)[0m
 [0m[[0m[0minfo[0m] [0m[0mwelcome to sbt 1.5.2 (Oracle Corporation Java 11.0.2)[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: plugins took 98.119062ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: defsScala took 0.352395ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: plugins took 95.165122ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: defsScala took 0.329364ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory /Users/wangrui/.sbt/1.0/plugins[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found non-root projects [0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in /Users/wangrui/.sbt/1.0/plugins, returning: ()[0m
@@ -29,27 +29,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 21.136425 ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.resolveProject(global-plugins) took 66.887876ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.loadTransitive: finalizeProject(Project(id global-plugins, base: /Users/wangrui/.sbt/1.0/plugins, plugins: List(<none>))) took 129.115186ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 18.650265 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.resolveProject(global-plugins) took 58.836796ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.loadTransitive: finalizeProject(Project(id global-plugins, base: /Users/wangrui/.sbt/1.0/plugins, plugins: List(<none>))) took 114.488797ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in /Users/wangrui/.sbt/1.0/plugins, returning: (global-plugins)[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: loadedProjectsRaw took 154.127038ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: cleanEvalClasses took 0.570379ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit(file:/Users/wangrui/.sbt/1.0/plugins/, ...) took 263.67893ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: load took 559.471022ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: resolveProjects took 7.617447ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: finalTransforms took 70.511594ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: config.delegates took 7.740357ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: Def.make(settings)... took 429.5275ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: structureIndex took 173.815509ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: mkStreams took 2.277714ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: loadedProjectsRaw took 136.453458ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: cleanEvalClasses took 0.299372ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit(file:/Users/wangrui/.sbt/1.0/plugins/, ...) took 242.058423ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: load took 906.61331ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: resolveProjects took 11.370367ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: finalTransforms took 120.903655ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: config.delegates took 9.162898ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: Def.make(settings)... took 416.577087ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: structureIndex took 127.644867ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: mkStreams took 1.521804ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading global plugins from /Users/wangrui/.sbt/1.0/plugins[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.defaultLoad until apply took 3713.112391ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: plugins took 18.048137ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: defsScala took 0.004262ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.defaultLoad until apply took 3139.296838ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: plugins took 20.285116ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: defsScala took 0.004112ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project[0m
-[0m[[0m[0mdebug[0m] [0m[0m            Load.loadUnit: mkEval took 8.098878ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m            Load.loadUnit: mkEval took 8.096379ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found non-root projects [0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project, returning: ()[0m
 [0m[[0m[0mdebug[0m] [0m[0mdeducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))[0m
@@ -65,27 +65,28 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 2.035206 ms[0m
-[0m[[0m[0minfo[0m] [0m[0mloading settings for project soen6441_project-build from plugins.sbt,idea5.sbt ...[0m
-[0m[[0m[0mdebug[0m] [0m[0m              Load.resolveProject(soen6441_project-build) took 7.409997ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m            Load.loadTransitive: finalizeProject(Project(id soen6441_project-build, base: /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project, plugins: List(<none>))) took 10.318725ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 2.869837 ms[0m
+[0m[[0m[0minfo[0m] [0m[0mloading settings for project soen6441_project-build from plugins.sbt,idea11.sbt ...[0m
+[0m[[0m[0mdebug[0m] [0m[0m              Load.resolveProject(soen6441_project-build) took 7.872409ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m            Load.loadTransitive: finalizeProject(Project(id soen6441_project-build, base: /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project, plugins: List(<none>))) took 11.823098ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project, returning: (soen6441_project-build)[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: loadedProjectsRaw took 288.884611ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: cleanEvalClasses took 7.192318ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.loadUnit(file:/Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/, ...) took 315.185627ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: load took 316.857165ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: resolveProjects took 0.140915ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: finalTransforms took 22.640433ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: config.delegates took 0.980262ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: Def.make(settings)... took 135.996592ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: structureIndex took 93.849959ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: mkStreams took 0.012294ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: loadedProjectsRaw took 2807.081288ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: cleanEvalClasses took 11.00686ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.loadUnit(file:/Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/, ...) took 2839.237797ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: load took 2840.739161ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: resolveProjects took 0.110784ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: finalTransforms took 14.07437ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: config.delegates took 0.440151ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: Def.make(settings)... took 75.658412ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: structureIndex took 25.78317ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: mkStreams took 0.002495ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading project definition from /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: plugins took 1299.38319ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: defsScala took 0.002612ms[0m
+[0m[[0m[33mwarn[0m] [0m[0mUnrecognized repository Scala Plugin Bundled Repository, ignoring it[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: plugins took 5442.523085ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: defsScala took 0.00345ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory /Users/wangrui/Study/6441/Twi/SOEN6441_Project[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: mkEval took 0.186409ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: mkEval took 0.209896ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found root project root w/ remaining [0m
 [0m[[0m[0mdebug[0m] [0m[0mdeducing auto plugins based on known facts Set(Atom(play.sbt.PlayJava), Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))[0m
@@ -182,21 +183,21 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(com.typesafe.sbt.web.SbtWeb),Set(Atom(com.typesafe.sbt.jse.SbtJsEngine)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(com.typesafe.sbt.jse.SbtJsEngine),Set(Atom(com.typesafe.sbt.jse.SbtJsTask))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,play.sbt.PlayJava,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,play.sbt.PlayWeb,play.twirl.sbt.SbtTwirl,sbt.plugins.JvmPlugin,play.sbt.PlayService,play.sbt.PlayFilters,play.sbt.PlayLayoutPlugin,play.sbt.routes.RoutesCompiler,com.typesafe.sbt.jse.SbtJsTask,com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging,sbt.plugins.SemanticdbPlugin,org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin,sbt.plugins.JUnitXmlReportPlugin,com.github.sbt.jacoco.JacocoPlugin,org.jetbrains.sbt.IdeaShellPlugin,play.sbt.PlayLogback,org.jetbrains.sbt.StructurePlugin,sbt.plugins.MiniDependencyTreePlugin,com.typesafe.sbt.jse.SbtJsEngine,play.sbt.PlayAkkaHttpServer,com.typesafe.sbt.web.SbtWeb,com.typesafe.sbt.packager.archetypes.JavaAppPackaging,com.typesafe.sbt.packager.rpm.RpmPlugin,com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin,com.typesafe.sbt.packager.windows.WindowsPlugin,com.typesafe.sbt.packager.archetypes.scripts.BatStartScriptPlugin,com.typesafe.sbt.packager.docker.DockerPlugin,com.typesafe.sbt.packager.debian.DebianPlugin,com.typesafe.sbt.packager.universal.UniversalPlugin,com.typesafe.sbt.packager.linux.LinuxPlugin,com.typesafe.sbt.SbtNativePackager)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 13.178644 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 16.289295 ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading settings for project root from build.sbt ...[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.resolveProject(root) took 169.858896ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadTransitive: finalizeProject(Project(id root, base: /Users/wangrui/Study/6441/Twi/SOEN6441_Project, plugins: List(play.sbt.PlayJava))) took 185.648257ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.resolveProject(root) took 232.312257ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadTransitive: finalizeProject(Project(id root, base: /Users/wangrui/Study/6441/Twi/SOEN6441_Project, plugins: List(play.sbt.PlayJava))) took 254.371334ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in /Users/wangrui/Study/6441/Twi/SOEN6441_Project, returning: (root)[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: loadedProjectsRaw took 275.866828ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: cleanEvalClasses took 5.586114ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.loadUnit(file:/Users/wangrui/Study/6441/Twi/SOEN6441_Project/, ...) took 1581.852901ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: load took 1585.048534ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: resolveProjects took 0.218754ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: finalTransforms took 34.248577ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: config.delegates took 0.979858ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: Def.make(settings)... took 105.189965ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: structureIndex took 38.876312ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: mkStreams took 0.002861ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: loadedProjectsRaw took 2341.954255ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: cleanEvalClasses took 10.92629ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.loadUnit(file:/Users/wangrui/Study/6441/Twi/SOEN6441_Project/, ...) took 7796.042009ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: load took 7797.639537ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: resolveProjects took 0.102063ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: finalTransforms took 56.870224ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: config.delegates took 1.924785ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: Def.make(settings)... took 227.451572ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: structureIndex took 35.800449ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: mkStreams took 0.002294ms[0m
 [0m[[0m[0minfo[0m] [0m[0mset current project to SOEN6441_Project (in build file:/Users/wangrui/Study/6441/Twi/SOEN6441_Project/)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(sbtPopOnFailure, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(resumeFromFailure, None, None)[0m

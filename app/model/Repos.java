@@ -125,75 +125,92 @@ public class Repos {
         this.visibility = visibility;
     }
 
-
-
-    private JsonNode generateJN(String url){
-        JsonNode jn = null;
-        String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;
-        try {
-            Process process = Runtime.getRuntime().exec(commands);
-            BufferedReader reader = new BufferedReader(new
-                    InputStreamReader(process.getInputStream()));
-            String line;
-            String response = "";
-            while ((line = reader.readLine()) != null) {
-                response = response + line;
-            }
-            ObjectMapper mapper = new ObjectMapper();
-            jn = mapper.readTree(response);
-        }catch (IOException e) {
-            System.out.println("Json Error!");
-            e.printStackTrace();
-        }
-
-        return jn;
-
-    }
-
-    public Repos(String url) {
-
-        String name = url.replaceAll("\"","").replaceAll(" ","+");
-        this.repoUrl = name;
-        String tempUrl = "https://api.github.com/repos/" + repoUrl;
+    public Repos(String ID, String authorName, String repoName, String topics, String description, String default_branch, String createdDate, String updateDate, String pushedDate, String visibility) {
+        this.ID = ID;
+        this.authorName = authorName;
+        this.repoName = repoName;
+        this.topics = topics;
+        this.description = description;
+        this.default_branch = default_branch;
+        this.visibility = visibility;
 
         try {
-            JsonNode jn = generateJN(tempUrl);
-            this.ID = jn.path("id").asText();
-            this.authorName = jn.path("owner").path("login").asText();
-            this.default_branch = jn.path("default_branch").asText();
-            this.description = jn.path("description").asText();
-            this.repoName = jn.path("name").asText();
-            this.topics = jn.path("topics").toString();
-            this.visibility = jn.path("visibility").asText();
-            this.createdDate = sdf.parse(jn.path("created_at").toString());
-            this.updateDate = sdf.parse(jn.path("updated_at").toString());
-            this.pushedDate = sdf.parse(jn.path("pushed_at").toString());
-
-
+            this.createdDate = sdf.parse(createdDate);
+            this.updateDate = sdf.parse(updateDate);
+            this.pushedDate = sdf.parse(pushedDate);
         } catch (ParseException e) {
             System.out.println("Parse Error!");
             e.printStackTrace();
         }
     }
 
-    public List<Repo_issues> issues(){
-        String tempUrl =  "https://api.github.com/repos/" + repoUrl + "/issues?per_page=20";
-        try {
-            JsonNode jn = generateJN(tempUrl);
-            for(JsonNode node:jn){
-                issues.add(new Repo_issues(node.path("body").asText(),
-                        node.path("user").path("login").asText(),
-                        node.path("title").asText(),
-                        sdf.parse(node.path("created_at").toString()) ));
-            }
-        } catch (ParseException e) {
-            System.out.println("Parse Error!");
-            e.printStackTrace();
-        }
+//    private JsonNode generateJN(String url){
+//        JsonNode jn = null;
+//        String[] commands = new String[]{
+//                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;
+//        try {
+//            Process process = Runtime.getRuntime().exec(commands);
+//            BufferedReader reader = new BufferedReader(new
+//                    InputStreamReader(process.getInputStream()));
+//            String line;
+//            String response = "";
+//            while ((line = reader.readLine()) != null) {
+//                response = response + line;
+//            }
+//            ObjectMapper mapper = new ObjectMapper();
+//            jn = mapper.readTree(response);
+//        }catch (IOException e) {
+//            System.out.println("Json Error!");
+//            e.printStackTrace();
+//        }
+//
+//        return jn;
+//
+//    }
 
-        return issues;
-    }
+//    public Repos(String url) {
+//
+//        String name = url.replaceAll("\"","").replaceAll(" ","+");
+//        this.repoUrl = name;
+//        String tempUrl = "https://api.github.com/repos/" + repoUrl;
+//
+//        try {
+//            JsonNode jn = generateJN(tempUrl);
+//            this.ID = jn.path("id").asText();
+//            this.authorName = jn.path("owner").path("login").asText();
+//            this.default_branch = jn.path("default_branch").asText();
+//            this.description = jn.path("description").asText();
+//            this.repoName = jn.path("name").asText();
+//            this.topics = jn.path("topics").toString();
+//            this.visibility = jn.path("visibility").asText();
+//            this.createdDate = sdf.parse(jn.path("created_at").toString());
+//            this.updateDate = sdf.parse(jn.path("updated_at").toString());
+//            this.pushedDate = sdf.parse(jn.path("pushed_at").toString());
+//
+//
+//        } catch (ParseException e) {
+//            System.out.println("Parse Error!");
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public List<Repo_issues> issues(){
+//        String tempUrl =  "https://api.github.com/repos/" + repoUrl + "/issues?per_page=20";
+//        try {
+//            JsonNode jn = generateJN(tempUrl);
+//            for(JsonNode node:jn){
+//                issues.add(new Repo_issues(node.path("body").asText(),
+//                        node.path("user").path("login").asText(),
+//                        node.path("title").asText(),
+//                        sdf.parse(node.path("created_at").toString()) ));
+//            }
+//        } catch (ParseException e) {
+//            System.out.println("Parse Error!");
+//            e.printStackTrace();
+//        }
+//
+//        return issues;
+//    }
 
 
 

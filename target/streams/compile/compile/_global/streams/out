@@ -1,6 +1,2 @@
-[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/repos.scala.html:120:83: missing argument list for method issue in class ReverseHomeController[0m
-[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
-[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `issue _` or `issue(_,_)` instead of `issue`.[0m
-[0m[[0m[31merror[0m] [0m[0m        <a style="text-align: left; margin-left:10%" href="@routes.HomeController.issue">Issues Page</a>[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock.[0m

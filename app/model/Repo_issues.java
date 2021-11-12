@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Repo_issues {
@@ -7,12 +9,20 @@ public class Repo_issues {
     private String issue_name;
     private String issue_title;
     private Date issue_createdDate;
+    private static SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
 
-    public Repo_issues(String issue_description, String issue_name, String issue_title, Date issue_createdDate) {
+
+    public Repo_issues(String issue_description, String issue_name, String issue_title, String issue_createdDate) {
         this.issue_description = issue_description;
         this.issue_name = issue_name;
         this.issue_title = issue_title;
-        this.issue_createdDate = issue_createdDate;
+        try {
+            this.issue_createdDate =  sdf.parse(issue_createdDate);
+        } catch (ParseException e) {
+            System.out.println("Parse Error!");
+            e.printStackTrace();
+        }
+
     }
 
     public String getIssue_description() {
