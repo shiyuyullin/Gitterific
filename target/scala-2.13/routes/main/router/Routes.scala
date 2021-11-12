@@ -38,6 +38,8 @@ class Routes(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""", """controllers.HomeController.issue(author:String, repo:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """name<[^/]+>""", """controllers.HomeController.repos(name:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """name<[^/]+>""", """controllers.HomeController.repos(name:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user/""" + "$" + """user<[^/]+>""", """controllers.HomeController.userProfile(user:String)"""),
     ("""POST""", this.prefix, """controllers.HomeController.keyword(request:Request)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -100,11 +102,47 @@ class Routes(
     )
   )
 
-  // @LINE:11
-  private[this] lazy val controllers_HomeController_keyword3_route = Route("POST",
+  // @LINE:9
+  private[this] lazy val controllers_HomeController_repos3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("repo/"), DynamicPart("name", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_HomeController_repos3_invoker = createInvoker(
+    HomeController_0.repos(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "repos",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """repo/""" + "$" + """name<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:10
+  private[this] lazy val controllers_HomeController_userProfile4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("user/"), DynamicPart("user", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_HomeController_userProfile4_invoker = createInvoker(
+    HomeController_0.userProfile(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "userProfile",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """user/""" + "$" + """user<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:14
+  private[this] lazy val controllers_HomeController_keyword5_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix)))
   )
-  private[this] lazy val controllers_HomeController_keyword3_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_keyword5_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
       HomeController_0.keyword(fakeValue[play.mvc.Http.Request]),
@@ -141,10 +179,22 @@ class Routes(
         controllers_HomeController_repos2_invoker.call(HomeController_0.repos(name))
       }
   
-    // @LINE:11
-    case controllers_HomeController_keyword3_route(params@_) =>
+    // @LINE:9
+    case controllers_HomeController_repos3_route(params@_) =>
+      call(params.fromPath[String]("name", None)) { (name) =>
+        controllers_HomeController_repos3_invoker.call(HomeController_0.repos(name))
+      }
+  
+    // @LINE:10
+    case controllers_HomeController_userProfile4_route(params@_) =>
+      call(params.fromPath[String]("user", None)) { (user) =>
+        controllers_HomeController_userProfile4_invoker.call(HomeController_0.userProfile(user))
+      }
+  
+    // @LINE:14
+    case controllers_HomeController_keyword5_route(params@_) =>
       call { 
-        controllers_HomeController_keyword3_invoker.call(
+        controllers_HomeController_keyword5_invoker.call(
           req => HomeController_0.keyword(req))
       }
   }

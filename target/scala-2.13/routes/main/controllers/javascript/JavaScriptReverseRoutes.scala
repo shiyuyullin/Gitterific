@@ -18,32 +18,26 @@ package controllers.javascript {
     }
 
   
-    // @LINE:11
-    def keyword: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.keyword",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
     // @LINE:8
     def repos: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.repos",
       """
         function(name0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "repo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("name", name0))})
+        
+          if (true) {
+            return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "repo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("name", name0))})
+          }
+        
         }
       """
     )
   
-    // @LINE:5
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
+    // @LINE:10
+    def userProfile: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.userProfile",
       """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
+        function(user0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0))})
         }
       """
     )
@@ -54,6 +48,26 @@ package controllers.javascript {
       """
         function(author0,repo1) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "issue/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("author", author0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repo", repo1))})
+        }
+      """
+    )
+  
+    // @LINE:14
+    def keyword: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.keyword",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+    // @LINE:5
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
         }
       """
     )

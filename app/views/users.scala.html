@@ -1,0 +1,91 @@
+@import model.Profile
+@(user : Profile )
+
+<html>
+    <head>
+        <title>User Profile</title>
+        <style>
+                tbody{
+                    counter-reset: sectioncounter;
+                }
+
+                .SortClass:before{
+                    content:counter(sectioncounter);
+                    counter-increment: sectioncounter;
+                }
+                .main{
+                    text-align: center;
+                    margin-top: 50px;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    font-weight: bold;
+
+                }
+                .row {
+                    display: flex;
+                }
+                .column {
+                    flex: 50%;
+                }
+                h1 {
+                    color: white;
+                    padding-top: 55px;
+                    padding-left: 55px;
+                }
+                .welcomeHeader {
+                    background-color: #92d13d;
+                    height: 150px;
+                }
+        </style>
+    </head>
+    <body>
+        <div class="welcomeHeader">
+            <h1>User Profile</h1>
+        </div>
+
+
+        <div class="main">
+            <table style="margin: auto;">
+                <tr>
+                    <th>User Login Name</th>
+                    <th>@user.getId</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>@user.getId
+                </tr>
+                <tr>
+                    <th>User Name</th>
+                    <th>@user.getName</th>
+                </tr>
+                <tr>
+                    <th>Followers</th>
+                    <th>@user.getFollowers</th>
+                </tr>
+                <tr>
+                    <th>Following</th>
+                    <th>@user.getFollowing</th>
+                </tr>
+                <tr>
+                    <th>User Github Page</th>
+                    <th>@user.getHtml_url</th>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <th>@user.getLocation</th>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <th>@user.getEmail</th>
+                </tr>
+                <tr>
+                    <th>Company</th>
+                    <th>@user.getCompany</th>
+                </tr>
+            </table>
+        </div>
+
+    </body>
+</html>

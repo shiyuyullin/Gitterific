@@ -49,5 +49,9 @@ public class HomeController extends Controller {
         return ok(views.html.repos.render(repos, repo_issues));
     }
 
+    public Result userProfile(String user) {
+        Profile users =  new Profile(user);
+        return ok(views.html.users.render(users));
+    }
 
 }

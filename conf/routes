@@ -6,6 +6,9 @@ GET     /                           controllers.HomeController.index
 
 GET    /issue/:author/:repo         controllers.HomeController.issue(author: String, repo: String)
 GET   /repo/:name                   controllers.HomeController.repos(name : String)
+GET   /repo/:name                   controllers.HomeController.repos(name : String)
+GET   /user/:user                   controllers.HomeController.userProfile(user : String)
+
 
 + nocsrf
 POST   /                     controllers.HomeController.keyword(request: Request)
