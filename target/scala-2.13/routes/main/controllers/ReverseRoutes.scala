@@ -17,16 +17,10 @@ package controllers {
     }
 
   
-    // @LINE:5
-    def index: Call = {
+    // @LINE:11
+    def keyword(): Call = {
       
-      Call("GET", _prefix)
-    }
-  
-    // @LINE:7
-    def issue: Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "issue")
+      Call("POST", _prefix)
     }
   
     // @LINE:8
@@ -35,10 +29,16 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "repo/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("name", name)))
     }
   
-    // @LINE:11
-    def keyword(): Call = {
+    // @LINE:5
+    def index: Call = {
       
-      Call("POST", _prefix)
+      Call("GET", _prefix)
+    }
+  
+    // @LINE:7
+    def issue(author:String, repo:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "issue/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("author", author)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("repo", repo)))
     }
   
   }

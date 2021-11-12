@@ -36,7 +36,7 @@ class Routes(
 
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue""", """controllers.HomeController.issue"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""", """controllers.HomeController.issue(author:String, repo:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """name<[^/]+>""", """controllers.HomeController.repos(name:String)"""),
     ("""POST""", this.prefix, """controllers.HomeController.keyword(request:Request)"""),
     Nil
@@ -66,17 +66,17 @@ class Routes(
 
   // @LINE:7
   private[this] lazy val controllers_HomeController_issue1_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("issue")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("issue/"), DynamicPart("author", """[^/]+""",true), StaticPart("/"), DynamicPart("repo", """[^/]+""",true)))
   )
   private[this] lazy val controllers_HomeController_issue1_invoker = createInvoker(
-    HomeController_0.issue,
+    HomeController_0.issue(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
       "issue",
-      Nil,
+      Seq(classOf[String], classOf[String]),
       "GET",
-      this.prefix + """issue""",
+      this.prefix + """issue/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""",
       """""",
       Seq()
     )
@@ -131,8 +131,8 @@ class Routes(
   
     // @LINE:7
     case controllers_HomeController_issue1_route(params@_) =>
-      call { 
-        controllers_HomeController_issue1_invoker.call(HomeController_0.issue)
+      call(params.fromPath[String]("author", None), params.fromPath[String]("repo", None)) { (author, repo) =>
+        controllers_HomeController_issue1_invoker.call(HomeController_0.issue(author, repo))
       }
   
     // @LINE:8
