@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
@@ -52,6 +53,7 @@ public class ProcessProfile {
                         nodes.path("updated_at").toString(),
                         nodes.path("pushed_at").toString()
                 )).collect(Collectors.toList()));
+
 
         return repoList.thenApply(profile_repos -> temp = profile_repos)
                 .thenCombine(UserProfileList, (profile_repos, users)

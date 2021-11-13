@@ -14,7 +14,9 @@ public class Profile_Repo {
     private Date pushed_at;
     private static SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
 
-    public Profile_Repo(String name, String full_name, Boolean isPrivate, String html_url, Date created_at, Date updated_at, Date pushed_at) {
+
+
+    public Profile_Repo(String name, String full_name, Boolean isPrivate, String html_url, String  created_at, String updated_at, String pushed_at) {
         this.name = name;
         this.full_name = full_name;
         this.isPrivate = isPrivate;
@@ -28,10 +30,11 @@ public class Profile_Repo {
             e.printStackTrace();
         }
 
+
     }
 
-    public Profile_Repo(String name, String full_name, boolean isPrivate, String html_url, String created_at, String updated_at, String pushed_at) {
-    }
+//    public Profile_Repo(String name, String full_name, boolean isPrivate, String html_url, String created_at, String updated_at, String pushed_at) {
+//    }
 
     public String getName() {
         return name;
