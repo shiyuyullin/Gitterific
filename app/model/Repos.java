@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * @author Rui Wang
  * This class is used to all available details for a repository
  */
 
@@ -22,7 +23,7 @@ public class Repos {
 
     public Repos() {
     }
-    private String repoUrl;
+//    private String repoUrl;
     private String ID;
     private String authorName;
     private String repoName;
@@ -35,15 +36,15 @@ public class Repos {
     private String visibility;
 
 
-    private List<Repo_issues> issues = new ArrayList<Repo_issues>();
-
-    public List<Repo_issues> getIssues() {
-        return issues;
-    }
-
-    public void setIssues(ArrayList<Repo_issues> issues) {
-        this.issues = issues;
-    }
+//    private List<Repo_issues> issues = new ArrayList<Repo_issues>();
+//
+//    public List<Repo_issues> getIssues() {
+//        return issues;
+//    }
+//
+//    public void setIssues(ArrayList<Repo_issues> issues) {
+//        this.issues = issues;
+//    }
 
     public String getID() {
         return ID;
@@ -133,18 +134,36 @@ public class Repos {
         this.description = description;
         this.default_branch = default_branch;
         this.visibility = visibility;
+            try {
+                this.createdDate = sdf.parse(createdDate);
+                this.updateDate = sdf.parse(updateDate);
+                this.pushedDate = sdf.parse(pushedDate);
+            } catch (ParseException e) {
+                System.out.println("Parse Error!");
+            }
 
-        try {
-            this.createdDate = sdf.parse(createdDate);
-            this.updateDate = sdf.parse(updateDate);
-            this.pushedDate = sdf.parse(pushedDate);
-        } catch (ParseException e) {
-            System.out.println("Parse Error!");
-            e.printStackTrace();
-        }
+
+
+
     }
 
-//    private JsonNode generateJN(String url){
+    @Override
+    public String toString() {
+        return "Repos{" +
+                "ID='" + ID + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", repoName='" + repoName + '\'' +
+                ", topics='" + topics + '\'' +
+                ", description='" + description + '\'' +
+                ", default_branch='" + default_branch + '\'' +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
+                ", pushedDate=" + pushedDate +
+                ", visibility='" + visibility + '\'' +
+                '}';
+    }
+
+    //    private JsonNode generateJN(String url){
 //        JsonNode jn = null;
 //        String[] commands = new String[]{
 //                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;

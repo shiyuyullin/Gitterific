@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author Rui Wang
+ * This class is used to store 20 latest issues for a repository.
+ */
 public class Repo_issues {
     private String issue_description;
     private String issue_name;

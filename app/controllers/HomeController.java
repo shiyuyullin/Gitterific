@@ -50,8 +50,8 @@ public class HomeController extends Controller {
 
     }
 
-    public CompletionStage<Result> repos(String repo) {
-        return ProcessRepo.process(repo);
+    public CompletionStage<Result> repos(String author,String repo) {
+        return ProcessRepo.process(author,repo);
 //        Repos repos =  new Repos(repo);
 //        List<Repo_issues> repo_issues = repos.issues();
 //        return ok(views.html.repos.render(repos, repo_issues));

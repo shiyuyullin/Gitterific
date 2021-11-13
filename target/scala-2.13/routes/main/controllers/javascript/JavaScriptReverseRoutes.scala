@@ -22,12 +22,8 @@ package controllers.javascript {
     def repos: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.repos",
       """
-        function(name0) {
-        
-          if (true) {
-            return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "repo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("name", name0))})
-          }
-        
+        function(author0,repo1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "repo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("author", author0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repo", repo1))})
         }
       """
     )

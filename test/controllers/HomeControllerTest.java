@@ -23,10 +23,20 @@ public class HomeControllerTest extends WithApplication {
     public void testIndex() {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .method(GET)
-                .uri("/");
+                .uri("/user");
 
         Result result = route(app, request);
         assertEquals(OK, result.status());
     }
+    @Test
+    public void testRepo() {
+        Http.RequestBuilder request = new Http.RequestBuilder()
+                .method(GET)
+                .uri("/repo/gto76/python-cheatsheet");
+
+        Result result = route(app, request);
+        assertEquals(OK, result.status());
+    }
+
 
 }

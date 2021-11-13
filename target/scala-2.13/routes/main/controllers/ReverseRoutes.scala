@@ -18,17 +18,9 @@ package controllers {
 
   
     // @LINE:7
-    def repos(name:String): Call = {
-    
-      (name: @unchecked) match {
+    def repos(author:String, repo:String): Call = {
       
-        // @LINE:7
-        case (name)  =>
-          
-          Call("GET", _prefix + { _defaultPrefix } + "repo/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("name", name)))
-      
-      }
-    
+      Call("GET", _prefix + { _defaultPrefix } + "repo/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("author", author)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("repo", repo)))
     }
   
     // @LINE:9

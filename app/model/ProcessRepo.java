@@ -16,13 +16,19 @@ import java.util.stream.StreamSupport;
 
 import static play.mvc.Results.ok;
 
+/**
+ * @author Rui Wang
+ * This model will handle the individual part 2, which is to fetch the repository details
+ * and 20 lastest issues.
+ */
+
 public class ProcessRepo {
-     static List<Repo_issues> temp = new ArrayList<>();
+    static List<Repo_issues> temp = new ArrayList<>();
 
-    public static CompletionStage<Result> process(String url) {
+    public static CompletionStage<Result> process(String author, String repo) {
 
 
-        String name = url.replaceAll("\"", "").replaceAll(" ", "+");
+        String name = author.replaceAll(" ", "+") + "/" + repo.replaceAll(" ", "+");
         String tempUrl = "https://api.github.com/repos/" + name;
         CompletionStage<JsonNode> jn = CompletableFuture.supplyAsync(() -> generateJN(tempUrl));
 
@@ -40,30 +46,33 @@ public class ProcessRepo {
                         node.path("visibility").asText()
                 )).collect(Collectors.toList()));
 
-         String issueUrl =  "https://api.github.com/repos/" + name + "/issues?per_page=20";
-         CompletionStage<JsonNode> jn2 = CompletableFuture.supplyAsync(() -> generateJN(issueUrl));
-         CompletionStage<List<Repo_issues>> IssueList = jn2.thenApply(node -> StreamSupport.stream(node.spliterator(), false).
-                 map(nodes -> new Repo_issues(
-                         nodes.path("body").asText(),
-                         nodes.path("user").path("login").asText(),
-                         nodes.path("title").asText(),
-                         nodes.path("created_at").toString()
-                 )).collect(Collectors.toList()));
+        String issueUrl = "https://api.github.com/repos/" + name + "/issues?per_page=20";
+        CompletionStage<JsonNode> jn2 = CompletableFuture.supplyAsync(() -> generateJN(issueUrl));
+        CompletionStage<List<Repo_issues>> IssueList = jn2.thenApply(node -> StreamSupport.stream(node.spliterator(), false).
+                map(nodes -> new Repo_issues(
+                        nodes.path("body").asText(),
+                        nodes.path("user").path("login").asText(),
+                        nodes.path("title").asText(),
+                        nodes.path("created_at").toString()
+                )).collect(Collectors.toList()));
 
 
-
-        return IssueList.thenApply(repo_issues -> temp = repo_issues).thenCombine(ReposList, (repo_issues, repos) -> ok(views.html.repos.render(repos.get(0),repo_issues )));
+        return IssueList.thenApply(repo_issues -> temp = repo_issues).thenCombine(ReposList, (repo_issues, repos) -> ok(views.html.repos.render(repos.get(0), repo_issues)));
 
 
     }
 
 
-
-    public static JsonNode generateJN(String url){
+    /**
+     * Generate JsonNode from the giving url
+     * @param url
+     * @return JsonNode
+     */
+    public static JsonNode generateJN(String url) {
 
         JsonNode jn = null;
         String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;
+                "curl", "-H", "Accept: application/vnd.github.v3+json", url};
         try {
             Process process = Runtime.getRuntime().exec(commands);
             BufferedReader reader = new BufferedReader(new
@@ -76,7 +85,7 @@ public class ProcessRepo {
 
             ObjectMapper mapper = new ObjectMapper();
             jn = mapper.readTree(response);
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Json Error!");
         }
 
