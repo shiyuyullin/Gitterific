@@ -58,7 +58,6 @@ public class HomeController extends Controller {
     }
 
     public CompletionStage<Result> userProfile(String user) {
-//        Profile users =  new Profile(user);
         return ProcessProfile.processUsers(user);
     }
 
