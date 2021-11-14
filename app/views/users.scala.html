@@ -6,14 +6,15 @@
 <html>
     <head>
         <title>User Profile</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
         <style>
-                tbody{
-                    counter-reset: sectioncounter;
+                body {
+                    font-family: 'Mukta', sans-serif;
                 }
-
-                .SortClass:before{
-                    content:counter(sectioncounter);
-                    counter-increment: sectioncounter;
+                tbody {
+                    counter-reset: sectioncounter;
                 }
                 .main{
                     text-align: center;
@@ -40,6 +41,33 @@
                     background-color: #92d13d;
                     height: 150px;
                 }
+            table {
+                margin: auto;
+            }
+            th {
+                padding: 0 1rem;
+            }
+            td {
+                padding: 0 1rem
+            }
+            .user-info th {
+                text-align: end;
+                background-color: #fff7d6;
+            }
+            .user-info td {
+                background-color: #fff7d6;
+            }
+
+            .data-table {
+                width: 90%;
+            }
+            .data-table {
+                border: 1px solid grey;
+            }
+                .SortClass:before{
+                    content:counter(sectioncounter);
+                    counter-increment: sectioncounter;
+                }
         </style>
     </head>
     <body>
@@ -49,49 +77,47 @@
 
 
         <div class="main">
-            <table style="margin: auto;">
+            <table class="user-info">
                 <tr>
                     <th>User Login Name</th>
-                    <th>@user.getLogin</th>
+                    <td>@user.getLogin</td>
                 </tr>
                 <tr>
                     <th>ID</th>
-                    <th>@user.getId
+                    <td>@user.getId</td>
                 </tr>
                 <tr>
                     <th>User Name</th>
-                    <th>@user.getName</th>
+                    <td>@user.getName</td>
                 </tr>
                 <tr>
                     <th>Followers</th>
-                    <th>@user.getFollowers</th>
+                    <td>@user.getFollowers</td>
                 </tr>
                 <tr>
                     <th>Following</th>
-                    <th>@user.getFollowing</th>
+                    <td>@user.getFollowing</td>
                 </tr>
                 <tr>
                     <th>User Github Page</th>
-                    <th>@user.getHtml_url</th>
+                    <td>@user.getHtml_url</td>
                 </tr>
                 <tr>
                     <th>Location</th>
-                    <th>@user.getLocation</th>
+                    <td>@user.getLocation</td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <th>@user.getEmail</th>
+                    <td>@user.getEmail</td>
                 </tr>
                 <tr>
                     <th>Company</th>
-                    <th>@user.getCompany</th>
+                    <td>@user.getCompany</td>
                 </tr>
             </table>
 
-            <br /><br />
-            <a style="font-size: large">User Repos</a>
-            <br /><br />
-            <table style="margin: auto; width: 80% ">
+            <h2>User Repos</h2>
+            <table class="data-table">
                 <tr>
                     <th>No.</th>
                     <th>Repo Name</th>

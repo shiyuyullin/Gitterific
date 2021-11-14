@@ -3,10 +3,17 @@
 @import model.Repo_issues
 @(repo : Repos, issues : List[Repo_issues])
 
+<!DOCTYPE html>
 <html>
     <head>
         <title>Repository</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
         <style>
+                body {
+                    font-family: 'Mukta', sans-serif;
+                }
                 tbody{
                     counter-reset: sectioncounter;
                 }
@@ -40,6 +47,32 @@
                     background-color: #92d13d;
                     height: 150px;
                 }
+                table {
+                    margin: auto;
+                }
+                th {
+                    padding: 0 1rem;
+                }
+                td {
+                    padding: 0 1rem
+                }
+                .user-info th {
+                    text-align: end;
+                    background-color: #fff7d6;
+                }
+                .user-info td {
+                    background-color: #fff7d6;
+                }
+
+                .data-table {
+                    width: 90%;
+                }
+                .data-table {
+                    border: 1px solid grey;
+                }
+            a {
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
@@ -49,54 +82,50 @@
 
 
         <div class="main">
-            <table style="margin: auto;">
+            <table class="user-info">
                 <tr>
                     <th>Respository Name</th>
-                    <th>@repo.getRepoName</th>
+                    <td>@repo.getRepoName</td>
                 </tr>
                 <tr>
                     <th>ID</th>
-                    <th>@repo.getID
+                    <td>@repo.getID</td>
                 </tr>
                 <tr>
                     <th>Author Name</th>
-                    <th>@repo.getAuthorName</th>
+                    <td>@repo.getAuthorName</td>
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <th>@repo.getDescription</th>
+                    <td>@repo.getDescription</td>
                 </tr>
                 <tr>
                     <th>Topics</th>
-                    <th>@repo.getTopics</th>
+                    <td>@repo.getTopics</td>
                 </tr>
                 <tr>
                     <th>Visibility</th>
-                    <th>@repo.getVisibility</th>
+                    <td>@repo.getVisibility</td>
                 </tr>
                 <tr>
                     <th>Default Branch</th>
-                    <th>@repo.getDefault_branch</th>
+                    <td>@repo.getDefault_branch</td>
                 </tr>
                 <tr>
                     <th>Created Date</th>
-                    <th>@repo.getCreatedDate</th>
+                    <td>@repo.getCreatedDate</td>
                 </tr>
                 <tr>
                     <th>Updated Date</th>
-                    <th>@repo.getUpdateDate</th>
+                    <td>@repo.getUpdateDate</td>
                 </tr>
                 <tr>
                     <th>Pushed Date</th>
-                    <th>@repo.getPushedDate</th>
+                    <td>@repo.getPushedDate</td>
                 </tr>
-
-
             </table>
-            <br /><br />
-            <a style="font-size: large">20 Latest Issues</a>
-            <br /><br />
-            <table style="margin: auto; width: 80% ">
+            <h2>20 Latest Issues</h2>
+            <table class="data-table">
                 <tr>
                     <th>No.</th>
                     <th>Title</th>
@@ -119,8 +148,10 @@
         </div>
 
         <div>
-        <a style="text-align: left; margin-left:10%" href="/user/@repo.getAuthorName">User Profile Page</a>
-        <a style="text-align: left; margin-left:10%" href="/issue/@repo.getAuthorName/@repo.getRepoName">Issues Page</a>
+        <ul>
+            <li><a href="/user/@repo.getAuthorName">User Profile Page</a></li>
+            <li><a href="/issue/@repo.getAuthorName/@repo.getRepoName">Issues Page</a></li>
+        </ul>
         </div>
 
 
