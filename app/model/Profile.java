@@ -17,6 +17,9 @@ public class Profile {
     private String email;
     private String company;
 
+    public Profile() {
+    }
+
     /***
      * the Constructor of the user profile
      * @param login
@@ -187,19 +190,5 @@ public class Profile {
     }
 
 
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "login='" + login + '\'' +
-                ", name='" + name + '\'' +
-                ", followers=" + followers +
-                ", following=" + following +
-                ", html_url='" + html_url + '\'' +
-                ", id=" + id +
-                ", location='" + location + '\'' +
-                ", email='" + email + '\'' +
-                ", company='" + company + '\'' +
-                '}';
-    }
 }
 
