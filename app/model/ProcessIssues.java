@@ -20,7 +20,7 @@ import static play.mvc.Results.ok;
  */
 public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
 
-    public WSClient ws;
+    private final WSClient ws;
 
     @Inject
     public ProcessIssues(WSClient ws){

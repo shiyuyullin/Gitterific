@@ -45,8 +45,7 @@ public class HomeController extends Controller {
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
         String keywords = requestData.get("keywords");
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
-        return client.searchForRepo(keywords, request.session().get("username").get());
-
+        return client.searchForRepo(keywords, request.session().get("username").get(), client.getRepoInfoAsJsonNode(keywords));
     }
 
     public CompletionStage<Result> repos(String author,String repo) {
