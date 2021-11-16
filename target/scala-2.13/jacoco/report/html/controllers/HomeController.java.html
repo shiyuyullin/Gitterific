@@ -20,15 +20,15 @@ import play.libs.ws.*;
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
  */
-<span class="fc" id="L23">public class HomeController extends Controller {</span>
+<span class="nc" id="L23">public class HomeController extends Controller {</span>
 
     @Inject WSClient ws;
     @Inject Materializer materializer;
     @Inject FormFactory formFactory;
 
     public Result index(String username, Http.Request request) {
-<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if(request.session().get(&quot;username&quot;).equals(Optional.empty())){</span>
-<span class="fc" id="L31">            return ok(views.html.index.render(null, null)).addingToSession(request, &quot;username&quot;, username);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(request.session().get(&quot;username&quot;).equals(Optional.empty())){</span>
+<span class="nc" id="L31">            return ok(views.html.index.render(null, null)).addingToSession(request, &quot;username&quot;, username);</span>
         }
         else{
 <span class="nc" id="L34">            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));</span>
@@ -50,14 +50,14 @@ import play.libs.ws.*;
     }
 
     public CompletionStage&lt;Result&gt; repos(String author,String repo) {
-<span class="fc" id="L53">        return ProcessRepo.process(author,repo);</span>
+<span class="nc" id="L53">        return ProcessRepo.process(author,repo);</span>
 //        Repos repos =  new Repos(repo);
 //        List&lt;Repo_issues&gt; repo_issues = repos.issues();
 //        return ok(views.html.repos.render(repos, repo_issues));
     }
 
     public CompletionStage&lt;Result&gt; userProfile(String user) {
-<span class="fc" id="L60">        return ProcessProfile.processUsers(user);</span>
+<span class="nc" id="L60">        return ProcessProfile.processUsers(user);</span>
     }
 
 }

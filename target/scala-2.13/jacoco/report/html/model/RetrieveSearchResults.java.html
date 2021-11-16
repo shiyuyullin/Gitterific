@@ -3,69 +3,76 @@ import javax.inject.Inject;
 import javax.swing.text.html.Option;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.routes;
 import play.cache.*;
 import play.mvc.*;
 import play.libs.ws.*;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static play.mvc.Results.ok;
+import static play.mvc.Results.*;
 
 public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
 
-<span class="nc" id="L19">    public static List&lt;GeneralRepoInfo&gt; repoList = Arrays.asList();</span>
     private final WSClient ws;
 
     @Inject
-<span class="nc" id="L23">    public RetrieveSearchResults(WSClient ws){</span>
-<span class="nc" id="L24">        this.ws = ws;</span>
-<span class="nc" id="L25">    }</span>
-
+<span class="nc" id="L24">    public RetrieveSearchResults(WSClient ws){</span>
+<span class="nc" id="L25">        this.ws = ws;</span>
+<span class="nc" id="L26">    }</span>
 
     public CompletionStage&lt;Result&gt; searchForRepo(String keywords, String username){
 
-<span class="nc" id="L30">        String formattedKeywords = formatKeywordString(keywords);</span>
-<span class="nc" id="L31">        WSRequest request = ws.url(&quot;https://api.github.com/search/repositories?q=&quot; + formattedKeywords + &quot;&amp;sort:author-date-desc&amp;per_page=10&quot;)</span>
-<span class="nc" id="L32">                .addHeader(&quot;Accept&quot;,&quot;application/vnd.github.v3+json&quot;);</span>
-
-<span class="nc" id="L34">        CompletionStage&lt;WSResponse&gt; futureResponse = request.get();</span>
-<span class="nc" id="L35">        CompletionStage&lt;JsonNode&gt; futureJson = futureResponse.thenApply(WSResponse::asJson);</span>
-<span class="nc" id="L36">        CompletionStage&lt;JsonNode&gt; items = futureJson.thenApply(jsonNode -&gt; jsonNode.get(&quot;items&quot;));</span>
-<span class="nc" id="L37">        CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos = items.thenApply(nodes -&gt; StreamSupport.stream(nodes.spliterator(), false)</span>
-                .map(node -&gt; new GeneralRepoInfo(
-                        node.get(&quot;owner&quot;).get(&quot;login&quot;).toString(),
-                        node.get(&quot;name&quot;).toString(),
-                        node.get(&quot;topics&quot;).toString(),
-                        node.get(&quot;created_at&quot;).toString()
-                        )
-                    )
-                .collect(Collectors.toList()));
-<span class="nc" id="L46">        CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sortedByCreatedDate =  sortByDate(listOfRepos);</span>
-
-<span class="nc" id="L48">        return sortedByCreatedDate.thenApply(repo -&gt; {</span>
-            GeneralRepoInfo.addRepoList(username, repo);
-            GeneralRepoInfo.addSearchKeywords(username, keywords);
-            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
-        });
-    }
-
-    private String formatKeywordString(String keywords){
-<span class="nc" id="L56">        String[] keyword = keywords.split(&quot; &quot;);</span>
-<span class="nc" id="L57">        StringBuilder sb = new StringBuilder();</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        for(int i = 0; i &lt; keyword.length; i++){</span>
-<span class="nc" id="L59">            sb.append(keyword[i]).append(&quot;+&quot;);</span>
+<span class="nc bnc" id="L30" title="All 4 branches missed.">        if(keywords == null || username == null){</span>
+<span class="nc" id="L31">            return CompletableFuture.completedStage(ok(views.html.index.render(null,null)));</span>
         }
-<span class="nc" id="L61">        return sb.toString();</span>
+        else{
+<span class="nc" id="L34">            String formattedKeywords = formatKeywordString(keywords);</span>
+<span class="nc" id="L35">            WSRequest request = ws.url(&quot;https://api.github.com/search/repositories?q=&quot; + formattedKeywords + &quot;&amp;sort:author-date-desc&amp;per_page=10&quot;)</span>
+<span class="nc" id="L36">                    .addHeader(&quot;Accept&quot;,&quot;application/vnd.github.v3+json&quot;);</span>
+
+<span class="nc" id="L38">            CompletionStage&lt;WSResponse&gt; futureResponse = request.get();</span>
+<span class="nc" id="L39">            CompletionStage&lt;JsonNode&gt; futureJson = futureResponse.thenApply(WSResponse::asJson);</span>
+<span class="nc" id="L40">            CompletionStage&lt;JsonNode&gt; items = futureJson.thenApply(jsonNode -&gt; jsonNode.get(&quot;items&quot;));</span>
+<span class="nc" id="L41">            CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos = items.thenApply(nodes -&gt; StreamSupport.stream(nodes.spliterator(), false)</span>
+                    .map(node -&gt; new GeneralRepoInfo(
+                                    node.get(&quot;owner&quot;).get(&quot;login&quot;).toString(),
+                                    node.get(&quot;name&quot;).toString(),
+                                    node.get(&quot;topics&quot;).toString(),
+                                    node.get(&quot;created_at&quot;).toString()
+                            )
+                    )
+                    .collect(Collectors.toList()));
+<span class="nc" id="L50">            CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sortedByCreatedDate =  sortByDate(listOfRepos);</span>
+
+<span class="nc" id="L52">            return sortedByCreatedDate.thenApply(repo -&gt; {</span>
+                GeneralRepoInfo.addRepoList(username, repo);
+                GeneralRepoInfo.addSearchKeywords(username, keywords);
+                return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
+            });
+        }
+
     }
 
-    private CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sortByDate(CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos){
-<span class="nc" id="L65">        CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sorted =  listOfRepos.thenApply(repos -&gt; repos.stream()</span>
+    public String formatKeywordString(String keywords){
+
+<span class="nc" id="L63">        String[] keyword = keywords.split(&quot; &quot;);</span>
+<span class="nc" id="L64">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for(int i = 0; i &lt; keyword.length; i++){</span>
+<span class="nc" id="L66">            sb.append(keyword[i]).append(&quot;+&quot;);</span>
+        }
+<span class="nc" id="L68">        return sb.toString();</span>
+    }
+
+    public CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sortByDate(CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos){
+<span class="nc" id="L72">        CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sorted =  listOfRepos.thenApply(repos -&gt; repos.stream()</span>
                 .sorted(Comparator.comparing(GeneralRepoInfo::getCreatedDate).reversed())
                 .collect(Collectors.toList()));
-<span class="nc" id="L68">        return sorted;</span>
+<span class="nc" id="L75">        return sorted;</span>
     }
 
 }

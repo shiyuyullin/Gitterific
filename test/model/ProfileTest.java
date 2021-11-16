@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /***
- * test for the {@link Profile} class
+ * test for the Profile class
  * @author Yun Ni
  */
 class ProfileTest {
@@ -190,4 +190,28 @@ class ProfileTest {
         assertEquals("aaaa", profile.getHtml_url());
     }
 
+    @Test
+    void ConstructorTests(){
+        Profile profile1 = new Profile();
+        Profile profile2 = new Profile("aa", "aaa", 1, 1, "aaa", 2, "Montreal", "sa", "aa");
+        assertNull(profile1.getLogin());
+        assertEquals("aa", profile2.getLogin());
+        assertNull(profile1.getName());
+        assertEquals("aaa", profile2.getName());
+        assertEquals(0,profile1.getFollowers());
+        assertEquals(1,profile2.getFollowers());
+        assertEquals(0,profile1.getFollowing());
+        assertEquals(1,profile2.getFollowing());
+        assertNull(profile1.getHtml_url());
+        assertEquals("aaa",profile2.getHtml_url());
+        assertEquals(0, profile1.getId());
+        assertEquals(2, profile2.getId());
+        assertNull(profile1.getLocation());
+        assertEquals("Montreal",profile2.getLocation());
+        assertNull(profile1.getEmail());
+        assertEquals("sa",profile2.getEmail());
+        assertNull(profile1.getCompany());
+        assertEquals("aa",profile2.getCompany());
+
+    }
 }

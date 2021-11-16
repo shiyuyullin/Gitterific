@@ -24,15 +24,15 @@ import static play.mvc.Results.ok;
  */
 <span class="nc" id="L25">public class ProcessProfile {</span>
 
-<span class="fc" id="L27">    static List&lt;Profile_Repo&gt; temp = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L27">    static List&lt;Profile_Repo&gt; temp = new ArrayList&lt;&gt;();</span>
 
     public static CompletionStage&lt;Result&gt; processUsers(String url) {
 
-<span class="fc" id="L31">        String name = url.replaceAll(&quot;\&quot;&quot;, &quot;&quot;).replaceAll(&quot; &quot;, &quot;+&quot;);</span>
-<span class="fc" id="L32">        String tempUrl = &quot;https://api.github.com/users/&quot; + name;</span>
-<span class="fc" id="L33">        CompletionStage&lt;JsonNode&gt; jn = CompletableFuture.supplyAsync(() -&gt; generateJN(tempUrl));</span>
+<span class="nc" id="L31">        String name = url.replaceAll(&quot;\&quot;&quot;, &quot;&quot;).replaceAll(&quot; &quot;, &quot;+&quot;);</span>
+<span class="nc" id="L32">        String tempUrl = &quot;https://api.github.com/users/&quot; + name;</span>
+<span class="nc" id="L33">        CompletionStage&lt;JsonNode&gt; jn = CompletableFuture.supplyAsync(() -&gt; generateJN(tempUrl));</span>
 
-<span class="fc" id="L35">        CompletionStage&lt;List&lt;Profile&gt;&gt; UserProfileList = jn.thenApply(node -&gt; StreamSupport.stream(node.spliterator(), false).</span>
+<span class="nc" id="L35">        CompletionStage&lt;List&lt;Profile&gt;&gt; UserProfileList = jn.thenApply(node -&gt; StreamSupport.stream(node.spliterator(), false).</span>
                 map(nodes -&gt; new Profile(
                         node.path(&quot;login&quot;).asText(),
                         node.path(&quot;name&quot;).asText(),
@@ -45,10 +45,10 @@ import static play.mvc.Results.ok;
                         node.path(&quot;company&quot;).toString()
                 )).collect(Collectors.toList()));
 
-<span class="fc" id="L48">        String repoUrl = &quot;https://api.github.com/users/&quot; + name + &quot;/repos&quot;;</span>
-<span class="fc" id="L49">        CompletionStage&lt;JsonNode&gt; jn2 = CompletableFuture.supplyAsync(() -&gt; generateJN(repoUrl));</span>
+<span class="nc" id="L48">        String repoUrl = &quot;https://api.github.com/users/&quot; + name + &quot;/repos&quot;;</span>
+<span class="nc" id="L49">        CompletionStage&lt;JsonNode&gt; jn2 = CompletableFuture.supplyAsync(() -&gt; generateJN(repoUrl));</span>
 
-<span class="fc" id="L51">        CompletionStage&lt;List&lt;Profile_Repo&gt;&gt; repoList = jn2.thenApply(node -&gt; StreamSupport.stream(node.spliterator(), false).</span>
+<span class="nc" id="L51">        CompletionStage&lt;List&lt;Profile_Repo&gt;&gt; repoList = jn2.thenApply(node -&gt; StreamSupport.stream(node.spliterator(), false).</span>
                 map(nodes -&gt; new Profile_Repo(
                         nodes.path(&quot;name&quot;).asText(),
                         nodes.path(&quot;private&quot;).asBoolean(),
@@ -59,8 +59,8 @@ import static play.mvc.Results.ok;
                 )).collect(Collectors.toList()));
 
 
-<span class="fc" id="L62">        return repoList.thenApply(profile_repos -&gt; temp = profile_repos)</span>
-<span class="fc" id="L63">                .thenCombine(UserProfileList, (profile_repos, users)</span>
+<span class="nc" id="L62">        return repoList.thenApply(profile_repos -&gt; temp = profile_repos)</span>
+<span class="nc" id="L63">                .thenCombine(UserProfileList, (profile_repos, users)</span>
                         -&gt; ok(views.html.users.render(users.get(0), profile_repos)));
     }
 
@@ -72,26 +72,26 @@ import static play.mvc.Results.ok;
      */
     public static JsonNode generateJN(String url){
 
-<span class="fc" id="L75">        JsonNode jasonNode = null;</span>
-<span class="fc" id="L76">        String[] commands = new String[]{</span>
-                &quot;curl&quot;, &quot;-H&quot;, &quot;Accept: application/vnd.github.v3+json&quot;, url} ;
+<span class="nc" id="L75">        JsonNode jasonNode = null;</span>
+<span class="nc" id="L76">        String[] commands = new String[]{</span>
+                &quot;curl&quot;, &quot;-H&quot;, &quot;Accept: application/vnd.github.v3+json&quot; , url} ;
         try {
-<span class="fc" id="L79">            Process process = Runtime.getRuntime().exec(commands);</span>
-<span class="fc" id="L80">            BufferedReader reader = new BufferedReader(new</span>
-<span class="fc" id="L81">                    InputStreamReader(process.getInputStream()));</span>
+<span class="nc" id="L79">            Process process = Runtime.getRuntime().exec(commands);</span>
+<span class="nc" id="L80">            BufferedReader reader = new BufferedReader(new</span>
+<span class="nc" id="L81">                    InputStreamReader(process.getInputStream()));</span>
             String line;
-<span class="fc" id="L83">            String response = &quot;&quot;;</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">            while ((line = reader.readLine()) != null) {</span>
-<span class="fc" id="L85">                response = response + line;</span>
+<span class="nc" id="L83">            String response = &quot;&quot;;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            while ((line = reader.readLine()) != null) {</span>
+<span class="nc" id="L85">                response = response + line;</span>
             }
 
-<span class="fc" id="L88">            ObjectMapper mapper = new ObjectMapper();</span>
-<span class="fc" id="L89">            jasonNode = mapper.readTree(response);</span>
+<span class="nc" id="L88">            ObjectMapper mapper = new ObjectMapper();</span>
+<span class="nc" id="L89">            jasonNode = mapper.readTree(response);</span>
 <span class="nc" id="L90">        }catch (IOException e) {</span>
 <span class="nc" id="L91">            System.out.println(&quot;Json Error!&quot;);</span>
-<span class="fc" id="L92">        }</span>
+<span class="nc" id="L92">        }</span>
 
-<span class="fc" id="L94">        return jasonNode;</span>
+<span class="nc" id="L94">        return jasonNode;</span>
 
     }
 }

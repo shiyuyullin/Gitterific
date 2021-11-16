@@ -13,24 +13,24 @@ public class Repo_issues {
     private String issue_name;
     private String issue_title;
     private Date issue_createdDate;
-<span class="fc" id="L16">    private static SimpleDateFormat sdf = new SimpleDateFormat(&quot;\&quot;yyyy-MM-dd'T'HH:mm:ss'Z'\&quot;&quot;);</span>
+<span class="nc" id="L16">    private static SimpleDateFormat sdf = new SimpleDateFormat(&quot;\&quot;yyyy-MM-dd'T'HH:mm:ss'Z'\&quot;&quot;);</span>
 
 
-<span class="fc" id="L19">    public Repo_issues(String issue_description, String issue_name, String issue_title, String issue_createdDate) {</span>
-<span class="fc" id="L20">        this.issue_description = issue_description;</span>
-<span class="fc" id="L21">        this.issue_name = issue_name;</span>
-<span class="fc" id="L22">        this.issue_title = issue_title;</span>
+<span class="nc" id="L19">    public Repo_issues(String issue_description, String issue_name, String issue_title, String issue_createdDate) {</span>
+<span class="nc" id="L20">        this.issue_description = issue_description;</span>
+<span class="nc" id="L21">        this.issue_name = issue_name;</span>
+<span class="nc" id="L22">        this.issue_title = issue_title;</span>
         try {
-<span class="fc" id="L24">            this.issue_createdDate =  sdf.parse(issue_createdDate);</span>
+<span class="nc" id="L24">            this.issue_createdDate =  sdf.parse(issue_createdDate);</span>
 <span class="nc" id="L25">        } catch (ParseException e) {</span>
 <span class="nc" id="L26">            System.out.println(&quot;Parse Error!&quot;);</span>
 <span class="nc" id="L27">            e.printStackTrace();</span>
-<span class="fc" id="L28">        }</span>
+<span class="nc" id="L28">        }</span>
 
-<span class="fc" id="L30">    }</span>
+<span class="nc" id="L30">    }</span>
 
     public String getIssue_description() {
-<span class="fc" id="L33">        return issue_description;</span>
+<span class="nc" id="L33">        return issue_description;</span>
     }
 
     public void setIssue_description(String issue_description) {
@@ -38,7 +38,7 @@ public class Repo_issues {
 <span class="nc" id="L38">    }</span>
 
     public String getIssue_name() {
-<span class="fc" id="L41">        return issue_name;</span>
+<span class="nc" id="L41">        return issue_name;</span>
     }
 
     public void setIssue_name(String issue_name) {
@@ -46,7 +46,7 @@ public class Repo_issues {
 <span class="nc" id="L46">    }</span>
 
     public String getIssue_title() {
-<span class="fc" id="L49">        return issue_title;</span>
+<span class="nc" id="L49">        return issue_title;</span>
     }
 
     public void setIssue_title(String issue_title) {
@@ -54,7 +54,7 @@ public class Repo_issues {
 <span class="nc" id="L54">    }</span>
 
     public Date getIssue_createdDate() {
-<span class="fc" id="L57">        return issue_createdDate;</span>
+<span class="nc" id="L57">        return issue_createdDate;</span>
     }
 
     public void setIssue_createdDate(Date issue_createdDate) {

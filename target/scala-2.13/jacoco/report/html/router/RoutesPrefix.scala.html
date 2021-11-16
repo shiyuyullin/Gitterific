@@ -3,13 +3,13 @@
 
 
 package router {
-<span class="fc" id="L6">  object RoutesPrefix {</span>
-<span class="pc" id="L7">    private var _prefix: String = &quot;/&quot;</span>
+<span class="nc" id="L6">  object RoutesPrefix {</span>
+<span class="nc" id="L7">    private var _prefix: String = &quot;/&quot;</span>
     def setPrefix(p: String): Unit = {
-<span class="fc" id="L9">      _prefix = p</span>
+<span class="nc" id="L9">      _prefix = p</span>
     }
 <span class="nc" id="L11">    def prefix: String = _prefix</span>
-<span class="pc" id="L12">    val byNamePrefix: Function0[String] = { () =&gt; prefix }</span>
+<span class="nc" id="L12">    val byNamePrefix: Function0[String] = { () =&gt; prefix }</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

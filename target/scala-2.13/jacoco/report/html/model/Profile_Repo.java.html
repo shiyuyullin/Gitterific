@@ -16,7 +16,7 @@ public class Profile_Repo {
     private Date created_at;
     private Date updated_at;
     private Date pushed_at;
-<span class="fc" id="L19">    private static SimpleDateFormat sdf = new SimpleDateFormat(&quot;\&quot;yyyy-MM-dd'T'HH:mm:ss'Z'\&quot;&quot;);</span>
+<span class="nc" id="L19">    private static SimpleDateFormat sdf = new SimpleDateFormat(&quot;\&quot;yyyy-MM-dd'T'HH:mm:ss'Z'\&quot;&quot;);</span>
 
     /***
      * the constructor
@@ -27,19 +27,19 @@ public class Profile_Repo {
      * @param updated_at
      * @param pushed_at
      */
-<span class="fc" id="L30">    public Profile_Repo(String name, Boolean isPrivate, String html_url, String  created_at, String updated_at, String pushed_at) {</span>
-<span class="fc" id="L31">        this.name = name;</span>
-<span class="fc" id="L32">        this.isPrivate = isPrivate;</span>
-<span class="fc" id="L33">        this.html_url = html_url;</span>
+<span class="nc" id="L30">    public Profile_Repo(String name, Boolean isPrivate, String html_url, String  created_at, String updated_at, String pushed_at) {</span>
+<span class="nc" id="L31">        this.name = name;</span>
+<span class="nc" id="L32">        this.isPrivate = isPrivate;</span>
+<span class="nc" id="L33">        this.html_url = html_url;</span>
         try{
-<span class="fc" id="L35">            this.created_at = sdf.parse(String.valueOf(created_at));</span>
-<span class="fc" id="L36">            this.updated_at = sdf.parse(String.valueOf(updated_at));</span>
-<span class="fc" id="L37">            this.pushed_at = sdf.parse(String.valueOf(pushed_at));</span>
+<span class="nc" id="L35">            this.created_at = sdf.parse(created_at);</span>
+<span class="nc" id="L36">            this.updated_at = sdf.parse(updated_at);</span>
+<span class="nc" id="L37">            this.pushed_at = sdf.parse(pushed_at);</span>
 <span class="nc" id="L38">        } catch (ParseException e) {</span>
-<span class="nc" id="L39">            System.out.println(&quot;Parse Error!&quot;);</span>
+<span class="nc" id="L39">            System.out.println(&quot;Error occurred when parsing date!&quot;);</span>
 <span class="nc" id="L40">            e.printStackTrace();</span>
-<span class="fc" id="L41">        }</span>
-<span class="fc" id="L42">    }</span>
+<span class="nc" id="L41">        }</span>
+<span class="nc" id="L42">    }</span>
 
 
     /***
@@ -47,7 +47,7 @@ public class Profile_Repo {
      * @return the repo name
      */
     public String getName() {
-<span class="fc" id="L50">        return name;</span>
+<span class="nc" id="L50">        return name;</span>
     }
 
     /***
@@ -63,7 +63,7 @@ public class Profile_Repo {
      * @return
      */
     public Boolean getPrivate() {
-<span class="fc" id="L66">        return isPrivate;</span>
+<span class="nc" id="L66">        return isPrivate;</span>
     }
 
     /***
@@ -79,7 +79,7 @@ public class Profile_Repo {
      * @return html link
      */
     public String getHtml_url() {
-<span class="fc" id="L82">        return html_url;</span>
+<span class="nc" id="L82">        return html_url;</span>
     }
 
     /***
@@ -95,47 +95,60 @@ public class Profile_Repo {
      * @return repo create date
      */
     public Date getCreated_at() {
-<span class="fc" id="L98">        return created_at;</span>
+<span class="nc" id="L98">        return created_at;</span>
     }
 
     /***
      * set repo  create date
      * @param created_at
      */
-    public void setCreated_at(Date created_at) {
-<span class="nc" id="L106">        this.created_at = created_at;</span>
-<span class="nc" id="L107">    }</span>
+    public void setCreated_at(String created_at) {
+        try{
+<span class="nc" id="L107">            this.created_at = sdf.parse(created_at);</span>
+<span class="nc" id="L108">        } catch (ParseException e) {</span>
+<span class="nc" id="L109">            System.out.println(&quot;Error occurred when parsing date.&quot;);</span>
+<span class="nc" id="L110">        }</span>
+
+<span class="nc" id="L112">    }</span>
 
     /***
      *
      * @return the update date
      */
     public Date getUpdated_at() {
-<span class="fc" id="L114">        return updated_at;</span>
+<span class="nc" id="L119">        return updated_at;</span>
     }
 
     /***
      * set the update date
      * @param updated_at
      */
-    public void setUpdated_at(Date updated_at) {
-<span class="nc" id="L122">        this.updated_at = updated_at;</span>
-<span class="nc" id="L123">    }</span>
+    public void setUpdated_at(String updated_at) {
+        try{
+<span class="nc" id="L128">            this.created_at = sdf.parse(updated_at);</span>
+<span class="nc" id="L129">        } catch (ParseException e) {</span>
+<span class="nc" id="L130">            System.out.println(&quot;Error occurred when parsing date.&quot;);</span>
+<span class="nc" id="L131">        }</span>
+<span class="nc" id="L132">    }</span>
 
     /***
      *
      * @return the repo's push date
      */
     public Date getPushed_at() {
-<span class="fc" id="L130">        return pushed_at;</span>
+<span class="nc" id="L139">        return pushed_at;</span>
     }
 
     /***
      * get the push info
      * @param pushed_at
      */
-    public void setPushed_at(Date pushed_at) {
-<span class="nc" id="L138">        this.pushed_at = pushed_at;</span>
-<span class="nc" id="L139">    }</span>
+    public void setPushed_at(String pushed_at) {
+        try{
+<span class="nc" id="L148">            this.created_at = sdf.parse(pushed_at);</span>
+<span class="nc" id="L149">        } catch (ParseException e) {</span>
+<span class="nc" id="L150">            System.out.println(&quot;Error occurred when parsing date.&quot;);</span>
+<span class="nc" id="L151">        }</span>
+<span class="nc" id="L152">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -32,11 +32,11 @@ public class Profile_Repo {
         this.isPrivate = isPrivate;
         this.html_url = html_url;
         try{
-            this.created_at = sdf.parse(String.valueOf(created_at));
-            this.updated_at = sdf.parse(String.valueOf(updated_at));
-            this.pushed_at = sdf.parse(String.valueOf(pushed_at));
+            this.created_at = sdf.parse(created_at);
+            this.updated_at = sdf.parse(updated_at);
+            this.pushed_at = sdf.parse(pushed_at);
         } catch (ParseException e) {
-            System.out.println("Parse Error!");
+            System.out.println("Error occurred when parsing date!");
             e.printStackTrace();
         }
     }
@@ -102,8 +102,13 @@ public class Profile_Repo {
      * set repo  create date
      * @param created_at
      */
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreated_at(String created_at) {
+        try{
+            this.created_at = sdf.parse(created_at);
+        } catch (ParseException e) {
+            System.out.println("Error occurred when parsing date.");
+        }
+
     }
 
     /***
@@ -118,8 +123,12 @@ public class Profile_Repo {
      * set the update date
      * @param updated_at
      */
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdated_at(String updated_at) {
+        try{
+            this.created_at = sdf.parse(updated_at);
+        } catch (ParseException e) {
+            System.out.println("Error occurred when parsing date.");
+        }
     }
 
     /***
@@ -134,7 +143,11 @@ public class Profile_Repo {
      * get the push info
      * @param pushed_at
      */
-    public void setPushed_at(Date pushed_at) {
-        this.pushed_at = pushed_at;
+    public void setPushed_at(String pushed_at) {
+        try{
+            this.created_at = sdf.parse(pushed_at);
+        } catch (ParseException e) {
+            System.out.println("Error occurred when parsing date.");
+        }
     }
 }

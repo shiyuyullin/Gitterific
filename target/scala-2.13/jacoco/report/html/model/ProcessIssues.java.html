@@ -39,24 +39,26 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
 <span class="nc" id="L39">        return result;</span>
     }
 
-
+    /**
+     * retrieve available issues as jsonnode
+     * @param author
+     * @param repoName
+     * @return CompletionStage&lt;JsonNode&gt;
+     */
     public CompletionStage&lt;JsonNode&gt; getIssuesAsJsonNode(String author, String repoName){
-<span class="nc" id="L44">        String url = &quot;https://api.github.com/repos/&quot; + author + &quot;/&quot; + repoName + &quot;/issues&quot;;</span>
-<span class="nc" id="L45">        return ws.url(url)</span>
-<span class="nc" id="L46">                .addHeader(&quot;Accept&quot;, &quot;application/vnd.github.v3+json&quot;)</span>
-<span class="nc" id="L47">                .get()</span>
-<span class="nc" id="L48">                .thenApply(WSResponse::asJson);</span>
+<span class="nc" id="L49">        String url = &quot;https://api.github.com/repos/&quot; + author + &quot;/&quot; + repoName + &quot;/issues&quot;;</span>
+<span class="nc" id="L50">        return ws.url(url).addHeader(&quot;Accept&quot;, &quot;application/vnd.github.v3+json&quot;).get().thenApply(WSResponse::asJson);</span>
     }
 
     /**
-     * @author Shiyu Lin
-     * The method will form an http request using WSClient, processing the response
-     * (getting the titles).
-     * @return CompletionStage&lt;List&lt;String&gt;&gt; future list of titles
+     * Taking a future jsonnode, map each node(information about a repo) to the title of the repo
+     * , map titles from jsonnode to string and then collect the titles into a list.
+     * @param issuesJsonNode
+     * @return CompletionStage&lt;List&lt;String&gt;&gt;
      */
     public CompletionStage&lt;List&lt;String&gt;&gt; getIssuesTitles(CompletionStage&lt;JsonNode&gt; issuesJsonNode){
 
-<span class="nc" id="L59">        return issuesJsonNode.thenApply(jsonNode -&gt; StreamSupport.stream(jsonNode.spliterator(), false).map(node -&gt; node.get(&quot;title&quot;)).map(JsonNode::toString).collect(Collectors.toList()));</span>
+<span class="nc" id="L61">        return issuesJsonNode.thenApply(jsonNode -&gt; StreamSupport.stream(jsonNode.spliterator(), false).map(node -&gt; node.get(&quot;title&quot;)).map(JsonNode::toString).collect(Collectors.toList()));</span>
     }
 
     /**
@@ -67,38 +69,38 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
      * @param listOfTitles
      */
     public Map&lt;String,Long&gt; countUniqueWords(List&lt;String&gt; listOfTitles){
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if(listOfTitles == null){</span>
-<span class="nc" id="L71">            return new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if(listOfTitles == null){</span>
+<span class="nc" id="L73">            return new HashMap&lt;&gt;();</span>
         }
-<span class="nc" id="L73">        return listOfTitles.stream()</span>
-<span class="nc" id="L74">                .map(title -&gt; title.replaceAll(&quot;[^a-zA-Z0-9]&quot;, &quot; &quot;))</span>
-<span class="nc" id="L75">                .map(title -&gt; title.split(&quot; &quot;))</span>
-<span class="nc" id="L76">                .flatMap(Arrays::stream)</span>
-<span class="nc" id="L77">                .filter(title -&gt; title.length() &gt; 0)</span>
-<span class="nc" id="L78">                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));</span>
+<span class="nc" id="L75">        return listOfTitles.stream()</span>
+<span class="nc" id="L76">                .map(title -&gt; title.replaceAll(&quot;[^a-zA-Z0-9]&quot;, &quot; &quot;))</span>
+<span class="nc" id="L77">                .map(title -&gt; title.split(&quot; &quot;))</span>
+<span class="nc" id="L78">                .flatMap(Arrays::stream)</span>
+<span class="nc" id="L79">                .filter(title -&gt; title.length() &gt; 0)</span>
+<span class="nc" id="L80">                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));</span>
     }
 
     /**
      * @author Shiyu Lin
-     * Sorting a hashmap based on the &quot;value&quot; of key:value
+     * Sorting a hashmap in descending order based on the &quot;value&quot; of key:value
      * @return HashMap&lt;String,Long&gt;
      */
     public HashMap&lt;String,Long&gt; sortWordCountDescending(Map&lt;String,Long&gt; wordCount){
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if(wordCount == null){</span>
-<span class="nc" id="L88">            return new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if(wordCount == null){</span>
+<span class="nc" id="L90">            return new HashMap&lt;&gt;();</span>
         }
-<span class="nc" id="L90">        List&lt;Map.Entry&lt;String, Long&gt;&gt; list = new ArrayList&lt;&gt;(wordCount.entrySet());</span>
-<span class="nc" id="L91">        list.sort(new Comparator&lt;Map.Entry&lt;String, Long&gt;&gt;() {</span>
+<span class="nc" id="L92">        List&lt;Map.Entry&lt;String, Long&gt;&gt; list = new ArrayList&lt;&gt;(wordCount.entrySet());</span>
+<span class="nc" id="L93">        list.sort(new Comparator&lt;Map.Entry&lt;String, Long&gt;&gt;() {</span>
             @Override
             public int compare(Map.Entry&lt;String, Long&gt; o1, Map.Entry&lt;String, Long&gt; o2) {
-<span class="nc" id="L94">                return o2.getValue().compareTo(o1.getValue());</span>
+<span class="nc" id="L96">                return o2.getValue().compareTo(o1.getValue());</span>
             }
         });
-<span class="nc" id="L97">        HashMap&lt;String, Long&gt; result = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc bnc" id="L98" title="All 2 branches missed.">        for(Map.Entry&lt;String,Long&gt; entry : list){</span>
-<span class="nc" id="L99">            result.put(entry.getKey(),entry.getValue());</span>
-<span class="nc" id="L100">        }</span>
-<span class="nc" id="L101">        return result;</span>
+<span class="nc" id="L99">        HashMap&lt;String, Long&gt; result = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        for(Map.Entry&lt;String,Long&gt; entry : list){</span>
+<span class="nc" id="L101">            result.put(entry.getKey(),entry.getValue());</span>
+<span class="nc" id="L102">        }</span>
+<span class="nc" id="L103">        return result;</span>
     }
 
 }

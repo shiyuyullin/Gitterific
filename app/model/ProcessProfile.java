@@ -74,7 +74,7 @@ public class ProcessProfile {
 
         JsonNode jasonNode = null;
         String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;
+                "curl", "-H", "Accept: application/vnd.github.v3+json" , url} ;
         try {
             Process process = Runtime.getRuntime().exec(commands);
             BufferedReader reader = new BufferedReader(new

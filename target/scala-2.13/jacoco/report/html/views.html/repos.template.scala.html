@@ -24,16 +24,16 @@ import scala.jdk.CollectionConverters._
 /*2.2*/import java.util
 /*3.2*/import model.Repo_issues
 
-<span class="pc" id="L27">object repos extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[Repos,List[Repo_issues],play.twirl.api.HtmlFormat.Appendable] {</span>
+<span class="nc" id="L27">object repos extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[Repos,List[Repo_issues],play.twirl.api.HtmlFormat.Appendable] {</span>
 
   /**/
   def apply/*4.2*/(repo : Repos, issues : List[Repo_issues]):play.twirl.api.HtmlFormat.Appendable = {
-<span class="fc" id="L31">    _display_ {</span>
+<span class="nc" id="L31">    _display_ {</span>
       {
 
 
-<span class="fc" id="L35">Seq[Any](format.raw/*5.1*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L36">&quot;&quot;&quot;),format.raw/*6.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+<span class="nc" id="L35">Seq[Any](format.raw/*5.1*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L36">&quot;&quot;&quot;),format.raw/*6.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;Repository&lt;/title&gt;
@@ -41,19 +41,19 @@ import scala.jdk.CollectionConverters._
         &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
         &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Mukta&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
         &lt;style&gt;
-<span class="fc" id="L44">                body &quot;&quot;&quot;),format.raw/*14.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*14.23*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L45">                    &quot;&quot;&quot;),format.raw/*15.21*/(&quot;&quot;&quot;font-family: 'Mukta', sans-serif;</span>
-<span class="fc" id="L46">                &quot;&quot;&quot;),format.raw/*16.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*16.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L47">                &quot;&quot;&quot;),format.raw/*17.17*/(&quot;&quot;&quot;tbody&quot;&quot;&quot;),format.raw/*17.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*17.23*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L48">                    &quot;&quot;&quot;),format.raw/*18.21*/(&quot;&quot;&quot;counter-reset: sectioncounter;</span>
-<span class="fc" id="L49">                &quot;&quot;&quot;),format.raw/*19.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*19.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L44">                body &quot;&quot;&quot;),format.raw/*14.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*14.23*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L45">                    &quot;&quot;&quot;),format.raw/*15.21*/(&quot;&quot;&quot;font-family: 'Mukta', sans-serif;</span>
+<span class="nc" id="L46">                &quot;&quot;&quot;),format.raw/*16.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*16.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L47">                &quot;&quot;&quot;),format.raw/*17.17*/(&quot;&quot;&quot;tbody&quot;&quot;&quot;),format.raw/*17.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*17.23*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L48">                    &quot;&quot;&quot;),format.raw/*18.21*/(&quot;&quot;&quot;counter-reset: sectioncounter;</span>
+<span class="nc" id="L49">                &quot;&quot;&quot;),format.raw/*19.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*19.18*/(&quot;&quot;&quot;</span>
 
-<span class="fc" id="L51">                &quot;&quot;&quot;),format.raw/*21.17*/(&quot;&quot;&quot;.SortClass:before&quot;&quot;&quot;),format.raw/*21.34*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*21.35*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L52">                    &quot;&quot;&quot;),format.raw/*22.21*/(&quot;&quot;&quot;content:counter(sectioncounter);</span>
+<span class="nc" id="L51">                &quot;&quot;&quot;),format.raw/*21.17*/(&quot;&quot;&quot;.SortClass:before&quot;&quot;&quot;),format.raw/*21.34*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*21.35*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L52">                    &quot;&quot;&quot;),format.raw/*22.21*/(&quot;&quot;&quot;content:counter(sectioncounter);</span>
                     counter-increment: sectioncounter;
-<span class="fc" id="L54">                &quot;&quot;&quot;),format.raw/*24.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*24.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L55">                &quot;&quot;&quot;),format.raw/*25.17*/(&quot;&quot;&quot;.main&quot;&quot;&quot;),format.raw/*25.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*25.23*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L56">                    &quot;&quot;&quot;),format.raw/*26.21*/(&quot;&quot;&quot;text-align: center;</span>
+<span class="nc" id="L54">                &quot;&quot;&quot;),format.raw/*24.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*24.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L55">                &quot;&quot;&quot;),format.raw/*25.17*/(&quot;&quot;&quot;.main&quot;&quot;&quot;),format.raw/*25.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*25.23*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L56">                    &quot;&quot;&quot;),format.raw/*26.21*/(&quot;&quot;&quot;text-align: center;</span>
                     margin-top: 50px;
                     top: 0;
                     bottom: 0;
@@ -61,49 +61,49 @@ import scala.jdk.CollectionConverters._
                     right: 0;
                     font-weight: bold;
 
-<span class="fc" id="L64">                &quot;&quot;&quot;),format.raw/*34.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*34.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L65">                &quot;&quot;&quot;),format.raw/*35.17*/(&quot;&quot;&quot;.row &quot;&quot;&quot;),format.raw/*35.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*35.23*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L66">                    &quot;&quot;&quot;),format.raw/*36.21*/(&quot;&quot;&quot;display: flex;</span>
-<span class="fc" id="L67">                &quot;&quot;&quot;),format.raw/*37.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*37.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L68">                &quot;&quot;&quot;),format.raw/*38.17*/(&quot;&quot;&quot;.column &quot;&quot;&quot;),format.raw/*38.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*38.26*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L69">                    &quot;&quot;&quot;),format.raw/*39.21*/(&quot;&quot;&quot;flex: 50%;</span>
-<span class="fc" id="L70">                &quot;&quot;&quot;),format.raw/*40.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*40.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L71">                &quot;&quot;&quot;),format.raw/*41.17*/(&quot;&quot;&quot;h1 &quot;&quot;&quot;),format.raw/*41.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*41.21*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L72">                    &quot;&quot;&quot;),format.raw/*42.21*/(&quot;&quot;&quot;color: white;</span>
+<span class="nc" id="L64">                &quot;&quot;&quot;),format.raw/*34.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*34.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L65">                &quot;&quot;&quot;),format.raw/*35.17*/(&quot;&quot;&quot;.row &quot;&quot;&quot;),format.raw/*35.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*35.23*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L66">                    &quot;&quot;&quot;),format.raw/*36.21*/(&quot;&quot;&quot;display: flex;</span>
+<span class="nc" id="L67">                &quot;&quot;&quot;),format.raw/*37.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*37.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L68">                &quot;&quot;&quot;),format.raw/*38.17*/(&quot;&quot;&quot;.column &quot;&quot;&quot;),format.raw/*38.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*38.26*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L69">                    &quot;&quot;&quot;),format.raw/*39.21*/(&quot;&quot;&quot;flex: 50%;</span>
+<span class="nc" id="L70">                &quot;&quot;&quot;),format.raw/*40.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*40.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L71">                &quot;&quot;&quot;),format.raw/*41.17*/(&quot;&quot;&quot;h1 &quot;&quot;&quot;),format.raw/*41.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*41.21*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L72">                    &quot;&quot;&quot;),format.raw/*42.21*/(&quot;&quot;&quot;color: white;</span>
                     padding-top: 55px;
                     padding-left: 55px;
-<span class="fc" id="L75">                &quot;&quot;&quot;),format.raw/*45.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*45.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L76">                &quot;&quot;&quot;),format.raw/*46.17*/(&quot;&quot;&quot;.welcomeHeader &quot;&quot;&quot;),format.raw/*46.32*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*46.33*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L77">                    &quot;&quot;&quot;),format.raw/*47.21*/(&quot;&quot;&quot;background-color: #92d13d;</span>
+<span class="nc" id="L75">                &quot;&quot;&quot;),format.raw/*45.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*45.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L76">                &quot;&quot;&quot;),format.raw/*46.17*/(&quot;&quot;&quot;.welcomeHeader &quot;&quot;&quot;),format.raw/*46.32*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*46.33*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L77">                    &quot;&quot;&quot;),format.raw/*47.21*/(&quot;&quot;&quot;background-color: #92d13d;</span>
                     height: 150px;
-<span class="fc" id="L79">                &quot;&quot;&quot;),format.raw/*49.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*49.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L80">                &quot;&quot;&quot;),format.raw/*50.17*/(&quot;&quot;&quot;table &quot;&quot;&quot;),format.raw/*50.23*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*50.24*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L81">                    &quot;&quot;&quot;),format.raw/*51.21*/(&quot;&quot;&quot;margin: auto;</span>
-<span class="fc" id="L82">                &quot;&quot;&quot;),format.raw/*52.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*52.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L83">                &quot;&quot;&quot;),format.raw/*53.17*/(&quot;&quot;&quot;th &quot;&quot;&quot;),format.raw/*53.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*53.21*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L84">                    &quot;&quot;&quot;),format.raw/*54.21*/(&quot;&quot;&quot;padding: 0 1rem;</span>
-<span class="fc" id="L85">                &quot;&quot;&quot;),format.raw/*55.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*55.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L86">                &quot;&quot;&quot;),format.raw/*56.17*/(&quot;&quot;&quot;td &quot;&quot;&quot;),format.raw/*56.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*56.21*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L87">                    &quot;&quot;&quot;),format.raw/*57.21*/(&quot;&quot;&quot;padding: 0 1rem</span>
-<span class="fc" id="L88">                &quot;&quot;&quot;),format.raw/*58.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*58.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L89">                &quot;&quot;&quot;),format.raw/*59.17*/(&quot;&quot;&quot;.user-info th &quot;&quot;&quot;),format.raw/*59.31*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*59.32*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L90">                    &quot;&quot;&quot;),format.raw/*60.21*/(&quot;&quot;&quot;text-align: end;</span>
+<span class="nc" id="L79">                &quot;&quot;&quot;),format.raw/*49.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*49.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L80">                &quot;&quot;&quot;),format.raw/*50.17*/(&quot;&quot;&quot;table &quot;&quot;&quot;),format.raw/*50.23*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*50.24*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L81">                    &quot;&quot;&quot;),format.raw/*51.21*/(&quot;&quot;&quot;margin: auto;</span>
+<span class="nc" id="L82">                &quot;&quot;&quot;),format.raw/*52.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*52.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L83">                &quot;&quot;&quot;),format.raw/*53.17*/(&quot;&quot;&quot;th &quot;&quot;&quot;),format.raw/*53.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*53.21*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L84">                    &quot;&quot;&quot;),format.raw/*54.21*/(&quot;&quot;&quot;padding: 0 1rem;</span>
+<span class="nc" id="L85">                &quot;&quot;&quot;),format.raw/*55.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*55.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L86">                &quot;&quot;&quot;),format.raw/*56.17*/(&quot;&quot;&quot;td &quot;&quot;&quot;),format.raw/*56.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*56.21*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L87">                    &quot;&quot;&quot;),format.raw/*57.21*/(&quot;&quot;&quot;padding: 0 1rem</span>
+<span class="nc" id="L88">                &quot;&quot;&quot;),format.raw/*58.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*58.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L89">                &quot;&quot;&quot;),format.raw/*59.17*/(&quot;&quot;&quot;.user-info th &quot;&quot;&quot;),format.raw/*59.31*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*59.32*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L90">                    &quot;&quot;&quot;),format.raw/*60.21*/(&quot;&quot;&quot;text-align: end;</span>
                     background-color: #fff7d6;
-<span class="fc" id="L92">                &quot;&quot;&quot;),format.raw/*62.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*62.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L93">                &quot;&quot;&quot;),format.raw/*63.17*/(&quot;&quot;&quot;.user-info td &quot;&quot;&quot;),format.raw/*63.31*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*63.32*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L94">                    &quot;&quot;&quot;),format.raw/*64.21*/(&quot;&quot;&quot;background-color: #fff7d6;</span>
-<span class="fc" id="L95">                &quot;&quot;&quot;),format.raw/*65.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*65.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L92">                &quot;&quot;&quot;),format.raw/*62.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*62.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L93">                &quot;&quot;&quot;),format.raw/*63.17*/(&quot;&quot;&quot;.user-info td &quot;&quot;&quot;),format.raw/*63.31*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*63.32*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L94">                    &quot;&quot;&quot;),format.raw/*64.21*/(&quot;&quot;&quot;background-color: #fff7d6;</span>
+<span class="nc" id="L95">                &quot;&quot;&quot;),format.raw/*65.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*65.18*/(&quot;&quot;&quot;</span>
 
-<span class="fc" id="L97">                &quot;&quot;&quot;),format.raw/*67.17*/(&quot;&quot;&quot;.data-table &quot;&quot;&quot;),format.raw/*67.29*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*67.30*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L98">                    &quot;&quot;&quot;),format.raw/*68.21*/(&quot;&quot;&quot;width: 90%;</span>
-<span class="fc" id="L99">                &quot;&quot;&quot;),format.raw/*69.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*69.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L100">                &quot;&quot;&quot;),format.raw/*70.17*/(&quot;&quot;&quot;.data-table &quot;&quot;&quot;),format.raw/*70.29*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*70.30*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L101">                    &quot;&quot;&quot;),format.raw/*71.21*/(&quot;&quot;&quot;border: 1px solid grey;</span>
-<span class="fc" id="L102">                &quot;&quot;&quot;),format.raw/*72.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*72.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L103">            &quot;&quot;&quot;),format.raw/*73.13*/(&quot;&quot;&quot;a &quot;&quot;&quot;),format.raw/*73.15*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*73.16*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L104">                &quot;&quot;&quot;),format.raw/*74.17*/(&quot;&quot;&quot;text-decoration: none;</span>
-<span class="fc" id="L105">            &quot;&quot;&quot;),format.raw/*75.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*75.14*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L106">        &quot;&quot;&quot;),format.raw/*76.9*/(&quot;&quot;&quot;&lt;/style&gt;</span>
+<span class="nc" id="L97">                &quot;&quot;&quot;),format.raw/*67.17*/(&quot;&quot;&quot;.data-table &quot;&quot;&quot;),format.raw/*67.29*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*67.30*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L98">                    &quot;&quot;&quot;),format.raw/*68.21*/(&quot;&quot;&quot;width: 90%;</span>
+<span class="nc" id="L99">                &quot;&quot;&quot;),format.raw/*69.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*69.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L100">                &quot;&quot;&quot;),format.raw/*70.17*/(&quot;&quot;&quot;.data-table &quot;&quot;&quot;),format.raw/*70.29*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*70.30*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L101">                    &quot;&quot;&quot;),format.raw/*71.21*/(&quot;&quot;&quot;border: 1px solid grey;</span>
+<span class="nc" id="L102">                &quot;&quot;&quot;),format.raw/*72.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*72.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L103">            &quot;&quot;&quot;),format.raw/*73.13*/(&quot;&quot;&quot;a &quot;&quot;&quot;),format.raw/*73.15*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*73.16*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L104">                &quot;&quot;&quot;),format.raw/*74.17*/(&quot;&quot;&quot;text-decoration: none;</span>
+<span class="nc" id="L105">            &quot;&quot;&quot;),format.raw/*75.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*75.14*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L106">        &quot;&quot;&quot;),format.raw/*76.9*/(&quot;&quot;&quot;&lt;/style&gt;</span>
     &lt;/head&gt;
     &lt;body&gt;
         &lt;div class=&quot;welcomeHeader&quot;&gt;
@@ -115,43 +115,43 @@ import scala.jdk.CollectionConverters._
             &lt;table class=&quot;user-info&quot;&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Respository Name&lt;/th&gt;
-<span class="fc" id="L118">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*88.26*/repo/*88.30*/.getRepoName),format.raw/*88.42*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L118">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*88.26*/repo/*88.30*/.getRepoName),format.raw/*88.42*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;ID&lt;/th&gt;
-<span class="fc" id="L122">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*92.26*/repo/*92.30*/.getID),format.raw/*92.36*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L122">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*92.26*/repo/*92.30*/.getID),format.raw/*92.36*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Author Name&lt;/th&gt;
-<span class="fc" id="L126">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*96.26*/repo/*96.30*/.getAuthorName),format.raw/*96.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L126">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*96.26*/repo/*96.30*/.getAuthorName),format.raw/*96.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Description&lt;/th&gt;
-<span class="fc" id="L130">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*100.26*/repo/*100.30*/.getDescription),format.raw/*100.45*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L130">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*100.26*/repo/*100.30*/.getDescription),format.raw/*100.45*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Topics&lt;/th&gt;
-<span class="fc" id="L134">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*104.26*/repo/*104.30*/.getTopics),format.raw/*104.40*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L134">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*104.26*/repo/*104.30*/.getTopics),format.raw/*104.40*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Visibility&lt;/th&gt;
-<span class="fc" id="L138">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*108.26*/repo/*108.30*/.getVisibility),format.raw/*108.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L138">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*108.26*/repo/*108.30*/.getVisibility),format.raw/*108.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Default Branch&lt;/th&gt;
-<span class="fc" id="L142">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*112.26*/repo/*112.30*/.getDefault_branch),format.raw/*112.48*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L142">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*112.26*/repo/*112.30*/.getDefault_branch),format.raw/*112.48*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Created Date&lt;/th&gt;
-<span class="fc" id="L146">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*116.26*/repo/*116.30*/.getCreatedDate),format.raw/*116.45*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L146">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*116.26*/repo/*116.30*/.getCreatedDate),format.raw/*116.45*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Updated Date&lt;/th&gt;
-<span class="fc" id="L150">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*120.26*/repo/*120.30*/.getUpdateDate),format.raw/*120.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L150">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*120.26*/repo/*120.30*/.getUpdateDate),format.raw/*120.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Pushed Date&lt;/th&gt;
-<span class="fc" id="L154">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*124.26*/repo/*124.30*/.getPushedDate),format.raw/*124.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
+<span class="nc" id="L154">                    &lt;td&gt;&quot;&quot;&quot;),_display_(/*124.26*/repo/*124.30*/.getPushedDate),format.raw/*124.44*/(&quot;&quot;&quot;&lt;/td&gt;</span>
                 &lt;/tr&gt;
             &lt;/table&gt;
             &lt;h2&gt;20 Latest Issues&lt;/h2&gt;
@@ -163,7 +163,7 @@ import scala.jdk.CollectionConverters._
                     &lt;th&gt;Description&lt;/th&gt;
                     &lt;th&gt;Created Date&lt;/th&gt;
                 &lt;/tr&gt;
-<span class="fc" id="L166">                &quot;&quot;&quot;),_display_(/*136.18*/for(issue &lt;- issues) yield /*136.38*/{_display_(Seq[Any](format.raw/*136.39*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L166">                &quot;&quot;&quot;),_display_(/*136.18*/for(issue &lt;- issues) yield /*136.38*/{_display_(Seq[Any](format.raw/*136.39*/(&quot;&quot;&quot;</span>
                     &quot;&quot;&quot;),format.raw/*137.21*/(&quot;&quot;&quot;&lt;tr&gt;
                         &lt;td class = SortClass&gt;&lt;/td&gt;
                         &lt;td style=&quot;width: 15%&quot;&gt;&quot;&quot;&quot;),_display_(/*139.49*/issue/*139.54*/.getIssue_title),format.raw/*139.69*/(&quot;&quot;&quot;&lt;/td&gt;
@@ -171,16 +171,16 @@ import scala.jdk.CollectionConverters._
                         &lt;td style=&quot;width: 60%&quot;&gt;&quot;&quot;&quot;),_display_(/*141.49*/issue/*141.54*/.getIssue_description),format.raw/*141.75*/(&quot;&quot;&quot;&lt;/td&gt;
                         &lt;td style=&quot;width: 15%&quot;&gt;&quot;&quot;&quot;),_display_(/*142.49*/issue/*142.54*/.getIssue_createdDate),format.raw/*142.75*/(&quot;&quot;&quot;&lt;/td&gt;
                     &lt;/tr&gt;
-<span class="fc" id="L174">                &quot;&quot;&quot;)))}),format.raw/*144.18*/(&quot;&quot;&quot;</span>
-<span class="fc" id="L175">            &quot;&quot;&quot;),format.raw/*145.13*/(&quot;&quot;&quot;&lt;/table&gt;</span>
+<span class="nc" id="L174">                &quot;&quot;&quot;)))}),format.raw/*144.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L175">            &quot;&quot;&quot;),format.raw/*145.13*/(&quot;&quot;&quot;&lt;/table&gt;</span>
 
 
         &lt;/div&gt;
 
         &lt;div&gt;
         &lt;ul&gt;
-<span class="fc" id="L182">            &lt;li&gt;&lt;a href=&quot;/user/&quot;&quot;&quot;),_display_(/*152.33*/repo/*152.37*/.getAuthorName),format.raw/*152.51*/(&quot;&quot;&quot;&quot;&gt;User Profile Page&lt;/a&gt;&lt;/li&gt;</span>
-<span class="fc" id="L183">            &lt;li&gt;&lt;a href=&quot;/issue/&quot;&quot;&quot;),_display_(/*153.34*/repo/*153.38*/.getAuthorName),format.raw/*153.52*/(&quot;&quot;&quot;/&quot;&quot;&quot;),_display_(/*153.54*/repo/*153.58*/.getRepoName),format.raw/*153.70*/(&quot;&quot;&quot;&quot;&gt;Issues Page&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nc" id="L182">            &lt;li&gt;&lt;a href=&quot;/user/&quot;&quot;&quot;),_display_(/*152.33*/repo/*152.37*/.getAuthorName),format.raw/*152.51*/(&quot;&quot;&quot;&quot;&gt;User Profile Page&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nc" id="L183">            &lt;li&gt;&lt;a href=&quot;/issue/&quot;&quot;&quot;),_display_(/*153.34*/repo/*153.38*/.getAuthorName),format.raw/*153.52*/(&quot;&quot;&quot;/&quot;&quot;&quot;),_display_(/*153.54*/repo/*153.58*/.getRepoName),format.raw/*153.70*/(&quot;&quot;&quot;&quot;&gt;Issues Page&lt;/a&gt;&lt;/li&gt;</span>
         &lt;/ul&gt;
         &lt;/div&gt;
 
@@ -193,7 +193,7 @@ import scala.jdk.CollectionConverters._
     }
   }
 
-<span class="fc" id="L196">  def render(repo:Repos,issues:List[Repo_issues]): play.twirl.api.HtmlFormat.Appendable = apply(repo,issues)</span>
+<span class="nc" id="L196">  def render(repo:Repos,issues:List[Repo_issues]): play.twirl.api.HtmlFormat.Appendable = apply(repo,issues)</span>
 
 <span class="nc" id="L198">  def f:((Repos,List[Repo_issues]) =&gt; play.twirl.api.HtmlFormat.Appendable) = (repo,issues) =&gt; apply(repo,issues)</span>
 
