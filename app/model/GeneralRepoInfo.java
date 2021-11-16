@@ -4,8 +4,11 @@ import java.util.*;
 import java.text.*;
 
 /**
- * This classes will be used to store the information for matched repository (results from search)
- * Generally, it should contain the username of the author, the name of the repository, and topics (if available)
+ * This class will be used to store the information for matched repository (results from search)
+ * Generally, it should contain the username of the author, the name of the repository, and topics (if available),
+ * and date of creation.
+ *
+ * This class is also caching(storing) what a user searched (search keywords) and corresponding results (repos been retrieved)
  */
 public class GeneralRepoInfo {
 
@@ -19,6 +22,9 @@ public class GeneralRepoInfo {
     private String topics;
     private Date createdDate;
 
+    /**
+     * Default constructor
+     */
     public GeneralRepoInfo() {
         authorName = "";
         repoName = "";
@@ -26,6 +32,13 @@ public class GeneralRepoInfo {
         createdDate = null;
     }
 
+    /**
+     * Parametrized constructor
+     * @param authorName
+     * @param repoName
+     * @param topics
+     * @param createdDate
+     */
     public GeneralRepoInfo(String authorName, String repoName, String topics, String createdDate) {
         this.authorName = authorName;
         this.repoName = repoName;
@@ -39,6 +52,11 @@ public class GeneralRepoInfo {
 
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public static List<String> getSearchKeywords(String username){
         return SearchKeywords.get(username);
     }
