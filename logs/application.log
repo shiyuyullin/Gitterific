@@ -1,63 +1,11 @@
-2021-11-14 21:53:45,169 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2021-11-15 16:10:59,644 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
 
-2021-11-14 21:53:45,309 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-8 - Application started (Dev) (no global state)
-2021-11-14 21:54:02,062 [ERROR] from play.api.http.DefaultHttpErrorHandler in application-akka.actor.default-dispatcher-7 - 
-
-! @7ll0086e6 - Internal server error, for (POST) [/] ->
- 
-play.api.PlayException: Execution exception[[CompletionException: java.lang.NumberFormatException: For input string: ""]]
-	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$3(HttpErrorHandler.scala:388)
-	at scala.Option.getOrElse(Option.scala:201)
-	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:388)
-	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:373)
-	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:264)
-	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:430)
-	at play.core.server.AkkaHttpServer$$anonfun$2.applyOrElse(AkkaHttpServer.scala:422)
-	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:454)
-	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:63)
-	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:100)
-	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
-	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
-	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:100)
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:49)
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:48)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1016)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1665)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1598)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-Caused by: java.util.concurrent.CompletionException: java.lang.NumberFormatException: For input string: ""
-	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
-	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
-	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:645)
-	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:506)
-	at java.base/java.util.concurrent.CompletableFuture.postFire(CompletableFuture.java:610)
-	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:649)
-	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(CompletableFuture.java:479)
-	... 5 common frames omitted
-Caused by: java.lang.NumberFormatException: For input string: ""
-	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:68)
-	at java.base/java.lang.Long.parseLong(Long.java:717)
-	at java.base/java.lang.Long.parseLong(Long.java:832)
-	at java.base/java.text.DigitList.getLong(DigitList.java:195)
-	at java.base/java.text.DecimalFormat.parse(DecimalFormat.java:2197)
-	at java.base/java.text.SimpleDateFormat.subParse(SimpleDateFormat.java:1934)
-	at java.base/java.text.SimpleDateFormat.parse(SimpleDateFormat.java:1542)
-	at java.base/java.text.DateFormat.parse(DateFormat.java:394)
-	at model.GeneralRepoInfo.<init>(GeneralRepoInfo.java:34)
-	at model.RetrieveSearchResults.lambda$searchForRepo$1(RetrieveSearchResults.java:42)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
-	at java.base/java.util.ArrayList$Itr.forEachRemaining(ArrayList.java:1003)
-	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:913)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:578)
-	at model.RetrieveSearchResults.lambda$searchForRepo$2(RetrieveSearchResults.java:45)
-	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:642)
-	... 9 common frames omitted
+2021-11-15 16:10:59,711 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-7 - Application started (Dev) (no global state)
+2021-11-15 16:11:26,632 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-10-thread-8 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2021-11-15 16:11:26,634 [INFO] from play.core.server.AkkaHttpServer in pool-10-thread-8 - Stopping Akka HTTP server...
+2021-11-15 16:11:26,638 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-4 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2021-11-15 16:11:26,737 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-13 - Running provided shutdown stop hooks

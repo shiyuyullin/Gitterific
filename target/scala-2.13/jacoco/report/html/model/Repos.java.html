@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Repos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Repos.java</span></div><h1>Repos.java</h1><pre class="source lang-java linenums">package model;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author Rui Wang
+ * This class is used to all available details for a repository
+ */
+
+public class Repos {
+<span class="fc" id="L21">    private static SimpleDateFormat sdf = new SimpleDateFormat(&quot;\&quot;yyyy-MM-dd'T'HH:mm:ss'Z'\&quot;&quot;);</span>
+
+
+<span class="nc" id="L24">    public Repos() {</span>
+<span class="nc" id="L25">    }</span>
+//    private String repoUrl;
+    private String ID;
+    private String authorName;
+    private String repoName;
+    private String topics;
+    private String description;
+    private String default_branch;
+    private Date createdDate;
+    private Date updateDate;
+    private Date pushedDate;
+    private String visibility;
+
+
+//    private List&lt;Repo_issues&gt; issues = new ArrayList&lt;Repo_issues&gt;();
+//
+//    public List&lt;Repo_issues&gt; getIssues() {
+//        return issues;
+//    }
+//
+//    public void setIssues(ArrayList&lt;Repo_issues&gt; issues) {
+//        this.issues = issues;
+//    }
+
+    public String getID() {
+<span class="fc" id="L50">        return ID;</span>
+    }
+
+    public void setID(String ID) {
+<span class="nc" id="L54">        this.ID = ID;</span>
+<span class="nc" id="L55">    }</span>
+
+    public String getAuthorName() {
+<span class="fc" id="L58">        return authorName;</span>
+    }
+
+    public void setAuthorName(String authorName) {
+<span class="nc" id="L62">        this.authorName = authorName;</span>
+<span class="nc" id="L63">    }</span>
+
+    public String getRepoName() {
+<span class="fc" id="L66">        return repoName;</span>
+    }
+
+    public void setRepoName(String repoName) {
+<span class="nc" id="L70">        this.repoName = repoName;</span>
+<span class="nc" id="L71">    }</span>
+
+    public String getTopics() {
+<span class="fc" id="L74">        return topics;</span>
+    }
+
+    public void setTopics(String topics) {
+<span class="nc" id="L78">        this.topics = topics;</span>
+<span class="nc" id="L79">    }</span>
+
+    public String getDescription() {
+<span class="fc" id="L82">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L86">        this.description = description;</span>
+<span class="nc" id="L87">    }</span>
+
+    public String getDefault_branch() {
+<span class="fc" id="L90">        return default_branch;</span>
+    }
+
+    public void setDefault_branch(String default_branch) {
+<span class="nc" id="L94">        this.default_branch = default_branch;</span>
+<span class="nc" id="L95">    }</span>
+
+    public Date getCreatedDate() {
+<span class="fc" id="L98">        return createdDate;</span>
+    }
+
+    public void setCreatedDate(Date createdDate) {
+<span class="nc" id="L102">        this.createdDate = createdDate;</span>
+<span class="nc" id="L103">    }</span>
+
+    public Date getUpdateDate() {
+<span class="fc" id="L106">        return updateDate;</span>
+    }
+
+    public void setUpdateDate(Date updateDate) {
+<span class="nc" id="L110">        this.updateDate = updateDate;</span>
+<span class="nc" id="L111">    }</span>
+
+    public Date getPushedDate() {
+<span class="fc" id="L114">        return pushedDate;</span>
+    }
+
+    public void setPushedDate(Date pushedDate) {
+<span class="nc" id="L118">        this.pushedDate = pushedDate;</span>
+<span class="nc" id="L119">    }</span>
+
+    public String getVisibility() {
+<span class="fc" id="L122">        return visibility;</span>
+    }
+
+    public void setVisibility(String visibility) {
+<span class="nc" id="L126">        this.visibility = visibility;</span>
+<span class="nc" id="L127">    }</span>
+
+<span class="fc" id="L129">    public Repos(String ID, String authorName, String repoName, String topics, String description, String default_branch, String createdDate, String updateDate, String pushedDate, String visibility) {</span>
+<span class="fc" id="L130">        this.ID = ID;</span>
+<span class="fc" id="L131">        this.authorName = authorName;</span>
+<span class="fc" id="L132">        this.repoName = repoName;</span>
+<span class="fc" id="L133">        this.topics = topics;</span>
+<span class="fc" id="L134">        this.description = description;</span>
+<span class="fc" id="L135">        this.default_branch = default_branch;</span>
+<span class="fc" id="L136">        this.visibility = visibility;</span>
+            try {
+<span class="fc" id="L138">                this.createdDate = sdf.parse(createdDate);</span>
+<span class="fc" id="L139">                this.updateDate = sdf.parse(updateDate);</span>
+<span class="fc" id="L140">                this.pushedDate = sdf.parse(pushedDate);</span>
+<span class="nc" id="L141">            } catch (ParseException e) {</span>
+<span class="nc" id="L142">                System.out.println(&quot;Parse Error!&quot;);</span>
+<span class="fc" id="L143">            }</span>
+
+
+
+
+<span class="fc" id="L148">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L152">        return &quot;Repos{&quot; +</span>
+                &quot;ID='&quot; + ID + '\'' +
+                &quot;, authorName='&quot; + authorName + '\'' +
+                &quot;, repoName='&quot; + repoName + '\'' +
+                &quot;, topics='&quot; + topics + '\'' +
+                &quot;, description='&quot; + description + '\'' +
+                &quot;, default_branch='&quot; + default_branch + '\'' +
+                &quot;, createdDate=&quot; + createdDate +
+                &quot;, updateDate=&quot; + updateDate +
+                &quot;, pushedDate=&quot; + pushedDate +
+                &quot;, visibility='&quot; + visibility + '\'' +
+                '}';
+    }
+
+    //    private JsonNode generateJN(String url){
+//        JsonNode jn = null;
+//        String[] commands = new String[]{
+//                &quot;curl&quot;, &quot;-H&quot;, &quot;Accept: application/vnd.github.v3+json&quot;, url} ;
+//        try {
+//            Process process = Runtime.getRuntime().exec(commands);
+//            BufferedReader reader = new BufferedReader(new
+//                    InputStreamReader(process.getInputStream()));
+//            String line;
+//            String response = &quot;&quot;;
+//            while ((line = reader.readLine()) != null) {
+//                response = response + line;
+//            }
+//            ObjectMapper mapper = new ObjectMapper();
+//            jn = mapper.readTree(response);
+//        }catch (IOException e) {
+//            System.out.println(&quot;Json Error!&quot;);
+//            e.printStackTrace();
+//        }
+//
+//        return jn;
+//
+//    }
+
+//    public Repos(String url) {
+//
+//        String name = url.replaceAll(&quot;\&quot;&quot;,&quot;&quot;).replaceAll(&quot; &quot;,&quot;+&quot;);
+//        this.repoUrl = name;
+//        String tempUrl = &quot;https://api.github.com/repos/&quot; + repoUrl;
+//
+//        try {
+//            JsonNode jn = generateJN(tempUrl);
+//            this.ID = jn.path(&quot;id&quot;).asText();
+//            this.authorName = jn.path(&quot;owner&quot;).path(&quot;login&quot;).asText();
+//            this.default_branch = jn.path(&quot;default_branch&quot;).asText();
+//            this.description = jn.path(&quot;description&quot;).asText();
+//            this.repoName = jn.path(&quot;name&quot;).asText();
+//            this.topics = jn.path(&quot;topics&quot;).toString();
+//            this.visibility = jn.path(&quot;visibility&quot;).asText();
+//            this.createdDate = sdf.parse(jn.path(&quot;created_at&quot;).toString());
+//            this.updateDate = sdf.parse(jn.path(&quot;updated_at&quot;).toString());
+//            this.pushedDate = sdf.parse(jn.path(&quot;pushed_at&quot;).toString());
+//
+//
+//        } catch (ParseException e) {
+//            System.out.println(&quot;Parse Error!&quot;);
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public List&lt;Repo_issues&gt; issues(){
+//        String tempUrl =  &quot;https://api.github.com/repos/&quot; + repoUrl + &quot;/issues?per_page=20&quot;;
+//        try {
+//            JsonNode jn = generateJN(tempUrl);
+//            for(JsonNode node:jn){
+//                issues.add(new Repo_issues(node.path(&quot;body&quot;).asText(),
+//                        node.path(&quot;user&quot;).path(&quot;login&quot;).asText(),
+//                        node.path(&quot;title&quot;).asText(),
+//                        sdf.parse(node.path(&quot;created_at&quot;).toString()) ));
+//            }
+//        } catch (ParseException e) {
+//            System.out.println(&quot;Parse Error!&quot;);
+//            e.printStackTrace();
+//        }
+//
+//        return issues;
+//    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

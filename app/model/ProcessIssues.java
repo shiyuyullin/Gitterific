@@ -20,7 +20,7 @@ import static play.mvc.Results.ok;
  */
 public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
 
-    private final WSClient ws;
+    public WSClient ws;
 
     @Inject
     public ProcessIssues(WSClient ws){
@@ -35,8 +35,17 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
     public CompletionStage<Result> renderResult(CompletionStage<List<String>> listOfTitles){
 
         // The error does not matter, app will run just fine
-        CompletionStage<Result> result = listOfTitles.thenApply(titles -> ok(views.html.issue.render(titles, sortWordCount(countUniqueWords(titles)))));
+        CompletionStage<Result> result = listOfTitles.thenApply(titles -> ok(views.html.issue.render(titles, sortWordCountDescending(countUniqueWords(titles)))));
         return result;
+    }
+
+
+    public CompletionStage<JsonNode> getIssuesAsJsonNode(String author, String repoName){
+        String url = "https://api.github.com/repos/" + author + "/" + repoName + "/issues";
+        return ws.url(url)
+                .addHeader("Accept", "application/vnd.github.v3+json")
+                .get()
+                .thenApply(WSResponse::asJson);
     }
 
     /**
@@ -45,22 +54,9 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
      * (getting the titles).
      * @return CompletionStage<List<String>> future list of titles
      */
-    public CompletionStage<List<String>> getIssuesTitles(String author, String repoName){
+    public CompletionStage<List<String>> getIssuesTitles(CompletionStage<JsonNode> issuesJsonNode){
 
-        String url = "https://api.github.com/repos/" + author + "/" + repoName + "/issues";
-        WSRequest request = ws.url(url)
-                .addHeader("Accept", "application/vnd.github.v3+json");
-
-        CompletionStage<WSResponse> response = request.get();
-
-        CompletionStage<JsonNode> nodes = response.thenApply(WSResponse::asJson);
-
-        CompletionStage<List<String>> listOfTitles = nodes
-                .thenApply(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false)
-                        .map(node -> node.get("title"))
-                        .map(JsonNode::toString)
-                        .collect(Collectors.toList()));
-        return listOfTitles;
+        return issuesJsonNode.thenApply(jsonNode -> StreamSupport.stream(jsonNode.spliterator(), false).map(node -> node.get("title")).map(JsonNode::toString).collect(Collectors.toList()));
     }
 
     /**
@@ -70,7 +66,10 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
      * then count each word in that stream, finally collect them into a map.
      * @param listOfTitles
      */
-    private Map<String,Long> countUniqueWords(List<String> listOfTitles){
+    public Map<String,Long> countUniqueWords(List<String> listOfTitles){
+        if(listOfTitles == null){
+            return new HashMap<>();
+        }
         return listOfTitles.stream()
                 .map(title -> title.replaceAll("[^a-zA-Z0-9]", " "))
                 .map(title -> title.split(" "))
@@ -84,7 +83,10 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
      * Sorting a hashmap based on the "value" of key:value
      * @return HashMap<String,Long>
      */
-    private HashMap<String,Long> sortWordCount(Map<String,Long> wordCount){
+    public HashMap<String,Long> sortWordCountDescending(Map<String,Long> wordCount){
+        if(wordCount == null){
+            return new HashMap<>();
+        }
         List<Map.Entry<String, Long>> list = new ArrayList<>(wordCount.entrySet());
         list.sort(new Comparator<Map.Entry<String, Long>>() {
             @Override

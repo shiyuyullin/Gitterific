@@ -83,7 +83,6 @@ public class GeneralRepoInfo {
 
     public void setCreatedDate(String createdDate) {
         try{
-            System.out.println(createdDate);
             this.createdDate = sdf.parse(createdDate);
         }
         catch (ParseException e){
