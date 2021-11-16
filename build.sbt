@@ -15,4 +15,7 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += ehcache
 
+libraryDependencies += "org.junit.jupiter" % "junit-jupiter-api" % "5.8.1" % Test
+
+
 libraryDependencies += "org.mockito" % "mockito-core" % "4.0.0" % Test

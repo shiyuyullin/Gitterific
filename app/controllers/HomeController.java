@@ -37,17 +37,15 @@ public class HomeController extends Controller {
 
     public CompletionStage<Result> issue(String author, String repo){
         ProcessIssues client = new ProcessIssues(ws);
-        return client.renderResult(client.getIssuesTitles(author,repo));
+        return client.renderResult(client.getIssuesTitles(client.getIssuesAsJsonNode(author,repo)));
     }
 
     public CompletionStage<Result> keyword(Http.Request request){
 
-        System.out.println(request.session().get("username"));
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
         String keywords = requestData.get("keywords");
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
-        return client.searchForRepo(keywords, request.session().get("username").get());
-
+        return client.searchForRepo(keywords, request.session().get("username").get(), client.getRepoInfoAsJsonNode(keywords));
     }
 
     public CompletionStage<Result> repos(String author,String repo) {
@@ -58,7 +56,6 @@ public class HomeController extends Controller {
     }
 
     public CompletionStage<Result> userProfile(String user) {
-//        Profile users =  new Profile(user);
         return ProcessProfile.processUsers(user);
     }
 

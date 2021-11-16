@@ -9,8 +9,7 @@ import play.test.WithApplication;
 
 import static org.junit.Assert.assertEquals;
 import static play.mvc.Http.Status.OK;
-import static play.test.Helpers.GET;
-import static play.test.Helpers.route;
+import static play.test.Helpers.*;
 
 public class HomeControllerTest extends WithApplication {
 
@@ -27,6 +26,13 @@ public class HomeControllerTest extends WithApplication {
 
         Result result = route(app, request);
         assertEquals(OK, result.status());
+
+        request = new Http.RequestBuilder()
+                .method(GET)
+                .uri("/user").session("username", "user");
+
+        result = route(app, request);
+        assertEquals(OK, result.status());
     }
     @Test
     public void testRepo() {
@@ -38,5 +44,35 @@ public class HomeControllerTest extends WithApplication {
         assertEquals(OK, result.status());
     }
 
+
+    @Test
+    public void userProfile() {
+        Http.RequestBuilder request = new Http.RequestBuilder()
+                .method(GET)
+                .uri("/user/ninanee");
+
+        Result result = route(app, request);
+        assertEquals(OK, result.status());
+    }
+
+    @Test
+    public void issueTest(){
+        Http.RequestBuilder request = new Http.RequestBuilder()
+                .method(GET)
+                .uri("/issue/octocat/hello-world");
+
+        Result result = route(app, request);
+        assertEquals(OK, result.status());
+    }
+
+    @Test
+    public void keywordTest(){
+        Http.RequestBuilder request = new Http.RequestBuilder()
+                .method(POST)
+                .uri("/").session("username", "user1");
+
+        Result result = route(app, request);
+        assertEquals(OK, result.status());
+    }
 
 }

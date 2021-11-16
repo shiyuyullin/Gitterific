@@ -5,7 +5,13 @@
 
     <head>
         <title>Search</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
         <style>
+            body {
+                font-family: 'Mukta', sans-serif;
+            }
             .welcomeHeader {
                 background-color: #92d13d;
                 height: 150px;
@@ -24,10 +30,18 @@
                 padding-top: 5%;
                 padding-left: 25%;
                 padding-right: 20%;
+                display: flex;
+                flex-flow: row nowrap;
             }
             input{
                 height: 45px;
                 width: 600px;
+            }
+
+            button {
+                font-family: inherit;
+                width: 75px;
+                font-size: 16px;
             }
         </style>
     </head>
@@ -51,7 +65,13 @@
                 @for(i <- searchKeywords.size()-1 to 0 by -1){
                     <br>
                     <p>Search terms: @searchKeywords.get(i)</p>
-                    <table style="width=100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
+                    <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
+                        <tr>
+                            <th>Author Name</th>
+                            <th>Repo Name</th>
+                            <th>Topics</th>
+                            <th>Create Date</th>
+                        </tr>
                     @for(repo <- allRepos.get(i)){
 
                             <tr>

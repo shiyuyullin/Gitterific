@@ -17,6 +17,11 @@ import java.util.stream.StreamSupport;
 
 import static play.mvc.Results.ok;
 
+/***
+ * @author Yun Ni
+ * This class handle the induvidual part one, which is to fetch the users detail
+ * from Github API and show the user's public info and repos
+ */
 public class ProcessProfile {
 
     static List<Profile_Repo> temp = new ArrayList<>();
@@ -46,8 +51,7 @@ public class ProcessProfile {
         CompletionStage<List<Profile_Repo>> repoList = jn2.thenApply(node -> StreamSupport.stream(node.spliterator(), false).
                 map(nodes -> new Profile_Repo(
                         nodes.path("name").asText(),
-                        nodes.path("full_name").asText(),
-                        nodes.path("isPrivate").asBoolean(),
+                        nodes.path("private").asBoolean(),
                         nodes.path("html_url").toString(),
                         nodes.path("created_at").toString(),
                         nodes.path("updated_at").toString(),
@@ -62,14 +66,15 @@ public class ProcessProfile {
 
     /***
      * credit to Rui Wang
+     * this method is used to generate JsonNode from the giving url
      * @param url
-     * @return
+     * @return JsonNode
      */
     public static JsonNode generateJN(String url){
 
         JsonNode jasonNode = null;
         String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json", url} ;
+                "curl", "-H", "Accept: application/vnd.github.v3+json" , url} ;
         try {
             Process process = Runtime.getRuntime().exec(commands);
             BufferedReader reader = new BufferedReader(new
