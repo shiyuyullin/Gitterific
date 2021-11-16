@@ -62,36 +62,71 @@
 
         <div class="result">
             @if(searchKeywords != null && searchKeywords.size != 0){
-                @for(i <- searchKeywords.size()-1 to 0 by -1){
-                    <br>
-                    <p>Search terms: @searchKeywords.get(i)</p>
-                    <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
-                        <tr>
-                            <th>Author Name</th>
-                            <th>Repo Name</th>
-                            <th>Topics</th>
-                            <th>Create Date</th>
-                        </tr>
-                    @for(repo <- allRepos.get(i)){
-
+                @if(searchKeywords.size() <= 10){
+                    @for(i <- searchKeywords.size()-1 to 0 by -1){
+                        <br>
+                        <p>Search terms: @searchKeywords.get(i)</p>
+                        <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
                             <tr>
-                                <td style="width: 15%">
-                                    <a href="@routes.HomeController.userProfile(repo.getAuthorName)">@repo.getAuthorName</a>
-                                </td>
-                                <td style="width: 15%">
-                                    <a href="@routes.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))">@repo.getRepoName()</a>
-                                </td >
-                                <td style="width: 40%">
-                                @repo.getTopics()
-                                </td>
-                                <td style="width: 30%">
-                                @repo.getCreatedDate()
-                                </td>
-
+                                <th>Author Name</th>
+                                <th>Repo Name</th>
+                                <th>Topics</th>
+                                <th>Create Date</th>
                             </tr>
+                            @for(repo <- allRepos.get(i)){
+
+                                <tr>
+                                    <td style="width: 15%">
+                                        <a href="@routes.HomeController.userProfile(repo.getAuthorName)">@repo.getAuthorName</a>
+                                    </td>
+                                    <td style="width: 15%">
+                                        <a href="@routes.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))">@repo.getRepoName()</a>
+                                    </td >
+                                    <td style="width: 40%">
+                                    @repo.getTopics()
+                                    </td>
+                                    <td style="width: 30%">
+                                    @repo.getCreatedDate()
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
                     }
-                    </table>
                 }
+                @if(searchKeywords.size() > 10){
+                    @for(i <- searchKeywords.size()-1 to searchKeywords.size()-10 by -1){
+                        <br>
+                        <p>Search terms: @searchKeywords.get(i)</p>
+                        <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
+                            <tr>
+                                <th>Author Name</th>
+                                <th>Repo Name</th>
+                                <th>Topics</th>
+                                <th>Create Date</th>
+                            </tr>
+                            @for(repo <- allRepos.get(i)){
+
+                                <tr>
+                                    <td style="width: 15%">
+                                        <a href="@routes.HomeController.userProfile(repo.getAuthorName)">@repo.getAuthorName</a>
+                                    </td>
+                                    <td style="width: 15%">
+                                        <a href="@routes.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))">@repo.getRepoName()</a>
+                                    </td >
+                                    <td style="width: 40%">
+                                    @repo.getTopics()
+                                    </td>
+                                    <td style="width: 30%">
+                                    @repo.getCreatedDate()
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                    }
+                }
+
             }
         </div>
 
