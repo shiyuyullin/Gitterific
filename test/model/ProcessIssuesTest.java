@@ -1,16 +1,21 @@
 package model;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
+import static play.mvc.Http.Status.OK;
+import static play.test.Helpers.*;
+import play.mvc.Result;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,33 +27,58 @@ public class ProcessIssuesTest {
     WSClient mockWS = mock(WSClient.class);
     WSRequest mockRequest = mock(WSRequest.class);
     CompletionStage<WSResponse> mockResponse = mock(CompletionStage.class);
-    CompletionStage<JsonNode> mockJsonNode = mock(CompletionStage.class);
-    CompletionStage<List<String>> mockList = mock(CompletionStage.class);
     @InjectMocks
     ProcessIssues client = new ProcessIssues(mockWS);
 
-
     @Test
-    void RenderResultTest(){
-        when(mockList.thenApply(Function.identity())).thenReturn(null);
-        assertNull(client.renderResult(mockList));
+    void RenderResultTest() {
+
+        CompletionStage<List<String>> list = CompletableFuture.completedStage(new ArrayList<String>());
+        CompletionStage<Result> result = client.renderResult(list);
+        Result actualResult = null;
+        try{
+            actualResult = result.toCompletableFuture().get();
+        }
+        catch (Exception e){
+            System.out.println("Error occurred when trying to resolve completableFuture");
+        }
+        assertEquals(OK, actualResult.status());
+        assertTrue(contentAsString(actualResult).contains("Statistics"));
     }
 
     @Test
-    void GetIssuesAsJsonNodeTest() throws ExecutionException, InterruptedException {
+    void GetIssuesAsJsonNodeTest() {
+        JsonNodeFactory factory = JsonNodeFactory.instance;
+        ObjectNode parent = factory.objectNode();
+        ObjectNode child = factory.objectNode();
+        child.put("title", "this Is A Title");
+        parent.set("field", child);
         when(mockWS.url("https://api.github.com/repos/aaa/bbb/issues")).thenReturn(mockRequest);
         when(mockRequest.addHeader("Accept", "application/vnd.github.v3+json")).thenReturn(mockRequest);
         when(mockRequest.get()).thenReturn(mockResponse);
-        when(mockResponse.thenApply(WSResponse::asJson)).thenReturn(mockJsonNode);
         CompletionStage<JsonNode> listOfTitles =  client.getIssuesAsJsonNode("aaa","bbb");
         assertNull(listOfTitles);
+
     }
 
     @Test
-    void GetIssuesTitlesTest() throws ExecutionException, InterruptedException {
+    void GetIssuesTitlesTest() {
 
-        CompletionStage<List<String>> issueTitles = client.getIssuesTitles(mockJsonNode);
-        assertNull(issueTitles);
+        JsonNodeFactory factory = JsonNodeFactory.instance;
+        ObjectNode parent = factory.objectNode();
+        ObjectNode child = factory.objectNode();
+        child.put("title", "this Is A Title");
+        parent.set("field", child);
+        CompletionStage<JsonNode> node = CompletableFuture.completedStage(parent);
+        CompletionStage<List<String>> list = client.getIssuesTitles(node);
+        List<String> actualList = null;
+        try{
+            actualList = list.toCompletableFuture().get();
+        }
+        catch (Exception e){
+            System.out.println("error occurred when getting completableFuture");
+        }
+        assertEquals("\"this Is A Title\"", actualList.get(0));
 
     }
 

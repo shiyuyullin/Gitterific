@@ -39,20 +39,22 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
         return result;
     }
 
-
+    /**
+     * retrieve available issues as jsonnode
+     * @param author
+     * @param repoName
+     * @return CompletionStage<JsonNode>
+     */
     public CompletionStage<JsonNode> getIssuesAsJsonNode(String author, String repoName){
         String url = "https://api.github.com/repos/" + author + "/" + repoName + "/issues";
-        return ws.url(url)
-                .addHeader("Accept", "application/vnd.github.v3+json")
-                .get()
-                .thenApply(WSResponse::asJson);
+        return ws.url(url).addHeader("Accept", "application/vnd.github.v3+json").get().thenApply(WSResponse::asJson);
     }
 
     /**
-     * @author Shiyu Lin
-     * The method will form an http request using WSClient, processing the response
-     * (getting the titles).
-     * @return CompletionStage<List<String>> future list of titles
+     * Taking a future jsonnode, map each node(information about a repo) to the title of the repo
+     * , map titles from jsonnode to string and then collect the titles into a list.
+     * @param issuesJsonNode
+     * @return CompletionStage<List<String>>
      */
     public CompletionStage<List<String>> getIssuesTitles(CompletionStage<JsonNode> issuesJsonNode){
 
@@ -80,7 +82,7 @@ public class ProcessIssues implements WSBodyReadables, WSBodyWritables{
 
     /**
      * @author Shiyu Lin
-     * Sorting a hashmap based on the "value" of key:value
+     * Sorting a hashmap in descending order based on the "value" of key:value
      * @return HashMap<String,Long>
      */
     public HashMap<String,Long> sortWordCountDescending(Map<String,Long> wordCount){

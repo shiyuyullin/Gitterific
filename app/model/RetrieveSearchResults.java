@@ -3,20 +3,21 @@ import javax.inject.Inject;
 import javax.swing.text.html.Option;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.routes;
 import play.cache.*;
 import play.mvc.*;
 import play.libs.ws.*;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static play.mvc.Results.ok;
+import static play.mvc.Results.*;
 
 public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
 
-    public static List<GeneralRepoInfo> repoList = Arrays.asList();
     private final WSClient ws;
 
     @Inject
@@ -24,35 +25,41 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         this.ws = ws;
     }
 
-
     public CompletionStage<Result> searchForRepo(String keywords, String username){
 
-        String formattedKeywords = formatKeywordString(keywords);
-        WSRequest request = ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort:author-date-desc&per_page=10")
-                .addHeader("Accept","application/vnd.github.v3+json");
+        if(keywords == null || username == null){
+            return CompletableFuture.completedStage(ok(views.html.index.render(null,null)));
+        }
+        else{
+            String formattedKeywords = formatKeywordString(keywords);
+            WSRequest request = ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort:author-date-desc&per_page=10")
+                    .addHeader("Accept","application/vnd.github.v3+json");
 
-        CompletionStage<WSResponse> futureResponse = request.get();
-        CompletionStage<JsonNode> futureJson = futureResponse.thenApply(WSResponse::asJson);
-        CompletionStage<JsonNode> items = futureJson.thenApply(jsonNode -> jsonNode.get("items"));
-        CompletionStage<List<GeneralRepoInfo>> listOfRepos = items.thenApply(nodes -> StreamSupport.stream(nodes.spliterator(), false)
-                .map(node -> new GeneralRepoInfo(
-                        node.get("owner").get("login").toString(),
-                        node.get("name").toString(),
-                        node.get("topics").toString(),
-                        node.get("created_at").toString()
-                        )
+            CompletionStage<WSResponse> futureResponse = request.get();
+            CompletionStage<JsonNode> futureJson = futureResponse.thenApply(WSResponse::asJson);
+            CompletionStage<JsonNode> items = futureJson.thenApply(jsonNode -> jsonNode.get("items"));
+            CompletionStage<List<GeneralRepoInfo>> listOfRepos = items.thenApply(nodes -> StreamSupport.stream(nodes.spliterator(), false)
+                    .map(node -> new GeneralRepoInfo(
+                                    node.get("owner").get("login").toString(),
+                                    node.get("name").toString(),
+                                    node.get("topics").toString(),
+                                    node.get("created_at").toString()
+                            )
                     )
-                .collect(Collectors.toList()));
-        CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
+                    .collect(Collectors.toList()));
+            CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
 
-        return sortedByCreatedDate.thenApply(repo -> {
-            GeneralRepoInfo.addRepoList(username, repo);
-            GeneralRepoInfo.addSearchKeywords(username, keywords);
-            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
-        });
+            return sortedByCreatedDate.thenApply(repo -> {
+                GeneralRepoInfo.addRepoList(username, repo);
+                GeneralRepoInfo.addSearchKeywords(username, keywords);
+                return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
+            });
+        }
+
     }
 
-    private String formatKeywordString(String keywords){
+    public String formatKeywordString(String keywords){
+
         String[] keyword = keywords.split(" ");
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < keyword.length; i++){
@@ -61,7 +68,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         return sb.toString();
     }
 
-    private CompletionStage<List<GeneralRepoInfo>> sortByDate(CompletionStage<List<GeneralRepoInfo>> listOfRepos){
+    public CompletionStage<List<GeneralRepoInfo>> sortByDate(CompletionStage<List<GeneralRepoInfo>> listOfRepos){
         CompletionStage<List<GeneralRepoInfo>> sorted =  listOfRepos.thenApply(repos -> repos.stream()
                 .sorted(Comparator.comparing(GeneralRepoInfo::getCreatedDate).reversed())
                 .collect(Collectors.toList()));
