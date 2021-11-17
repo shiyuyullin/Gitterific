@@ -29,6 +29,10 @@ public class Repo_issues {
 
     }
 
+    public Repo_issues() {
+
+    }
+
     public String getIssue_description() {
         return issue_description;
     }

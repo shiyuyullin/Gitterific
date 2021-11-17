@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,49 +11,94 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReposTest {
 
     @Test
-    void RepoTest() {
+    void exceptionTest() {
+
+        Repos excp = new Repos("aaa", "aaa", "aaa", "aaa", "aaa","aaa","19999","19999","19999","aaa");
+        assertNull(excp.getCreatedDate());
+
+
+    }
+
+    @Test
+    void getID() {
         Repos repos = new Repos();
-        Date d = new Date();
-        d.setYear(0);
-        d.setMonth(0);
-        d.setTime(0);
-        d.setDate(1);
+        repos.setID("1");
+        String actual = repos.getID();
+        assertEquals("1", actual);
+    }
 
+    @Test
+    void getAuthorName() {
+        Repos repos = new Repos();
+        repos.setAuthorName("1");
+        String actual = repos.getAuthorName();
+        assertEquals("1", actual);
+    }
 
-//        Exception e = assertThrows(ParseException.class,() ->  new Repos("aaa", "aaa", "aaa", "aaa", "aaa","aaa","19999","19999","19999","aaa") );
-//        System.out.println(e.getMessage());
-        try{
-            Repos excep = new Repos("aaa", "aaa", "aaa", "aaa", "aaa","aaa","1999","1999","1999","aaa");
-        }catch (Exception e){
-            System.out.println("Throws Exception");
-//            e.printStackTrace();
-        }
+    @Test
+    void getRepoName() {
+        Repos repos = new Repos();
+        repos.setRepoName("1");
+        String actual = repos.getRepoName();
+        assertEquals("1", actual);
+    }
 
+    @Test
+    void getTopics() {
+        Repos repos = new Repos();
+        repos.setTopics("1");
+        String actual = repos.getTopics();
+        assertEquals("1", actual);
+    }
 
+    @Test
+    void getDescription() {
+        Repos repos = new Repos();
+        repos.setDescription("1");
+        String actual = repos.getDescription();
+        assertEquals("1", actual);
+    }
 
-        Repos Test = new Repos("aaa", "aaa", "aaa", "aaa", "aaa","aaa","\"2018-01-25T04:16:53Z\"","\"2018-01-25T04:16:53Z\"","\"2018-01-25T04:16:53Z\"","aaa");
-        repos.setAuthorName("Author");
-        repos.setCreatedDate(d);
-        repos.setRepoName("RepoName");
-        repos.setDescription("Description");
-        repos.setDefault_branch("branch");
-        repos.setID("ID");
-        repos.setTopics("Topic");
-        repos.setVisibility("Visibility");
-        repos.setPushedDate(d);
-        repos.setUpdateDate(d);
+    @Test
+    void getDefault_branch() {
+        Repos repos = new Repos();
+        repos.setDefault_branch("1");
+        String actual = repos.getDefault_branch();
+        assertEquals("1", actual);
+    }
 
-        repos.getAuthorName();
-        repos.getCreatedDate();
-        repos.getRepoName();
-        repos.getDescription();
-        repos.getDefault_branch();
-        repos.getID();
-        repos.getTopics();
-        repos.getVisibility();
-        repos.getUpdateDate();
-        repos.getPushedDate();
+    @Test
+    void getCreatedDate() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
+        Repos repos = new Repos();
+        repos.setCreatedDate(sdf.parse("\"2011-05-04T05:44:07Z\""));
+        String actual = repos.getCreatedDate().toString();
+        assertEquals("Wed May 04 05:44:07 EDT 2011", actual);
+    }
 
-        assertEquals("Repos{ID='ID', authorName='Author', repoName='RepoName', topics='Topic', description='Description', default_branch='branch', createdDate=Mon Dec 01 19:00:00 EST 1969, updateDate=Mon Dec 01 19:00:00 EST 1969, pushedDate=Mon Dec 01 19:00:00 EST 1969, visibility='Visibility'}", repos.toString());
+    @Test
+    void getUpdateDate() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
+        Repos repos = new Repos();
+        repos.setUpdateDate(sdf.parse("\"2011-05-04T05:44:07Z\""));
+        String actual = repos.getUpdateDate().toString();
+        assertEquals("Wed May 04 05:44:07 EDT 2011", actual);
+    }
+
+    @Test
+    void getPushedDate() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
+        Repos repos = new Repos();
+        repos.setPushedDate(sdf.parse("\"2011-05-04T05:44:07Z\""));
+        String actual = repos.getPushedDate().toString();
+        assertEquals("Wed May 04 05:44:07 EDT 2011", actual);
+    }
+
+    @Test
+    void getVisibility() {
+        Repos repos = new Repos();
+        repos.setVisibility("1");
+        String actual = repos.getVisibility();
+        assertEquals("1", actual);
     }
 }
