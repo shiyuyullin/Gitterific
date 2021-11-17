@@ -1,10 +1,2 @@
 [0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-test/.sbt-idea-lock ...[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/wangrui/Study/6441/Twi/SOEN6441_Project/test/model/ReposTest.java:3:1: 程序包org.junit.jupiter.api不存在[0m
-[0m[[0m[31merror[0m] [0m[0morg.junit.jupiter.api.Test[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/wangrui/Study/6441/Twi/SOEN6441_Project/test/model/ReposTest.java:8:1: 程序包org.junit.jupiter.api不存在[0m
-[0m[[0m[31merror[0m] [0m[0morg.junit.jupiter.api.Assertions[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/wangrui/Study/6441/Twi/SOEN6441_Project/test/model/ReposTest.java:12:1: 找不到符号[0m
-[0m[[0m[31merror[0m] [0m[0m  符号:   类 Test[0m
-[0m[[0m[31merror[0m] [0m[0m  位置: 类 model.ReposTest[0m
-[0m[[0m[31merror[0m] [0m[0mTest[0m
 [0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-test/.sbt-idea-lock.[0m

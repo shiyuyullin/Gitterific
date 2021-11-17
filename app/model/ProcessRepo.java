@@ -17,14 +17,20 @@ import java.util.stream.StreamSupport;
 import static play.mvc.Results.ok;
 
 /**
- * @author Rui Wang
  * This model will handle the individual part 2, which is to fetch the repository details
  * and 20 lastest issues.
+ * @author Rui Wang
  */
-
 public class ProcessRepo {
     static List<Repo_issues> temp = new ArrayList<>();
 
+    /**
+     * These methods aim to use the author name and repository name to fetch JSON files by Github API and convert them
+     * to readable format stored in Repo and Repo_issue class.
+     * @param author Author Name
+     * @param repo Repository Name
+     * @return CompletionStage<Result>
+     */
     public static CompletionStage<Result> process(String author, String repo) {
 
 

@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Rui Wang
  * This class is used to all available details for a repository
+ * @author Rui Wang
  */
 
 public class Repos {

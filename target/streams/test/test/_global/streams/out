@@ -1,0 +1,2 @@
+[0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector(-Djacoco-agent.destfile=/Users/wangrui/Study/6441/Twi/SOEN6441_Project/target/scala-2.13/jacoco/data/jacoco.exec)[0m
+[0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
