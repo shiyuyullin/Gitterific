@@ -1,2 +1,2 @@
-[0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-test/.sbt-idea-lock ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project/project/target/.sbt-compilation-infos/root-test/.sbt-idea-lock.[0m
+[0m[[0m[0minfo[0m] [0m[0m/Users/yunni/Desktop/SOEN6441_Project/test/model/ProcessIssuesTest.java: Some input files use unchecked or unsafe operations.[0m
+[0m[[0m[0minfo[0m] [0m[0m/Users/yunni/Desktop/SOEN6441_Project/test/model/ProcessIssuesTest.java: Recompile with -Xlint:unchecked for details.[0m

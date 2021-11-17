@@ -26,6 +26,13 @@ public class ProcessProfile {
 
     static List<Profile_Repo> temp = new ArrayList<>();
 
+    /***
+     *
+     * This method is used to use the para username to fetch JSON files from Github API and convert them
+     * to readable format stored in Profile and Profile_Repo class.
+     * @param url
+     * @return CompletionStage<Result>
+     */
     public static CompletionStage<Result> processUsers(String url) {
 
         String name = url.replaceAll("\"", "").replaceAll(" ", "+");
@@ -74,7 +81,7 @@ public class ProcessProfile {
 
         JsonNode jasonNode = null;
         String[] commands = new String[]{
-                "curl", "-H", "Accept: application/vnd.github.v3+json" , url} ;
+                "curl", "-H", "Accept: application/vnd.github.v3+json" ,"Authorization: token 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", url} ;
         try {
             Process process = Runtime.getRuntime().exec(commands);
             BufferedReader reader = new BufferedReader(new
