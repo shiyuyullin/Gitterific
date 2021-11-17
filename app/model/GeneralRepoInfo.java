@@ -53,18 +53,32 @@ public class GeneralRepoInfo {
     }
 
     /**
-     *
+     * This method will search in a HashMap for a given key (username) by using the get() method
+     * that is provided by the HashMap class
      * @param username
-     * @return
+     * @return List<String>
      */
     public static List<String> getSearchKeywords(String username){
         return SearchKeywords.get(username);
     }
 
+    /**
+     * This method will search in a HashMap for a given key (username) by using the get() method that is provided
+     * by the HashMap class
+     * @param username
+     * @return A list of lists of GeneralRepoInfo, which means a list contains List<GeneralRepoInfo>
+     */
     public static List<List<GeneralRepoInfo>> getRepoList(String username){
         return RepoList.get(username);
     }
 
+    /**
+     * This method will add to a HashMap<String, List<String>>. If the key (username) does not exist in the HashMap, this method will create
+     * a key value pair using the given username as key, create a new List<String> and add the given keywords into it, then put them
+     * into the HashMap. If the key already exists into HashMap, retrieve its corresponding value and add the given keywords into it.
+     * @param username
+     * @param keywords
+     */
     public static void addSearchKeywords(String username, String keywords){
         if(getSearchKeywords(username) == null){
             List<String> keywordList = new ArrayList<>();
@@ -76,6 +90,13 @@ public class GeneralRepoInfo {
         }
     }
 
+    /**
+     * This method will add to a HashMap<String, List<List<GeneralRepoInfo>>. If the key (username) does not exist in the HashMap, this method will create
+     * a key value pair using the given username as key, create a new List<List<GeneralRepoInfo>> and add the given repoList into it, then put them
+     * into the HashMap. If the key already exists into HashMap, retrieve its corresponding value and add the given repoList into it.
+     * @param username
+     * @param repoList
+     */
     public static void addRepoList(String username, List<GeneralRepoInfo> repoList){
         if(getRepoList(username) == null){
             List<List<GeneralRepoInfo>> listOfRepoList = new ArrayList<>();
@@ -87,18 +108,35 @@ public class GeneralRepoInfo {
         }
     }
 
+    /**
+     * Setter
+     * @param authorName
+     */
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 
+    /**
+     * Setter
+     * @param repoName
+     */
     public void setRepoName(String repoName) {
         this.repoName = repoName;
     }
 
+    /**
+     * Setter
+     * @param topics
+     */
     public void setTopics(String topics) {
         this.topics = topics;
     }
 
+    /**
+     * This setter is taking a string which might be anything, try to parse it into a date if the string
+     * matches the exact format: "yyyy-MM-ddTHH:mm:ssZ" and set the parsed value to this.createdDate variable
+     * @param createdDate
+     */
     public void setCreatedDate(String createdDate) {
         try{
             this.createdDate = sdf.parse(createdDate);
@@ -108,22 +146,42 @@ public class GeneralRepoInfo {
         }
     }
 
+    /**
+     * Getter
+     * @return author of a repository
+     */
     public String getAuthorName() {
         return authorName;
     }
 
+    /**
+     * Getter
+     * @return name of a repository
+     */
     public String getRepoName() {
         return repoName;
     }
 
+    /**
+     * Getter
+     * @return topics of a repository
+     */
     public String getTopics() {
         return topics;
     }
 
+    /**
+     * Getter
+     * @return date when a repository is created (as String)
+     */
     public Date getCreatedDate() {
         return createdDate;
     }
 
+    /**
+     * toString method
+     * @return formatted output
+     */
     public String toString(){
         return this.getAuthorName() + " " + this.getRepoName() + " " + this.getTopics() + " " + this.getCreatedDate();
     }

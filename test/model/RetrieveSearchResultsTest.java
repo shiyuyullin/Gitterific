@@ -30,8 +30,8 @@ class RetrieveSearchResultsTest{
 
     @Test
     void GetRepoInfoAsJsonNodeTest(){
-        when(mockWS.url("https://api.github.com/search/repositories?q=java&sort:author-date-desc&per_page=10")).thenReturn(mockRequest);
-        when(mockWS.url("https://api.github.com/search/repositories?q=&sort:author-date-desc&per_page=10")).thenReturn(mockRequest);
+        when(mockWS.url("https://api.github.com/search/repositories?q=java&per_page=10")).thenReturn(mockRequest);
+        when(mockWS.url("https://api.github.com/search/repositories?q=&per_page=10")).thenReturn(mockRequest);
         when(mockRequest.addHeader("Accept","application/vnd.github.v3+json")).thenReturn(mockRequest);
         when(mockRequest.get()).thenReturn(mockResponse);
         assertNull(client.getRepoInfoAsJsonNode("java"));
@@ -94,15 +94,25 @@ class RetrieveSearchResultsTest{
         List<GeneralRepoInfo> list = new ArrayList<>();
         list.add(new GeneralRepoInfo("alan", "name2", "topics2", "\"2015-03-12T10:12:20Z\""));
         list.add(new GeneralRepoInfo("shiyu", "name1", "topics1", "\"2018-08-29T17:15:57Z\""));
-        CompletionStage<List<GeneralRepoInfo>> futureSortedList = client.sortByDate(CompletableFuture.completedStage(list));
-        List<GeneralRepoInfo> sortedList = null;
+        CompletionStage<List<GeneralRepoInfo>> futureSortedList1 = client.sortByDate(CompletableFuture.completedStage(list));
+        List<GeneralRepoInfo> sortedList1 = null;
         try{
-            sortedList = futureSortedList.toCompletableFuture().get();
+            sortedList1 = futureSortedList1.toCompletableFuture().get();
         }
         catch (Exception e){
             System.out.println("error occurred");
         }
-        assertEquals("shiyu", sortedList.get(0).getAuthorName());
+        assertEquals("shiyu", sortedList1.get(0).getAuthorName());
+
+        CompletionStage<List<GeneralRepoInfo>> futureSortedList2 = client.sortByDate(null);
+        List<GeneralRepoInfo> sortedList2 = null;
+        try{
+            sortedList2 = futureSortedList2.toCompletableFuture().get();
+        }
+        catch (Exception e){
+            System.out.println("error occurred");
+        }
+        assertEquals(0, sortedList2.size());
     }
 
 

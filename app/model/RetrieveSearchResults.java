@@ -1,11 +1,8 @@
 package model;
 import javax.inject.Inject;
-import javax.swing.text.html.Option;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import controllers.routes;
-import play.cache.*;
-import play.libs.Json;
+
 import play.mvc.*;
 import play.libs.ws.*;
 
@@ -17,6 +14,11 @@ import java.util.stream.StreamSupport;
 
 import static play.mvc.Results.*;
 
+/**
+ * This class will be used for retrieving search results (repository information) from GitHub by using GitHub API
+ * in an asynchronous manner. Actual communication between the app and the GitHub server(Sending http request,etc.) is
+ * done through WSClient provided by play framework.
+ */
 public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
 
     private final WSClient ws;
@@ -26,14 +28,30 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         this.ws = ws;
     }
 
+    /**
+     * Search for repository using some keywords, and retrieve them as JsonNode
+     * @param keywords
+     * @return future JsonNode(it will finally be a JsonNode)
+     */
     public CompletionStage<JsonNode> getRepoInfoAsJsonNode(String keywords){
         String formattedKeywords = formatKeywordString(keywords);
-        return ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort:author-date-desc&per_page=10")
+        return ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&per_page=10")
                 .addHeader("Accept","application/vnd.github.v3+json")
                 .get()
                 .thenApply(WSResponse::asJson);
     }
 
+    /**
+     * This method handle user session and caching. This method will take a future JsonNode, chain it with some method calls
+     * to retrieve what is needed to create a GeneralRepoInfo object (ex. author name, repo name, etc.) collect all GeneralRepoInfo
+     * objects into a list, sort the list based on the createdDate attribute of the objects, then cache the list to a local store(HashMap)
+     * , using the username as key. It would also cache the search keywords that is used to get the future JsonNode, using the username as
+     * key as well. After all, it renders the index page for the user with the given username.
+     * @param keywords
+     * @param username
+     * @param futureJson
+     * @return future Result(it will finally be a Result)
+     */
     public CompletionStage<Result> searchForRepo(String keywords, String username, CompletionStage<JsonNode> futureJson){
 
         if(keywords == null || username == null || futureJson == null){
@@ -60,6 +78,13 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         }
     }
 
+    /**
+     * Since what we get from the front-end form are words separated by space(ex. java ai DL)
+     * it could not be used directly to form a http request. This method will format what we got
+     * from the front-end form.(ex. java ai DL -> java+ai+DL | java -> java)
+     * @param keywords
+     * @return formatted keywords
+     */
     public String formatKeywordString(String keywords){
 
         if(keywords == null) return "";
@@ -72,7 +97,14 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         return sb.toString();
     }
 
+    /**
+     * This method will take a future List<GeneralRepoInfo>, chain it with another method to sort it
+     * based on the createdDate attribute of the objects inside the list.
+     * @param listOfRepos
+     * @return future list of GeneralRepoInfo
+     */
     public CompletionStage<List<GeneralRepoInfo>> sortByDate(CompletionStage<List<GeneralRepoInfo>> listOfRepos){
+        if(listOfRepos == null) return CompletableFuture.completedStage(new ArrayList<>());
         CompletionStage<List<GeneralRepoInfo>> sorted =  listOfRepos.thenApply(repos -> repos.stream()
                 .sorted(Comparator.comparing(GeneralRepoInfo::getCreatedDate).reversed())
                 .collect(Collectors.toList()));
