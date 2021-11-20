@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test cases for RetrieveSearchResults
+ */
 class RetrieveSearchResultsTest{
 
     @Mock
@@ -28,6 +31,10 @@ class RetrieveSearchResultsTest{
     @InjectMocks
     RetrieveSearchResults client = new RetrieveSearchResults(mockWS);
 
+    /**
+     * This is the test case for retrieving information by calling an external api
+     * Since we do not want to call the live api, the test will mock results for each step
+     */
     @Test
     void GetRepoInfoAsJsonNodeTest(){
         when(mockWS.url("https://api.github.com/search/repositories?q=java&per_page=10")).thenReturn(mockRequest);
@@ -38,6 +45,11 @@ class RetrieveSearchResultsTest{
         assertNull(client.getRepoInfoAsJsonNode(null));
     }
 
+    /**
+     * This is the test case for getting information of a repository from a jsonNode response
+     * we create a fake jsonNode object by ourselves and check if the method could get the info
+     * we want at the end
+     */
     @Test
     void SearchForRepoTest(){
         // create a mock JsonNode
@@ -74,8 +86,22 @@ class RetrieveSearchResultsTest{
         }
         assertEquals(OK, actualResult2.status());
         assertFalse(contentAsString(actualResult2).contains("Tetris"));
+        // when user entered nothing but clicked search
+        CompletionStage<Result> result3 = client.searchForRepo("","user1", CompletableFuture.completedStage(parent));
+        Result actualResult3 = null;
+        try{
+            actualResult3 = result3.toCompletableFuture().get();
+        }
+        catch (Exception e){
+            System.out.println("error occurred");
+        }
+        assertEquals(OK, actualResult3.status());
+        assertTrue(contentAsString(actualResult3).contains("Tetris"));
     }
 
+    /**
+     * This is the test case for formatting an input string
+     */
     @Test
     void FormatKeywordStringTest(){
 
@@ -89,6 +115,9 @@ class RetrieveSearchResultsTest{
 
     }
 
+    /**
+     * This is the test case for sorting a list of GeneralRepoInfo objects by the date attributes of the objects
+     */
     @Test
     void SortByDateTest(){
         List<GeneralRepoInfo> list = new ArrayList<>();

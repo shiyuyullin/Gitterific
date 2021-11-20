@@ -1,11 +1,20 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import play.test.WithApplication;
+
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test cases for GeneralRepoInfo
+ */
 public class GeneralRepoInfoTest {
 
+    /**
+     * This cases for testing constructors and getters
+     */
     @Test
     void ConstructorTests(){
         GeneralRepoInfo repo1 = new GeneralRepoInfo();
@@ -22,6 +31,9 @@ public class GeneralRepoInfoTest {
         assertEquals("Wed Aug 29 17:15:57 EDT 2018", repo2.getCreatedDate().toString());
     }
 
+    /**
+     * This is the test case for testing static method (get, add to a haspMap) of GeneralRepoInfo
+     */
     @Test
     void StaticMethodsTest(){
         GeneralRepoInfo.addSearchKeywords("user1", "java");
@@ -38,6 +50,9 @@ public class GeneralRepoInfoTest {
         assertNull(GeneralRepoInfo.getRepoList("user2"));
     }
 
+    /**
+     * This is the test case for setters
+     */
     @Test
     void SetterTest(){
 
@@ -52,12 +67,18 @@ public class GeneralRepoInfoTest {
         assertEquals("Wed Aug 29 17:15:57 EDT 2018", repo.getCreatedDate().toString());
     }
 
+    /**
+     * This is the test case for toString method
+     */
     @Test
     void ToStringTest(){
         GeneralRepoInfo repo = new GeneralRepoInfo("aaa", "bbb", "topics", "\"2018-08-29T17:15:57Z\"");
         assertEquals("aaa bbb topics Wed Aug 29 17:15:57 EDT 2018", repo.toString());
     }
 
+    /**
+     * This is the test case for exception case (where the date attribute for the object does not match the format we want)
+     */
     @Test
     void ExceptionCaseTest(){
         GeneralRepoInfo badRepo1 = new GeneralRepoInfo("aaa", "bbb", "topics", "123");

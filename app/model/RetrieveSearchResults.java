@@ -57,6 +57,9 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         if(keywords == null || username == null || futureJson == null){
             return CompletableFuture.completedStage(ok(views.html.index.render(null,null)));
         }
+        else if(keywords.length() == 0){
+            return CompletableFuture.completedStage(ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username))));
+        }
         else{
             CompletionStage<JsonNode> items = futureJson.thenApply(jsonNode -> jsonNode.get("items"));
             CompletionStage<List<GeneralRepoInfo>> listOfRepos = items.thenApply(nodes -> StreamSupport.stream(nodes.spliterator(), false)

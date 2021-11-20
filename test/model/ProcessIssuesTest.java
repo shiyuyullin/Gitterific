@@ -21,6 +21,9 @@ import java.util.function.Function;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test cases for ProcessIssues
+ */
 public class ProcessIssuesTest {
 
     @Mock
@@ -30,6 +33,9 @@ public class ProcessIssuesTest {
     @InjectMocks
     ProcessIssues client = new ProcessIssues(mockWS);
 
+    /**
+     * This is the test case for rendering search result
+     */
     @Test
     void RenderResultTest() {
 
@@ -46,6 +52,9 @@ public class ProcessIssuesTest {
         assertTrue(contentAsString(actualResult).contains("Statistics"));
     }
 
+    /**
+     * This is the test case for retrieve issues as jsonnode
+     */
     @Test
     void GetIssuesAsJsonNodeTest() {
         JsonNodeFactory factory = JsonNodeFactory.instance;
@@ -61,6 +70,9 @@ public class ProcessIssuesTest {
 
     }
 
+    /**
+     * This is the test case for processing jsonnode and retrieve meaningful information
+     */
     @Test
     void GetIssuesTitlesTest() {
 
@@ -82,6 +94,9 @@ public class ProcessIssuesTest {
 
     }
 
+    /**
+     * This is the test case for giving a list of string, count how many of them are unique
+     */
     @Test
     void CountingUniqueWordsTest(){
 
@@ -96,6 +111,9 @@ public class ProcessIssuesTest {
         assertNull(nullCaseMap.get("any"));
     }
 
+    /**
+     * This is the test case for sorting a map based on value of each entry
+     */
     @Test
     void SortWordCountTest(){
         Map<String, Long> map = new HashMap<>();

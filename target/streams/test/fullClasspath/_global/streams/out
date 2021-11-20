@@ -1,0 +1,30 @@
+[0m[[0m[0minfo[0m] [0m[0mInstrumenting 27 classes to /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/jacoco/instrumented-classes[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting products: /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes[0m
+[0m[[0m[0mdebug[0m] [0m[0mFound jacoco agent: Vector()[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/routes$javascript.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/javascript/ReverseHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/HomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/ReverseHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/controllers/routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/Repo_issues.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/Profile.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/ProcessRepo.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/Profile_Repo.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/ProcessIssues$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/RetrieveSearchResults.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/ProcessIssues.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/Repos.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/GeneralRepoInfo.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/model/ProcessProfile.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/RoutesPrefix.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/Routes$$anonfun$routes$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/RoutesPrefix$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/router/Routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/repos$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/index.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/index$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/repos.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/users.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/users$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/issue$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes/views/html/issue.class[0m
