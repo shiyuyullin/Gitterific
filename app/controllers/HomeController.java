@@ -1,8 +1,11 @@
 package controllers;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import com.fasterxml.jackson.databind.JsonNode;
 import model.*;
 
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
@@ -10,11 +13,16 @@ import javax.inject.Inject;
 
 import akka.stream.Materializer;
 
-import org.checkerframework.checker.units.qual.C;
 import play.data.DynamicForm;
 import play.data.FormFactory;
+import play.libs.Json;
 import play.mvc.*;
 import play.libs.ws.*;
+import scala.compat.java8.FutureConverters;
+import model.ProcessIssuesActor.ProcessIssuesOfRepo;
+
+
+import static akka.pattern.Patterns.ask;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -22,9 +30,17 @@ import play.libs.ws.*;
  */
 public class HomeController extends Controller {
 
+    private final ActorRef processIssuesActor;
+
     @Inject WSClient ws;
     @Inject Materializer materializer;
     @Inject FormFactory formFactory;
+
+    @Inject
+    public HomeController(ActorSystem system){
+        processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
+    }
+
 
     public Result index(String username, Http.Request request) {
         if(request.session().get("username").equals(Optional.empty())){
@@ -37,7 +53,9 @@ public class HomeController extends Controller {
 
     public CompletionStage<Result> issue(String author, String repo){
         ProcessIssues client = new ProcessIssues(ws);
-        return client.renderResult(client.getIssuesTitles(client.getIssuesAsJsonNode(author,repo)));
+        return FutureConverters.toJava(ask(processIssuesActor, new ProcessIssuesOfRepo(client, repo, author), 3000))
+                .thenApply(reply -> (Result) reply);
+//        return client.renderResult(client.getIssuesTitles(client.getIssuesAsJsonNode(author, repo)));
     }
 
     public CompletionStage<Result> keyword(Http.Request request){

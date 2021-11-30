@@ -1,0 +1,146 @@
+@import model.Profile
+@import model.Profile_Repo
+@(user : Profile, repos : List[Profile_Repo])
+
+
+<html>
+    <head>
+        <title>User Profile</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
+        <style>
+                body {
+                    font-family: 'Mukta', sans-serif;
+                }
+                tbody {
+                    counter-reset: sectioncounter;
+                }
+                .main{
+                    text-align: center;
+                    margin-top: 50px;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    font-weight: bold;
+
+                }
+                .row {
+                    display: flex;
+                }
+                .column {
+                    flex: 50%;
+                }
+                h1 {
+                    color: white;
+                    padding-top: 55px;
+                    padding-left: 55px;
+                }
+                .welcomeHeader {
+                    background-color: #92d13d;
+                    height: 150px;
+                }
+            table {
+                margin: auto;
+            }
+            th {
+                padding: 0 1rem;
+            }
+            td {
+                padding: 0 1rem
+            }
+            .user-info th {
+                text-align: end;
+                background-color: #fff7d6;
+            }
+            .user-info td {
+                background-color: #fff7d6;
+            }
+
+            .data-table {
+                width: 90%;
+            }
+            .data-table {
+                border: 1px solid grey;
+            }
+                .SortClass:before{
+                    content:counter(sectioncounter);
+                    counter-increment: sectioncounter;
+                }
+        </style>
+    </head>
+    <body>
+        <div class="welcomeHeader">
+            <h1>User Profile</h1>
+        </div>
+
+
+        <div class="main">
+            <table class="user-info">
+                <tr>
+                    <th>User Login Name</th>
+                    <td>@user.getLogin</td>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <td>@user.getId</td>
+                </tr>
+                <tr>
+                    <th>User Name</th>
+                    <td>@user.getName</td>
+                </tr>
+                <tr>
+                    <th>Followers</th>
+                    <td>@user.getFollowers</td>
+                </tr>
+                <tr>
+                    <th>Following</th>
+                    <td>@user.getFollowing</td>
+                </tr>
+                <tr>
+                    <th>User Github Page</th>
+                    <td>@user.getHtml_url</td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td>@user.getLocation</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>@user.getEmail</td>
+                </tr>
+                <tr>
+                    <th>Company</th>
+                    <td>@user.getCompany</td>
+                </tr>
+            </table>
+
+            <h2>User Repos</h2>
+            <table class="data-table">
+                <tr>
+                    <th>No.</th>
+                    <th>Repo Name</th>
+                    <th>isPrivate</th>
+                    <th>html_url</th>
+                    <th>created_at</th>
+                    <th>updated_at</th>
+                    <th>pushed_at</th>
+                </tr>
+                @for(repo <- repos){
+                    <tr>
+                        <td class = SortClass></td>
+                        <td style="width: 20%">@repo.getName</td>
+                        <td style="width: 10%">@repo.getPrivate</td>
+                        <td style="width: 15%">@repo.getHtml_url</td>
+                        <td style="width: 15%">@repo.getCreated_at</td>
+                        <td style="width: 15%">@repo.getUpdated_at</td>
+                        <td style="width: 15%">@repo.getPushed_at</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </body>
+</html>

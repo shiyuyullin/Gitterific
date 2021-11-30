@@ -7,6 +7,7 @@ import play.mvc.*;
 import play.libs.ws.*;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
 import java.util.stream.Collectors;
