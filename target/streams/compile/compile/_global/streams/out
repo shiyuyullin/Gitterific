@@ -1,0 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/issue.scala.html:1:1: class HashMap takes type parameters[0m
+[0m[[0m[31merror[0m] [0m[0m@(titles: List[String], wordCount : HashMap)[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/issue.scala.html:1:37: class HashMap takes type parameters[0m
+[0m[[0m[31merror[0m] [0m[0m@(titles: List[String], wordCount : HashMap)[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/shiyu/Desktop/SOEN6441_Project/app/views/issue.scala.html:48:8: class HashMap takes type parameters[0m
+[0m[[0m[31merror[0m] [0m[0m</html>[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
