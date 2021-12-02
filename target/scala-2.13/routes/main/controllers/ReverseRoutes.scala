@@ -7,10 +7,10 @@ import play.api.mvc.Call
 import _root_.controllers.Assets.Asset
 import _root_.play.libs.F
 
-// @LINE:6
+// @LINE:5
 package controllers {
 
-  // @LINE:6
+  // @LINE:5
   class ReverseHomeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
@@ -27,6 +27,12 @@ package controllers {
     def userProfile(user:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("user", user)))
+    }
+  
+    // @LINE:5
+    def ws: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "ws")
     }
   
     // @LINE:6

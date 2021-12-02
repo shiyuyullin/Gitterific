@@ -1,13 +1,7 @@
 package model;
 
 import akka.actor.*;
-import akka.japi.*;
-import com.fasterxml.jackson.databind.JsonNode;
-import play.mvc.Result;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 
 
 public class ProcessIssuesActor extends AbstractActor {
@@ -33,12 +27,12 @@ public class ProcessIssuesActor extends AbstractActor {
         return receiveBuilder()
                 .match(
                         ProcessIssuesOfRepo.class,
-                        hello -> {
+                        msg -> {
                             // For some reason, if we don't store the ActorRef here
                             // and if we just call the method sender() inside thenAccept()
                             // the ActorRef of sender is wrong
                             ActorRef sender = sender();
-                            hello.client.renderResult(hello.client.getIssuesTitles(hello.client.getIssuesAsJsonNode(hello.authorName, hello.repoName)))
+                            msg.client.renderResult(msg.client.getIssuesTitles(msg.client.getIssuesAsJsonNode(msg.authorName, msg.repoName)))
                                     .thenAccept(result -> sender.tell(result, self()));
                         })
                 .build();

@@ -35,7 +35,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
      */
     public CompletionStage<JsonNode> getRepoInfoAsJsonNode(String keywords){
         String formattedKeywords = formatKeywordString(keywords);
-        return ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&per_page=10")
+        return ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort=updated&per_page=10")
                 .addHeader("Accept","application/vnd.github.v3+json")
                 .get()
                 .thenApply(WSResponse::asJson);
@@ -71,8 +71,8 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                             )
                     )
                     .collect(Collectors.toList()));
-            CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
-            return sortedByCreatedDate.thenApply(repo -> {
+//            CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
+            return listOfRepos.thenApply(repo -> {
                 GeneralRepoInfo.addRepoList(username, repo);
                 GeneralRepoInfo.addSearchKeywords(username, keywords);
                 return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username)));
@@ -100,18 +100,18 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         return sb.toString();
     }
 
-    /**
-     * This method will take a future List<GeneralRepoInfo>, chain it with another method to sort it
-     * based on the createdDate attribute of the objects inside the list.
-     * @param listOfRepos
-     * @return future list of GeneralRepoInfo
-     */
-    public CompletionStage<List<GeneralRepoInfo>> sortByDate(CompletionStage<List<GeneralRepoInfo>> listOfRepos){
-        if(listOfRepos == null) return CompletableFuture.completedStage(new ArrayList<>());
-        CompletionStage<List<GeneralRepoInfo>> sorted =  listOfRepos.thenApply(repos -> repos.stream()
-                .sorted(Comparator.comparing(GeneralRepoInfo::getCreatedDate).reversed())
-                .collect(Collectors.toList()));
-        return sorted;
-    }
+//    /**
+//     * This method will take a future List<GeneralRepoInfo>, chain it with another method to sort it
+//     * based on the createdDate attribute of the objects inside the list.
+//     * @param listOfRepos
+//     * @return future list of GeneralRepoInfo
+//     */
+//    public CompletionStage<List<GeneralRepoInfo>> sortByDate(CompletionStage<List<GeneralRepoInfo>> listOfRepos){
+//        if(listOfRepos == null) return CompletableFuture.completedStage(new ArrayList<>());
+//        CompletionStage<List<GeneralRepoInfo>> sorted =  listOfRepos.thenApply(repos -> repos.stream()
+//                .sorted(Comparator.comparing(GeneralRepoInfo::getCreatedDate).reversed())
+//                .collect(Collectors.toList()));
+//        return sorted;
+//    }
 
 }

@@ -2,7 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-
+GET     /ws                         controllers.HomeController.ws
 GET    /issue/:author/:repo         controllers.HomeController.issue(author: String, repo: String)
 GET   /repo/:author/:repo           controllers.HomeController.repos(author : String, repo: String)
 #GET   /repo/:name                   controllers.HomeController.repos(name : String)

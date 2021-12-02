@@ -7,10 +7,10 @@ import play.api.routing.JavaScriptReverseRoute
 import _root_.controllers.Assets.Asset
 import _root_.play.libs.F
 
-// @LINE:6
+// @LINE:5
 package controllers.javascript {
 
-  // @LINE:6
+  // @LINE:5
   class ReverseHomeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -34,6 +34,16 @@ package controllers.javascript {
       """
         function(user0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0))})
+        }
+      """
+    )
+  
+    // @LINE:5
+    def ws: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.ws",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ws"})
         }
       """
     )

@@ -2,11 +2,8 @@ package controllers;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import com.fasterxml.jackson.databind.JsonNode;
 import model.*;
 
-
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
@@ -16,10 +13,12 @@ import akka.stream.Materializer;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.libs.Json;
+import play.libs.streams.ActorFlow;
 import play.mvc.*;
 import play.libs.ws.*;
 import scala.compat.java8.FutureConverters;
 import model.ProcessIssuesActor.ProcessIssuesOfRepo;
+import model.RetrieveSearchResultsActor.GetRepo;
 
 
 import static akka.pattern.Patterns.ask;
@@ -31,14 +30,19 @@ import static akka.pattern.Patterns.ask;
 public class HomeController extends Controller {
 
     private final ActorRef processIssuesActor;
+    private final ActorRef retrieveSearchResultsActor;
+    private final ActorSystem actorSystem;
+    private final Materializer materializer;
 
     @Inject WSClient ws;
-    @Inject Materializer materializer;
     @Inject FormFactory formFactory;
 
     @Inject
-    public HomeController(ActorSystem system){
+    public HomeController(ActorSystem system, Materializer materializer){
+        this.actorSystem = system;
+        this.materializer = materializer;
         processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
+        retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps());
     }
 
 
@@ -63,7 +67,9 @@ public class HomeController extends Controller {
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
         String keywords = requestData.get("keywords");
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
-        return client.searchForRepo(keywords, request.session().get("username").get(), client.getRepoInfoAsJsonNode(keywords));
+        return FutureConverters.toJava(ask(retrieveSearchResultsActor, new GetRepo(request.session().get("username").get(), keywords, client), 3000))
+                .thenApply(reply -> (Result) reply);
+//        return client.searchForRepo(keywords, request.session().get("username").get(), client.getRepoInfoAsJsonNode(keywords));
     }
 
     public CompletionStage<Result> repos(String author,String repo) {
