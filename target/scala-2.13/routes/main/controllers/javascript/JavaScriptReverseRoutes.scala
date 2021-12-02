@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:7
+    // @LINE:8
     def repos: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.repos",
       """
@@ -28,7 +28,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:10
     def userProfile: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.userProfile",
       """
@@ -38,17 +38,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:5
-    def ws: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.ws",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ws"})
-        }
-      """
-    )
-  
-    // @LINE:6
+    // @LINE:7
     def issue: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.issue",
       """
@@ -58,7 +48,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:11
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.index",
       """
@@ -68,12 +58,42 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:14
+    // @LINE:5
+    def socket: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.socket",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ws"})
+        }
+      """
+    )
+  
+    // @LINE:15
     def keyword: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.keyword",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:6
+  class ReverseAssets(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:6
+    def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Assets.at",
+      """
+        function(file1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("file", file1)})
         }
       """
     )

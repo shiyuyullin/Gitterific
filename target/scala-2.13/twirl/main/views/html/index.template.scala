@@ -22,65 +22,64 @@ import play.core.j.PlayFormsMagicForJava._
 import scala.jdk.CollectionConverters._
 /*1.2*/import model.GeneralRepoInfo
 
-object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[List[List[GeneralRepoInfo]],List[String],play.twirl.api.HtmlFormat.Appendable] {
+object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template3[List[List[GeneralRepoInfo]],List[String],play.mvc.Http.Request,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*2.2*/(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*2.2*/(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String], request: play.mvc.Http.Request):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
 Seq[Any](format.raw/*3.1*/("""
 """),format.raw/*4.1*/("""<html>
-
     <head>
         <title>Search</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
         <style>
-            body """),format.raw/*12.18*/("""{"""),format.raw/*12.19*/("""
-                """),format.raw/*13.17*/("""font-family: 'Mukta', sans-serif;
-            """),format.raw/*14.13*/("""}"""),format.raw/*14.14*/("""
-            """),format.raw/*15.13*/(""".welcomeHeader """),format.raw/*15.28*/("""{"""),format.raw/*15.29*/("""
-                """),format.raw/*16.17*/("""background-color: #92d13d;
+            body """),format.raw/*11.18*/("""{"""),format.raw/*11.19*/("""
+                """),format.raw/*12.17*/("""font-family: 'Mukta', sans-serif;
+            """),format.raw/*13.13*/("""}"""),format.raw/*13.14*/("""
+            """),format.raw/*14.13*/(""".welcomeHeader """),format.raw/*14.28*/("""{"""),format.raw/*14.29*/("""
+                """),format.raw/*15.17*/("""background-color: #92d13d;
                 height: 150px;
-            """),format.raw/*18.13*/("""}"""),format.raw/*18.14*/("""
-            """),format.raw/*19.13*/(""".result """),format.raw/*19.21*/("""{"""),format.raw/*19.22*/("""
-                """),format.raw/*20.17*/("""padding-left: 15%;
+            """),format.raw/*17.13*/("""}"""),format.raw/*17.14*/("""
+            """),format.raw/*18.13*/(""".result """),format.raw/*18.21*/("""{"""),format.raw/*18.22*/("""
+                """),format.raw/*19.17*/("""padding-left: 15%;
                 padding-right: 15%;
                 padding-top: 3%;
-            """),format.raw/*23.13*/("""}"""),format.raw/*23.14*/("""
-            """),format.raw/*24.13*/("""h1 """),format.raw/*24.16*/("""{"""),format.raw/*24.17*/("""
-                """),format.raw/*25.17*/("""color: white;
+            """),format.raw/*22.13*/("""}"""),format.raw/*22.14*/("""
+            """),format.raw/*23.13*/("""h1 """),format.raw/*23.16*/("""{"""),format.raw/*23.17*/("""
+                """),format.raw/*24.17*/("""color: white;
                 padding-top: 55px;
                 padding-left: 55px;
-            """),format.raw/*28.13*/("""}"""),format.raw/*28.14*/("""
-            """),format.raw/*29.13*/("""form """),format.raw/*29.18*/("""{"""),format.raw/*29.19*/("""
-                """),format.raw/*30.17*/("""padding-top: 5%;
+            """),format.raw/*27.13*/("""}"""),format.raw/*27.14*/("""
+            """),format.raw/*28.13*/("""form """),format.raw/*28.18*/("""{"""),format.raw/*28.19*/("""
+                """),format.raw/*29.17*/("""padding-top: 5%;
                 padding-left: 25%;
                 padding-right: 20%;
                 display: flex;
                 flex-flow: row nowrap;
-            """),format.raw/*35.13*/("""}"""),format.raw/*35.14*/("""
-            """),format.raw/*36.13*/("""input"""),format.raw/*36.18*/("""{"""),format.raw/*36.19*/("""
-                """),format.raw/*37.17*/("""height: 45px;
+            """),format.raw/*34.13*/("""}"""),format.raw/*34.14*/("""
+            """),format.raw/*35.13*/("""input"""),format.raw/*35.18*/("""{"""),format.raw/*35.19*/("""
+                """),format.raw/*36.17*/("""height: 45px;
                 width: 600px;
-            """),format.raw/*39.13*/("""}"""),format.raw/*39.14*/("""
+            """),format.raw/*38.13*/("""}"""),format.raw/*38.14*/("""
 
-            """),format.raw/*41.13*/("""button """),format.raw/*41.20*/("""{"""),format.raw/*41.21*/("""
-                """),format.raw/*42.17*/("""font-family: inherit;
+            """),format.raw/*40.13*/("""button """),format.raw/*40.20*/("""{"""),format.raw/*40.21*/("""
+                """),format.raw/*41.17*/("""font-family: inherit;
                 width: 75px;
                 font-size: 16px;
-            """),format.raw/*45.13*/("""}"""),format.raw/*45.14*/("""
-        """),format.raw/*46.9*/("""</style>
+            """),format.raw/*44.13*/("""}"""),format.raw/*44.14*/("""
+        """),format.raw/*45.9*/("""</style>
     </head>
 
     <body>
         <div class="welcomeHeader">
             <h1>Welcome to Gitterific</h1>
         </div>
-
+        <input type="hidden" id="ws-route" value=""""),_display_(/*52.52*/routes/*52.58*/.HomeController.socket.webSocketURL(request)),format.raw/*52.102*/("""">
         <div>
             <form action="/" method="post">
                 <input type="text" placeholder="Search.." name="keywords">
@@ -91,11 +90,11 @@ Seq[Any](format.raw/*3.1*/("""
 
 
         <div class="result">
-            """),_display_(/*64.14*/if(searchKeywords != null && searchKeywords.size != 0)/*64.68*/{_display_(Seq[Any](format.raw/*64.69*/("""
-                """),_display_(/*65.18*/if(searchKeywords.size() <= 10)/*65.49*/{_display_(Seq[Any](format.raw/*65.50*/("""
-                    """),_display_(/*66.22*/for(i <- searchKeywords.size()-1 to 0 by -1) yield /*66.66*/{_display_(Seq[Any](format.raw/*66.67*/("""
-                        """),format.raw/*67.25*/("""<br>
-                        <p>Search terms: """),_display_(/*68.43*/searchKeywords/*68.57*/.get(i)),format.raw/*68.64*/("""</p>
+            """),_display_(/*63.14*/if(searchKeywords != null && searchKeywords.size != 0)/*63.68*/{_display_(Seq[Any](format.raw/*63.69*/("""
+                """),_display_(/*64.18*/if(searchKeywords.size() <= 10)/*64.49*/{_display_(Seq[Any](format.raw/*64.50*/("""
+                    """),_display_(/*65.22*/for(i <- searchKeywords.size()-1 to 0 by -1) yield /*65.66*/{_display_(Seq[Any](format.raw/*65.67*/("""
+                        """),format.raw/*66.25*/("""<br>
+                        <p>Search terms: """),_display_(/*67.43*/searchKeywords/*67.57*/.get(i)),format.raw/*67.64*/("""</p>
                         <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
                             <tr>
                                 <th>Author Name</th>
@@ -103,31 +102,30 @@ Seq[Any](format.raw/*3.1*/("""
                                 <th>Topics</th>
                                 <th>Create Date</th>
                             </tr>
-                            """),_display_(/*76.30*/for(repo <- allRepos.get(i)) yield /*76.58*/{_display_(Seq[Any](format.raw/*76.59*/("""
-
-                                """),format.raw/*78.33*/("""<tr>
+                            """),_display_(/*75.30*/for(repo <- allRepos.get(i)) yield /*75.58*/{_display_(Seq[Any](format.raw/*75.59*/("""
+                                """),format.raw/*76.33*/("""<tr>
                                     <td style="width: 15%">
-                                        <a href=""""),_display_(/*80.51*/routes/*80.57*/.HomeController.userProfile(repo.getAuthorName)),format.raw/*80.104*/("""">"""),_display_(/*80.107*/repo/*80.111*/.getAuthorName),format.raw/*80.125*/("""</a>
+                                        <a href=""""),_display_(/*78.51*/routes/*78.57*/.HomeController.userProfile(repo.getAuthorName)),format.raw/*78.104*/("""">"""),_display_(/*78.107*/repo/*78.111*/.getAuthorName),format.raw/*78.125*/("""</a>
                                     </td>
                                     <td style="width: 15%">
-                                        <a href=""""),_display_(/*83.51*/routes/*83.57*/.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))),format.raw/*83.162*/("""">"""),_display_(/*83.165*/repo/*83.169*/.getRepoName()),format.raw/*83.183*/("""</a>
+                                        <a href=""""),_display_(/*81.51*/routes/*81.57*/.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))),format.raw/*81.162*/("""">"""),_display_(/*81.165*/repo/*81.169*/.getRepoName()),format.raw/*81.183*/("""</a>
                                     </td >
                                     <td style="width: 40%">
-                                    """),_display_(/*86.38*/repo/*86.42*/.getTopics()),format.raw/*86.54*/("""
-                                    """),format.raw/*87.37*/("""</td>
+                                    """),_display_(/*84.38*/repo/*84.42*/.getTopics()),format.raw/*84.54*/("""
+                                    """),format.raw/*85.37*/("""</td>
                                     <td style="width: 30%">
-                                    """),_display_(/*89.38*/repo/*89.42*/.getCreatedDate()),format.raw/*89.59*/("""
-                                    """),format.raw/*90.37*/("""</td>
-
+                                    """),_display_(/*87.38*/repo/*87.42*/.getCreatedDate()),format.raw/*87.59*/("""
+                                    """),format.raw/*88.37*/("""</td>
                                 </tr>
-                            """)))}),format.raw/*93.30*/("""
-                        """),format.raw/*94.25*/("""</table>
-                    """)))}),format.raw/*95.22*/("""
-                """)))}),format.raw/*96.18*/("""
-                """),_display_(/*97.18*/if(searchKeywords.size() > 10)/*97.48*/{_display_(Seq[Any](format.raw/*97.49*/("""
-                    """),_display_(/*98.22*/for(i <- searchKeywords.size()-1 to searchKeywords.size()-10 by -1) yield /*98.89*/{_display_(Seq[Any](format.raw/*98.90*/("""
-                        """),format.raw/*99.25*/("""<br>
-                        <p>Search terms: """),_display_(/*100.43*/searchKeywords/*100.57*/.get(i)),format.raw/*100.64*/("""</p>
+                            """)))}),format.raw/*90.30*/("""
+                            """),format.raw/*91.29*/("""<tr id="append"""),_display_(/*91.44*/i),format.raw/*91.45*/(""""></tr>
+                        </table>
+                    """)))}),format.raw/*93.22*/("""
+                """)))}),format.raw/*94.18*/("""
+                """),_display_(/*95.18*/if(searchKeywords.size() > 10)/*95.48*/{_display_(Seq[Any](format.raw/*95.49*/("""
+                    """),_display_(/*96.22*/for(i <- searchKeywords.size()-1 to searchKeywords.size()-10 by -1) yield /*96.89*/{_display_(Seq[Any](format.raw/*96.90*/("""
+                        """),format.raw/*97.25*/("""<br>
+                        <p>Search terms: """),_display_(/*98.43*/searchKeywords/*98.57*/.get(i)),format.raw/*98.64*/("""</p>
                         <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
                             <tr>
                                 <th>Author Name</th>
@@ -135,31 +133,31 @@ Seq[Any](format.raw/*3.1*/("""
                                 <th>Topics</th>
                                 <th>Create Date</th>
                             </tr>
-                            """),_display_(/*108.30*/for(repo <- allRepos.get(i)) yield /*108.58*/{_display_(Seq[Any](format.raw/*108.59*/("""
+                            """),_display_(/*106.30*/for(repo <- allRepos.get(i)) yield /*106.58*/{_display_(Seq[Any](format.raw/*106.59*/("""
 
-                                """),format.raw/*110.33*/("""<tr>
+                                """),format.raw/*108.33*/("""<tr>
                                     <td style="width: 15%">
-                                        <a href=""""),_display_(/*112.51*/routes/*112.57*/.HomeController.userProfile(repo.getAuthorName)),format.raw/*112.104*/("""">"""),_display_(/*112.107*/repo/*112.111*/.getAuthorName),format.raw/*112.125*/("""</a>
+                                        <a href=""""),_display_(/*110.51*/routes/*110.57*/.HomeController.userProfile(repo.getAuthorName)),format.raw/*110.104*/("""">"""),_display_(/*110.107*/repo/*110.111*/.getAuthorName),format.raw/*110.125*/("""</a>
                                     </td>
                                     <td style="width: 15%">
-                                        <a href=""""),_display_(/*115.51*/routes/*115.57*/.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))),format.raw/*115.162*/("""">"""),_display_(/*115.165*/repo/*115.169*/.getRepoName()),format.raw/*115.183*/("""</a>
+                                        <a href=""""),_display_(/*113.51*/routes/*113.57*/.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))),format.raw/*113.162*/("""">"""),_display_(/*113.165*/repo/*113.169*/.getRepoName()),format.raw/*113.183*/("""</a>
                                     </td >
                                     <td style="width: 40%">
-                                    """),_display_(/*118.38*/repo/*118.42*/.getTopics()),format.raw/*118.54*/("""
-                                    """),format.raw/*119.37*/("""</td>
+                                    """),_display_(/*116.38*/repo/*116.42*/.getTopics()),format.raw/*116.54*/("""
+                                    """),format.raw/*117.37*/("""</td>
                                     <td style="width: 30%">
-                                    """),_display_(/*121.38*/repo/*121.42*/.getCreatedDate()),format.raw/*121.59*/("""
-                                    """),format.raw/*122.37*/("""</td>
+                                    """),_display_(/*119.38*/repo/*119.42*/.getCreatedDate()),format.raw/*119.59*/("""
+                                    """),format.raw/*120.37*/("""</td>
 
                                 </tr>
-                            """)))}),format.raw/*125.30*/("""
-                        """),format.raw/*126.25*/("""</table>
-                    """)))}),format.raw/*127.22*/("""
-                """)))}),format.raw/*128.18*/("""
+                            """)))}),format.raw/*123.30*/("""
+                        """),format.raw/*124.25*/("""</table>
+                    """)))}),format.raw/*125.22*/("""
+                """)))}),format.raw/*126.18*/("""
 
-            """)))}),format.raw/*130.14*/("""
-        """),format.raw/*131.9*/("""</div>
-
+            """)))}),format.raw/*128.14*/("""
+        """),format.raw/*129.9*/("""</div>
+        <script type='text/javascript' src='"""),_display_(/*130.46*/routes/*130.52*/.Assets.at("javascripts/index.js")),format.raw/*130.86*/("""'></script>
     </body>
 
 
@@ -168,9 +166,9 @@ Seq[Any](format.raw/*3.1*/("""
     }
   }
 
-  def render(allRepos:List[List[GeneralRepoInfo]],searchKeywords:List[String]): play.twirl.api.HtmlFormat.Appendable = apply(allRepos,searchKeywords)
+  def render(allRepos:List[List[GeneralRepoInfo]],searchKeywords:List[String],request:play.mvc.Http.Request): play.twirl.api.HtmlFormat.Appendable = apply(allRepos,searchKeywords,request)
 
-  def f:((List[List[GeneralRepoInfo]],List[String]) => play.twirl.api.HtmlFormat.Appendable) = (allRepos,searchKeywords) => apply(allRepos,searchKeywords)
+  def f:((List[List[GeneralRepoInfo]],List[String],play.mvc.Http.Request) => play.twirl.api.HtmlFormat.Appendable) = (allRepos,searchKeywords,request) => apply(allRepos,searchKeywords,request)
 
   def ref: this.type = this
 
@@ -180,9 +178,9 @@ Seq[Any](format.raw/*3.1*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/index.scala.html
-                  HASH: fa32177c837873569ed0eb7dcc91ae68078471d6
-                  MATRIX: 610->1|977->31|1140->101|1167->102|1521->428|1550->429|1595->446|1669->492|1698->493|1739->506|1782->521|1811->522|1856->539|1954->609|1983->610|2024->623|2060->631|2089->632|2134->649|2262->749|2291->750|2332->763|2363->766|2392->767|2437->784|2562->881|2591->882|2632->895|2665->900|2694->901|2739->918|2937->1088|2966->1089|3007->1102|3040->1107|3069->1108|3114->1125|3198->1181|3227->1182|3269->1196|3304->1203|3333->1204|3378->1221|3502->1317|3531->1318|3567->1327|4022->1755|4085->1809|4124->1810|4169->1828|4209->1859|4248->1860|4297->1882|4357->1926|4396->1927|4449->1952|4523->1999|4546->2013|4574->2020|5023->2442|5067->2470|5106->2471|5168->2505|5310->2620|5325->2626|5394->2673|5425->2676|5439->2680|5475->2694|5659->2851|5674->2857|5801->2962|5832->2965|5846->2969|5882->2983|6054->3128|6067->3132|6100->3144|6165->3181|6295->3284|6308->3288|6346->3305|6411->3342|6516->3416|6569->3441|6630->3471|6679->3489|6724->3507|6763->3537|6802->3538|6851->3560|6934->3627|6973->3628|7026->3653|7101->3700|7125->3714|7154->3721|7604->4143|7649->4171|7689->4172|7752->4206|7895->4321|7911->4327|7981->4374|8013->4377|8028->4381|8065->4395|8250->4552|8266->4558|8394->4663|8426->4666|8441->4670|8478->4684|8651->4829|8665->4833|8699->4845|8765->4882|8896->4985|8910->4989|8949->5006|9015->5043|9121->5117|9175->5142|9237->5172|9287->5190|9334->5205|9371->5214
-                  LINES: 23->1|28->2|33->3|34->4|42->12|42->12|43->13|44->14|44->14|45->15|45->15|45->15|46->16|48->18|48->18|49->19|49->19|49->19|50->20|53->23|53->23|54->24|54->24|54->24|55->25|58->28|58->28|59->29|59->29|59->29|60->30|65->35|65->35|66->36|66->36|66->36|67->37|69->39|69->39|71->41|71->41|71->41|72->42|75->45|75->45|76->46|94->64|94->64|94->64|95->65|95->65|95->65|96->66|96->66|96->66|97->67|98->68|98->68|98->68|106->76|106->76|106->76|108->78|110->80|110->80|110->80|110->80|110->80|110->80|113->83|113->83|113->83|113->83|113->83|113->83|116->86|116->86|116->86|117->87|119->89|119->89|119->89|120->90|123->93|124->94|125->95|126->96|127->97|127->97|127->97|128->98|128->98|128->98|129->99|130->100|130->100|130->100|138->108|138->108|138->108|140->110|142->112|142->112|142->112|142->112|142->112|142->112|145->115|145->115|145->115|145->115|145->115|145->115|148->118|148->118|148->118|149->119|151->121|151->121|151->121|152->122|155->125|156->126|157->127|158->128|160->130|161->131
+                  HASH: b5f65a156837a9cafea3b1f5e82badb24507f263
+                  MATRIX: 610->1|999->31|1194->133|1221->134|1574->459|1603->460|1648->477|1722->523|1751->524|1792->537|1835->552|1864->553|1909->570|2007->640|2036->641|2077->654|2113->662|2142->663|2187->680|2315->780|2344->781|2385->794|2416->797|2445->798|2490->815|2615->912|2644->913|2685->926|2718->931|2747->932|2792->949|2990->1119|3019->1120|3060->1133|3093->1138|3122->1139|3167->1156|3251->1212|3280->1213|3322->1227|3357->1234|3386->1235|3431->1252|3555->1348|3584->1349|3620->1358|3825->1536|3840->1542|3906->1586|4236->1889|4299->1943|4338->1944|4383->1962|4423->1993|4462->1994|4511->2016|4571->2060|4610->2061|4663->2086|4737->2133|4760->2147|4788->2154|5237->2576|5281->2604|5320->2605|5381->2638|5523->2753|5538->2759|5607->2806|5638->2809|5652->2813|5688->2827|5872->2984|5887->2990|6014->3095|6045->3098|6059->3102|6095->3116|6267->3261|6280->3265|6313->3277|6378->3314|6508->3417|6521->3421|6559->3438|6624->3475|6728->3548|6785->3577|6827->3592|6849->3593|6942->3655|6991->3673|7036->3691|7075->3721|7114->3722|7163->3744|7246->3811|7285->3812|7338->3837|7412->3884|7435->3898|7463->3905|7913->4327|7958->4355|7998->4356|8061->4390|8204->4505|8220->4511|8290->4558|8322->4561|8337->4565|8374->4579|8559->4736|8575->4742|8703->4847|8735->4850|8750->4854|8787->4868|8960->5013|8974->5017|9008->5029|9074->5066|9205->5169|9219->5173|9258->5190|9324->5227|9430->5301|9484->5326|9546->5356|9596->5374|9643->5389|9680->5398|9760->5450|9776->5456|9832->5490
+                  LINES: 23->1|28->2|33->3|34->4|41->11|41->11|42->12|43->13|43->13|44->14|44->14|44->14|45->15|47->17|47->17|48->18|48->18|48->18|49->19|52->22|52->22|53->23|53->23|53->23|54->24|57->27|57->27|58->28|58->28|58->28|59->29|64->34|64->34|65->35|65->35|65->35|66->36|68->38|68->38|70->40|70->40|70->40|71->41|74->44|74->44|75->45|82->52|82->52|82->52|93->63|93->63|93->63|94->64|94->64|94->64|95->65|95->65|95->65|96->66|97->67|97->67|97->67|105->75|105->75|105->75|106->76|108->78|108->78|108->78|108->78|108->78|108->78|111->81|111->81|111->81|111->81|111->81|111->81|114->84|114->84|114->84|115->85|117->87|117->87|117->87|118->88|120->90|121->91|121->91|121->91|123->93|124->94|125->95|125->95|125->95|126->96|126->96|126->96|127->97|128->98|128->98|128->98|136->106|136->106|136->106|138->108|140->110|140->110|140->110|140->110|140->110|140->110|143->113|143->113|143->113|143->113|143->113|143->113|146->116|146->116|146->116|147->117|149->119|149->119|149->119|150->120|153->123|154->124|155->125|156->126|158->128|159->129|160->130|160->130|160->130
                   -- GENERATED --
               */
           

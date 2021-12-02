@@ -42,16 +42,16 @@ public class HomeController extends Controller {
         this.actorSystem = system;
         this.materializer = materializer;
         processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
-        retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps());
+        retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps(), "retrieveActor");
     }
 
 
     public Result index(String username, Http.Request request) {
         if(request.session().get("username").equals(Optional.empty())){
-            return ok(views.html.index.render(null, null)).addingToSession(request, "username", username);
+            return ok(views.html.index.render(null, null, request)).addingToSession(request, "username", username);
         }
         else{
-            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username)));
+            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username), request));
         }
     }
 
@@ -67,7 +67,7 @@ public class HomeController extends Controller {
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
         String keywords = requestData.get("keywords");
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
-        return FutureConverters.toJava(ask(retrieveSearchResultsActor, new GetRepo(request.session().get("username").get(), keywords, client), 3000))
+        return FutureConverters.toJava(ask(retrieveSearchResultsActor, new GetRepo(request.session().get("username").get(), keywords, request, client), 3000))
                 .thenApply(reply -> (Result) reply);
 //        return client.searchForRepo(keywords, request.session().get("username").get(), client.getRepoInfoAsJsonNode(keywords));
     }
@@ -81,6 +81,10 @@ public class HomeController extends Controller {
 
     public CompletionStage<Result> userProfile(String user) {
         return ProcessProfile.processUsers(user);
+    }
+
+    public WebSocket socket(){
+        return WebSocket.Text.accept(request -> ActorFlow.actorRef(DisplayActor::getProps, actorSystem, materializer));
     }
 
 }

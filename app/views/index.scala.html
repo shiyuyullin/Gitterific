@@ -1,8 +1,7 @@
 @import model.GeneralRepoInfo
-@(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String])
+@(allRepos: List[List[GeneralRepoInfo]], searchKeywords: List[String], request: play.mvc.Http.Request)
 
 <html>
-
     <head>
         <title>Search</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +49,7 @@
         <div class="welcomeHeader">
             <h1>Welcome to Gitterific</h1>
         </div>
-
+        <input type="hidden" id="ws-route" value="@routes.HomeController.socket.webSocketURL(request)">
         <div>
             <form action="/" method="post">
                 <input type="text" placeholder="Search.." name="keywords">
@@ -74,7 +73,6 @@
                                 <th>Create Date</th>
                             </tr>
                             @for(repo <- allRepos.get(i)){
-
                                 <tr>
                                     <td style="width: 15%">
                                         <a href="@routes.HomeController.userProfile(repo.getAuthorName)">@repo.getAuthorName</a>
@@ -88,9 +86,9 @@
                                     <td style="width: 30%">
                                     @repo.getCreatedDate()
                                     </td>
-
                                 </tr>
                             }
+                            <tr id="append@i"></tr>
                         </table>
                     }
                 }
@@ -129,7 +127,7 @@
 
             }
         </div>
-
+        <script type='text/javascript' src='@routes.Assets.at("javascripts/index.js")'></script>
     </body>
 
 

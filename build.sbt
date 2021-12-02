@@ -19,3 +19,5 @@ libraryDependencies += "org.junit.jupiter" % "junit-jupiter-api" % "5.8.1" % Tes
 
 
 libraryDependencies += "org.mockito" % "mockito-core" % "4.0.0" % Test
+
+libraryDependencies += "javax.xml.bind" % "jaxb-api" % "2.3.1"

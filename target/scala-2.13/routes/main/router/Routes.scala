@@ -14,20 +14,24 @@ import _root_.play.libs.F
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:5
-  HomeController_0: controllers.HomeController,
+  HomeController_1: controllers.HomeController,
+  // @LINE:6
+  Assets_0: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:5
-    HomeController_0: controllers.HomeController
-  ) = this(errorHandler, HomeController_0, "/")
+    HomeController_1: controllers.HomeController,
+    // @LINE:6
+    Assets_0: controllers.Assets
+  ) = this(errorHandler, HomeController_1, Assets_0, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_0, prefix)
+    new Routes(errorHandler, HomeController_1, Assets_0, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -35,7 +39,8 @@ class Routes(
   }
 
   def documentation = List(
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """ws""", """controllers.HomeController.ws"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """ws""", """controllers.HomeController.socket"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.at(path:String = "/public", file:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """issue/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""", """controllers.HomeController.issue(author:String, repo:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """repo/""" + "$" + """author<[^/]+>/""" + "$" + """repo<[^/]+>""", """controllers.HomeController.repos(author:String, repo:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user/""" + "$" + """user<[^/]+>""", """controllers.HomeController.userProfile(user:String)"""),
@@ -49,15 +54,15 @@ class Routes(
 
 
   // @LINE:5
-  private[this] lazy val controllers_HomeController_ws0_route = Route("GET",
+  private[this] lazy val controllers_HomeController_socket0_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("ws")))
   )
-  private[this] lazy val controllers_HomeController_ws0_invoker = createInvoker(
-    HomeController_0.ws,
+  private[this] lazy val controllers_HomeController_socket0_invoker = createInvoker(
+    HomeController_1.socket,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
-      "ws",
+      "socket",
       Nil,
       "GET",
       this.prefix + """ws""",
@@ -67,11 +72,29 @@ class Routes(
   )
 
   // @LINE:6
-  private[this] lazy val controllers_HomeController_issue1_route = Route("GET",
+  private[this] lazy val controllers_Assets_at1_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
+  )
+  private[this] lazy val controllers_Assets_at1_invoker = createInvoker(
+    Assets_0.at(fakeValue[String], fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Assets",
+      "at",
+      Seq(classOf[String], classOf[String]),
+      "GET",
+      this.prefix + """assets/""" + "$" + """file<.+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:7
+  private[this] lazy val controllers_HomeController_issue2_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("issue/"), DynamicPart("author", """[^/]+""",true), StaticPart("/"), DynamicPart("repo", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_issue1_invoker = createInvoker(
-    HomeController_0.issue(fakeValue[String], fakeValue[String]),
+  private[this] lazy val controllers_HomeController_issue2_invoker = createInvoker(
+    HomeController_1.issue(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -84,12 +107,12 @@ class Routes(
     )
   )
 
-  // @LINE:7
-  private[this] lazy val controllers_HomeController_repos2_route = Route("GET",
+  // @LINE:8
+  private[this] lazy val controllers_HomeController_repos3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("repo/"), DynamicPart("author", """[^/]+""",true), StaticPart("/"), DynamicPart("repo", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_repos2_invoker = createInvoker(
-    HomeController_0.repos(fakeValue[String], fakeValue[String]),
+  private[this] lazy val controllers_HomeController_repos3_invoker = createInvoker(
+    HomeController_1.repos(fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -102,12 +125,12 @@ class Routes(
     )
   )
 
-  // @LINE:9
-  private[this] lazy val controllers_HomeController_userProfile3_route = Route("GET",
+  // @LINE:10
+  private[this] lazy val controllers_HomeController_userProfile4_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("user/"), DynamicPart("user", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_userProfile3_invoker = createInvoker(
-    HomeController_0.userProfile(fakeValue[String]),
+  private[this] lazy val controllers_HomeController_userProfile4_invoker = createInvoker(
+    HomeController_1.userProfile(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -120,14 +143,14 @@ class Routes(
     )
   )
 
-  // @LINE:10
-  private[this] lazy val controllers_HomeController_index4_route = Route("GET",
+  // @LINE:11
+  private[this] lazy val controllers_HomeController_index5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), DynamicPart("username", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_index4_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_index5_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      HomeController_0.index(fakeValue[String], fakeValue[play.mvc.Http.Request]),
+      HomeController_1.index(fakeValue[String], fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -140,14 +163,14 @@ class Routes(
     )
   )
 
-  // @LINE:14
-  private[this] lazy val controllers_HomeController_keyword5_route = Route("POST",
+  // @LINE:15
+  private[this] lazy val controllers_HomeController_keyword6_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix)))
   )
-  private[this] lazy val controllers_HomeController_keyword5_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_keyword6_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      HomeController_0.keyword(fakeValue[play.mvc.Http.Request]),
+      HomeController_1.keyword(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -164,41 +187,47 @@ class Routes(
   def routes: PartialFunction[RequestHeader, Handler] = {
   
     // @LINE:5
-    case controllers_HomeController_ws0_route(params@_) =>
+    case controllers_HomeController_socket0_route(params@_) =>
       call { 
-        controllers_HomeController_ws0_invoker.call(HomeController_0.ws)
+        controllers_HomeController_socket0_invoker.call(HomeController_1.socket)
       }
   
     // @LINE:6
-    case controllers_HomeController_issue1_route(params@_) =>
-      call(params.fromPath[String]("author", None), params.fromPath[String]("repo", None)) { (author, repo) =>
-        controllers_HomeController_issue1_invoker.call(HomeController_0.issue(author, repo))
+    case controllers_Assets_at1_route(params@_) =>
+      call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
+        controllers_Assets_at1_invoker.call(Assets_0.at(path, file))
       }
   
     // @LINE:7
-    case controllers_HomeController_repos2_route(params@_) =>
+    case controllers_HomeController_issue2_route(params@_) =>
       call(params.fromPath[String]("author", None), params.fromPath[String]("repo", None)) { (author, repo) =>
-        controllers_HomeController_repos2_invoker.call(HomeController_0.repos(author, repo))
+        controllers_HomeController_issue2_invoker.call(HomeController_1.issue(author, repo))
       }
   
-    // @LINE:9
-    case controllers_HomeController_userProfile3_route(params@_) =>
-      call(params.fromPath[String]("user", None)) { (user) =>
-        controllers_HomeController_userProfile3_invoker.call(HomeController_0.userProfile(user))
+    // @LINE:8
+    case controllers_HomeController_repos3_route(params@_) =>
+      call(params.fromPath[String]("author", None), params.fromPath[String]("repo", None)) { (author, repo) =>
+        controllers_HomeController_repos3_invoker.call(HomeController_1.repos(author, repo))
       }
   
     // @LINE:10
-    case controllers_HomeController_index4_route(params@_) =>
-      call(params.fromPath[String]("username", None)) { (username) =>
-        controllers_HomeController_index4_invoker.call(
-          req => HomeController_0.index(username, req))
+    case controllers_HomeController_userProfile4_route(params@_) =>
+      call(params.fromPath[String]("user", None)) { (user) =>
+        controllers_HomeController_userProfile4_invoker.call(HomeController_1.userProfile(user))
       }
   
-    // @LINE:14
-    case controllers_HomeController_keyword5_route(params@_) =>
+    // @LINE:11
+    case controllers_HomeController_index5_route(params@_) =>
+      call(params.fromPath[String]("username", None)) { (username) =>
+        controllers_HomeController_index5_invoker.call(
+          req => HomeController_1.index(username, req))
+      }
+  
+    // @LINE:15
+    case controllers_HomeController_keyword6_route(params@_) =>
       call { 
-        controllers_HomeController_keyword5_invoker.call(
-          req => HomeController_0.keyword(req))
+        controllers_HomeController_keyword6_invoker.call(
+          req => HomeController_1.keyword(req))
       }
   }
 }

@@ -52,13 +52,13 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
      * @param futureJson
      * @return future Result(it will finally be a Result)
      */
-    public CompletionStage<Result> searchForRepo(String keywords, String username, CompletionStage<JsonNode> futureJson){
+    public CompletionStage<Result> searchForRepo(String keywords, String username, Http.Request request, CompletionStage<JsonNode> futureJson){
 
         if(keywords == null || username == null || futureJson == null){
-            return CompletableFuture.completedStage(ok(views.html.index.render(null,null)));
+            return CompletableFuture.completedStage(ok(views.html.index.render(null,null, request)));
         }
         else if(keywords.length() == 0){
-            return CompletableFuture.completedStage(ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username))));
+            return CompletableFuture.completedStage(ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username), request)));
         }
         else{
             CompletionStage<JsonNode> items = futureJson.thenApply(jsonNode -> jsonNode.get("items"));
@@ -71,11 +71,10 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                             )
                     )
                     .collect(Collectors.toList()));
-//            CompletionStage<List<GeneralRepoInfo>> sortedByCreatedDate =  sortByDate(listOfRepos);
             return listOfRepos.thenApply(repo -> {
                 GeneralRepoInfo.addRepoList(username, repo);
                 GeneralRepoInfo.addSearchKeywords(username, keywords);
-                return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username)));
+                return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username), request));
             });
 
         }
