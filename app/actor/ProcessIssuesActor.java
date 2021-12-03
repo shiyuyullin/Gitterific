@@ -1,7 +1,7 @@
-package model;
+package actor;
 
 import akka.actor.*;
-
+import model.ProcessIssues;
 
 
 public class ProcessIssuesActor extends AbstractActor {

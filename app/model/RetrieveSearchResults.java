@@ -3,6 +3,7 @@ import javax.inject.Inject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import controllers.routes;
 import play.mvc.*;
 import play.libs.ws.*;
 
@@ -35,7 +36,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
      */
     public CompletionStage<JsonNode> getRepoInfoAsJsonNode(String keywords){
         String formattedKeywords = formatKeywordString(keywords);
-        return ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort=updated&per_page=10")
+        return ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort=updated")
                 .addHeader("Accept","application/vnd.github.v3+json")
                 .get()
                 .thenApply(WSResponse::asJson);
@@ -70,14 +71,35 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                                     node.get("created_at").toString()
                             )
                     )
+                    .limit(10)
                     .collect(Collectors.toList()));
             return listOfRepos.thenApply(repo -> {
                 GeneralRepoInfo.addRepoList(username, repo);
                 GeneralRepoInfo.addSearchKeywords(username, keywords);
-                return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username), request));
+                return redirect(routes.HomeController.index(username));
             });
-
         }
+    }
+
+
+    public CompletionStage<List<GeneralRepoInfo>> getRepoAsAList(String keywords){
+        String formattedKeywords = formatKeywordString(keywords);
+        CompletionStage<JsonNode> jsNode = ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort=updated")
+                .addHeader("Accept","application/vnd.github.v3+json")
+                .get()
+                .thenApply(WSResponse::asJson);
+        CompletionStage<JsonNode> items = jsNode.thenApply(jsonNode -> jsonNode.get("items"));
+        CompletionStage<List<GeneralRepoInfo>> listOfRepos = items.thenApply(nodes -> StreamSupport.stream(nodes.spliterator(), false)
+                .map(node -> new GeneralRepoInfo(
+                                node.get("owner").get("login").toString(),
+                                node.get("name").toString(),
+                                node.get("topics").toString(),
+                                node.get("created_at").toString()
+                        )
+                )
+                .limit(13)
+                .collect(Collectors.toList()));
+        return listOfRepos;
     }
 
     /**

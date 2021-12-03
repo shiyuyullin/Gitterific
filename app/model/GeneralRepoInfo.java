@@ -108,6 +108,11 @@ public class GeneralRepoInfo {
         }
     }
 
+    public static boolean contains(GeneralRepoInfo repo, List<GeneralRepoInfo> list){
+        return list.stream().anyMatch(obj -> obj.getRepoName().equals(repo.getRepoName())&&obj.getAuthorName().equals(repo.getAuthorName()));
+    }
+
+
     /**
      * Setter
      * @param authorName

@@ -1,11 +1,10 @@
-package model;
+package actor;
 
 import akka.actor.AbstractActorWithTimers;
 import akka.actor.ActorRef;
 import akka.actor.Props;
+import model.RetrieveSearchResults;
 import play.mvc.Http;
-
-import java.util.HashMap;
 
 public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
 
@@ -23,11 +22,14 @@ public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
         }
     }
 
-    public static class RegisterMessage{
-
+    public static class UpdateRepo{
+        private String keywords;
+        public UpdateRepo(String keywords){
+            this.keywords = keywords;
+        }
     }
 
-    private HashMap<String, ActorRef> displayActors = new HashMap<>();
+    private RetrieveSearchResults client;
 
     public static Props getProps(){
         return Props.create(RetrieveSearchResultsActor.class);
@@ -39,10 +41,20 @@ public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
         return receiveBuilder()
                 .match(GetRepo.class,
                         msg -> {
+                            client = msg.client;
                             ActorRef sender = sender();
                             msg.client.searchForRepo(msg.keywords, msg.username, msg.request, msg.client.getRepoInfoAsJsonNode(msg.keywords))
                                     .thenAccept(result -> sender.tell(result, self()));
                         })
+                .match(String.class, msg ->{
+                    System.out.println("received hello from" + sender());
+                })
+                .match(UpdateRepo.class, msg->{
+                    ActorRef sender = sender();
+                    client.getRepoAsAList(msg.keywords).thenAccept(listOfRepos ->{
+                        sender.tell(new DisplayActor.newRepoMessage(listOfRepos, msg.keywords), self());
+                    });
+                })
                 .build();
 
     }

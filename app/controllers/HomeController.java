@@ -1,5 +1,8 @@
 package controllers;
 
+import actor.DisplayActor;
+import actor.ProcessIssuesActor;
+import actor.RetrieveSearchResultsActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import model.*;
@@ -12,13 +15,12 @@ import akka.stream.Materializer;
 
 import play.data.DynamicForm;
 import play.data.FormFactory;
-import play.libs.Json;
 import play.libs.streams.ActorFlow;
 import play.mvc.*;
 import play.libs.ws.*;
 import scala.compat.java8.FutureConverters;
-import model.ProcessIssuesActor.ProcessIssuesOfRepo;
-import model.RetrieveSearchResultsActor.GetRepo;
+import actor.ProcessIssuesActor.ProcessIssuesOfRepo;
+import actor.RetrieveSearchResultsActor.GetRepo;
 
 
 import static akka.pattern.Patterns.ask;
@@ -84,7 +86,9 @@ public class HomeController extends Controller {
     }
 
     public WebSocket socket(){
-        return WebSocket.Text.accept(request -> ActorFlow.actorRef(DisplayActor::getProps, actorSystem, materializer));
+        return WebSocket.Text.accept(request -> {
+            return ActorFlow.actorRef(actorRef -> DisplayActor.getProps(actorRef, request.session().get("username").get()), actorSystem, materializer);
+        });
     }
 
 }

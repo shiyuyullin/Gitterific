@@ -65,7 +65,7 @@
                     @for(i <- searchKeywords.size()-1 to 0 by -1){
                         <br>
                         <p>Search terms: @searchKeywords.get(i)</p>
-                        <table style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
+                        <table id="@searchKeywords.get(i)" style="width:100% table-layout: fixed; word-wrap:break-word; word-break:break-all;">
                             <tr>
                                 <th>Author Name</th>
                                 <th>Repo Name</th>
@@ -88,7 +88,6 @@
                                     </td>
                                 </tr>
                             }
-                            <tr id="append@i"></tr>
                         </table>
                     }
                 }
