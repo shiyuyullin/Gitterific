@@ -33,6 +33,7 @@ public class HomeController extends Controller {
 
     private final ActorRef processIssuesActor;
     private final ActorRef retrieveSearchResultsActor;
+    private final ActorRef processRepoActor;
     private final ActorSystem actorSystem;
     private final Materializer materializer;
 
@@ -45,6 +46,7 @@ public class HomeController extends Controller {
         this.materializer = materializer;
         processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
         retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps(), "retrieveActor");
+        processRepoActor = system.actorOf(ProcessRepoActor.getProps());
     }
 
 
@@ -75,7 +77,9 @@ public class HomeController extends Controller {
     }
 
     public CompletionStage<Result> repos(String author,String repo) {
-        return ProcessRepo.process(author,repo);
+        return FutureConverters.toJava(ask(processRepoActor, new ProcessRepoActor.repoProcess(author, repo), 3000))
+                .thenApply(reply -> (Result) reply);
+//        return ProcessRepo.process(author,repo);
 //        Repos repos =  new Repos(repo);
 //        List<Repo_issues> repo_issues = repos.issues();
 //        return ok(views.html.repos.render(repos, repo_issues));
