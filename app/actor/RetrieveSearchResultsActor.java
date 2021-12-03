@@ -47,7 +47,7 @@ public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
                                     .thenAccept(result -> sender.tell(result, self()));
                         })
                 .match(String.class, msg ->{
-                    System.out.println("received hello from" + sender());
+                    sender().tell("received hello from" + sender(), self());
                 })
                 .match(UpdateRepo.class, msg->{
                     ActorRef sender = sender();

@@ -35,6 +35,9 @@ public class ProcessIssuesActor extends AbstractActor {
                             msg.client.renderResult(msg.client.getIssuesTitles(msg.client.getIssuesAsJsonNode(msg.authorName, msg.repoName)))
                                     .thenAccept(result -> sender.tell(result, self()));
                         })
+                .match(String.class, msg -> {
+                    getSender().tell("received", self());
+                })
                 .build();
     }
 

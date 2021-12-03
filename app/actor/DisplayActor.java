@@ -43,13 +43,16 @@ public class DisplayActor extends AbstractActorWithTimers {
 
     @Override
     public void preStart() {
-        getTimers().startPeriodicTimer("Timer", new UpdateMessage(), Duration.create(5, TimeUnit.SECONDS));
+        getTimers().startPeriodicTimer("Timer", new UpdateMessage(), Duration.create(10, TimeUnit.SECONDS));
     }
 
     @Override
     public Receive createReceive(){
 
         return receiveBuilder()
+                .match(String.class, msg ->{
+                    sender().tell("received",self());
+                })
                 .match(UpdateMessage.class, msg -> {
                     if(GeneralRepoInfo.getSearchKeywords(username)!=null && GeneralRepoInfo.getSearchKeywords(username).size()>=1){
                         for(String keywords : GeneralRepoInfo.getSearchKeywords(username)){
