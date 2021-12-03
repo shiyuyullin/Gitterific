@@ -1,11 +1,9 @@
 package model;
 
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import play.test.WithApplication;
+import org.junit.Test;
 
 import java.util.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * Test cases for GeneralRepoInfo
@@ -16,7 +14,7 @@ public class GeneralRepoInfoTest {
      * This cases for testing constructors and getters
      */
     @Test
-    void ConstructorTests(){
+    public void ConstructorTests(){
         GeneralRepoInfo repo1 = new GeneralRepoInfo();
         GeneralRepoInfo repo2 = new GeneralRepoInfo("aaa", "bbb", "topics", "\"2018-08-29T17:15:57Z\"");
 
@@ -35,7 +33,7 @@ public class GeneralRepoInfoTest {
      * This is the test case for testing static method (get, add to a haspMap) of GeneralRepoInfo
      */
     @Test
-    void StaticMethodsTest(){
+    public void StaticMethodsTest(){
         GeneralRepoInfo.addSearchKeywords("user1", "java");
         GeneralRepoInfo.addSearchKeywords("user1", "python");
         assertEquals("python", GeneralRepoInfo.getSearchKeywords("user1").get(1));
@@ -54,7 +52,7 @@ public class GeneralRepoInfoTest {
      * This is the test case for setters
      */
     @Test
-    void SetterTest(){
+    public void SetterTest(){
 
         GeneralRepoInfo repo = new GeneralRepoInfo();
         repo.setAuthorName("aaa");
@@ -71,7 +69,7 @@ public class GeneralRepoInfoTest {
      * This is the test case for toString method
      */
     @Test
-    void ToStringTest(){
+    public void ToStringTest(){
         GeneralRepoInfo repo = new GeneralRepoInfo("aaa", "bbb", "topics", "\"2018-08-29T17:15:57Z\"");
         assertEquals("aaa bbb topics Wed Aug 29 17:15:57 EDT 2018", repo.toString());
     }
@@ -80,7 +78,7 @@ public class GeneralRepoInfoTest {
      * This is the test case for exception case (where the date attribute for the object does not match the format we want)
      */
     @Test
-    void ExceptionCaseTest(){
+    public void ExceptionCaseTest(){
         GeneralRepoInfo badRepo1 = new GeneralRepoInfo("aaa", "bbb", "topics", "123");
         assertNull(badRepo1.getCreatedDate());
 
