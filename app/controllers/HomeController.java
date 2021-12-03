@@ -2,6 +2,7 @@ package controllers;
 
 import actor.DisplayActor;
 import actor.ProcessIssuesActor;
+import actor.ProcessProfileActor;
 import actor.RetrieveSearchResultsActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -34,6 +35,7 @@ public class HomeController extends Controller {
     private final ActorRef processIssuesActor;
     private final ActorRef retrieveSearchResultsActor;
     private final ActorRef processRepoActor;
+    private final ActorRef processProfileActor;
     private final ActorSystem actorSystem;
     private final Materializer materializer;
 
@@ -47,6 +49,7 @@ public class HomeController extends Controller {
         processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
         retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps(), "retrieveActor");
         processRepoActor = system.actorOf(ProcessRepoActor.getProps());
+        processProfileActor = system.actorOf(ProcessProfileActor.getProps());
     }
 
 
@@ -86,7 +89,8 @@ public class HomeController extends Controller {
     }
 
     public CompletionStage<Result> userProfile(String user) {
-        return ProcessProfile.processUsers(user);
+        return FutureConverters.toJava(ask(processProfileActor, new ProcessProfileActor.profileProcess(user),3000))
+                .thenApply(reply -> (Result) reply);
     }
 
     public WebSocket socket(){
