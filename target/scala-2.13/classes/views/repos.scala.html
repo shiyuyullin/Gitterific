@@ -137,7 +137,7 @@
                     <tr>
                         <td class = SortClass></td>
                         <td style="width: 15%">@issue.getIssue_title</td>
-                        <td style="width: 10%">@issue.getIssue_name</td>
+                        <td style="width: 10%"><a href="@routes.HomeController.userProfile(issue.getIssue_name)">@issue.getIssue_name</a></td>
                         <td style="width: 60%">@issue.getIssue_description</td>
                         <td style="width: 15%">@issue.getIssue_createdDate</td>
                     </tr>

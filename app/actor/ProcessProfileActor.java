@@ -29,6 +29,6 @@ public class ProcessProfileActor extends AbstractActor {
                             profileProcess.processProfile.processUsers(profileProcess.user)
                                     .thenAccept(result -> sender.tell(result,self()));
                         }
-                ).build();
+                ).match(String.class, msg -> getSender().tell("received", self())).build();
     }
 }
