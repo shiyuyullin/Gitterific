@@ -28,7 +28,7 @@ socket.onmessage = function(event){
             }
             if(j == 1){
                 const hyperlink2 = document.createElement("a");
-                hyperlink2.href = "#";
+                hyperlink2.href = "@routes.HomeController.repos(repo.getAuthorName().replaceAll(\"\\\"\", \"\"), repo.getRepoName().replaceAll(\"\\\"\", \"\"))";
                 hyperlink2.innerHTML = repoInfo[j];
                 cell2.appendChild(hyperlink2);
             }
