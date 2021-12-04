@@ -5,6 +5,9 @@ import model.RetrieveSearchResults;
 import play.mvc.Http;
 import scala.concurrent.ExecutionContext;
 import scala.concurrent.duration.Duration;
+
+import java.util.concurrent.TimeoutException;
+
 import static akka.actor.SupervisorStrategy.stop;
 import static akka.actor.SupervisorStrategy.restart;
 
@@ -69,7 +72,7 @@ public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
     private static SupervisorStrategy strategy =
             new OneForOneStrategy(10, Duration.create("1 minute"),
                     t -> {
-                        if (t instanceof NullPointerException) {
+                        if (t instanceof TimeoutException) {
                             return restart();
                         } else {
                             return stop();
