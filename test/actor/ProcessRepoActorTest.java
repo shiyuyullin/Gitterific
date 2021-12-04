@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import play.mvc.Result;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -38,11 +39,15 @@ class ProcessRepoActorTest {
     public void testProcessRepoActor(){
 
 
+
         TestKit testProbe = new TestKit(system);
         ActorRef processRepoActor = system.actorOf(ProcessRepoActor.getProps());
+        processRepoActor.tell(new ProcessRepoActor.repoProcess("TheDataMine", "the-examples-book"), testProbe.getRef());
         processRepoActor.tell("here is a message", testProbe.getRef());
         String message = testProbe.expectMsg("received");
         assertEquals("received", message);
+
+
 
 
     }
