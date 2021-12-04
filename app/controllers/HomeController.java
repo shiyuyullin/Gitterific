@@ -1,9 +1,6 @@
 package controllers;
 
-import actor.DisplayActor;
-import actor.ProcessIssuesActor;
-import actor.ProcessProfileActor;
-import actor.RetrieveSearchResultsActor;
+import actor.*;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import model.*;

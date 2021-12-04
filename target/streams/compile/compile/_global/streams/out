@@ -1,10 +1,2 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/yunni/Desktop/SOEN6441_A2/app/views/users.scala.html:133:91: value getAuthorName is not a member of model.Profile_Repo[0m
-[0m[[0m[31merror[0m] [0m[0m                        <td style="width: 20%"><a href="@routes.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))">@repo.getRepoName()</a></td>[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/yunni/Desktop/SOEN6441_A2/app/views/users.scala.html:133:134: value getRepoName is not a member of model.Profile_Repo[0m
-[0m[[0m[31merror[0m] [0m[0m                        <td style="width: 20%"><a href="@routes.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))">@repo.getRepoName()</a></td>[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                                                     ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/yunni/Desktop/SOEN6441_A2/app/views/users.scala.html:133:177: value getRepoName is not a member of model.Profile_Repo[0m
-[0m[[0m[31merror[0m] [0m[0m                        <td style="width: 20%"><a href="@routes.HomeController.repos(repo.getAuthorName().replaceAll("\"", ""), repo.getRepoName().replaceAll("\"", ""))">@repo.getRepoName()</a></td>[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                                                                                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project_L2/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/wangrui/Study/6441/Twi/SOEN6441_Project_L2/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock.[0m

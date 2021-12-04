@@ -1,8 +1,9 @@
-package model;
+package actor;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
+import model.ProcessRepo;
 
 public class ProcessRepoActor extends AbstractActor {
 
@@ -33,7 +34,9 @@ public class ProcessRepoActor extends AbstractActor {
                             repoProcess.processRepo.process(repoProcess.author, repoProcess.repo)
                                     .thenAccept(result -> sender.tell(result, self()));
                         }
-                )
+                ).match(String.class, msg -> {
+                    getSender().tell("received", self());
+                })
                 .build();
     }
 }
