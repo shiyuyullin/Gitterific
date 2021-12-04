@@ -1,10 +1,12 @@
 package actor;
 
-import akka.actor.AbstractActorWithTimers;
-import akka.actor.ActorRef;
-import akka.actor.Props;
+import akka.actor.*;
 import model.RetrieveSearchResults;
 import play.mvc.Http;
+import scala.concurrent.ExecutionContext;
+import scala.concurrent.duration.Duration;
+import static akka.actor.SupervisorStrategy.stop;
+import static akka.actor.SupervisorStrategy.restart;
 
 public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
 
@@ -59,7 +61,19 @@ public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
 
     }
 
+    @Override
+    public SupervisorStrategy supervisorStrategy() {
+        return strategy;
+    }
 
-
+    private static SupervisorStrategy strategy =
+            new OneForOneStrategy(10, Duration.create("1 minute"),
+                    t -> {
+                        if (t instanceof NullPointerException) {
+                            return restart();
+                        } else {
+                            return stop();
+                        }
+                    });
 
 }

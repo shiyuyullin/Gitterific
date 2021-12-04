@@ -53,3 +53,10 @@ Caused by: java.util.concurrent.CompletionException: akka.pattern.AskTimeoutExce
 	at akka.actor.LightArrayRevolverScheduler$$anon$3.run(LightArrayRevolverScheduler.scala:270)
 	at java.base/java.lang.Thread.run(Thread.java:834)
 Caused by: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://application/user/retrieveActor#133300154]] after [3000 ms]. Message of type [actor.RetrieveSearchResultsActor$GetRepo]. A typical reason for `AskTimeoutException` is that the recipient actor didn't send a reply.
+2021-12-04 15:29:59,779 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2021-12-04 15:29:59,786 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-4 - Application started (Dev) (no global state)
