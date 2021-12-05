@@ -12,6 +12,10 @@ import org.mockito.Mock;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
+/**
+ * Tests for the ProcessProfileActor
+ * @author Yun Ni
+ */
 class ProcessProfileActorTest {
 
     @Mock
@@ -19,17 +23,27 @@ class ProcessProfileActorTest {
 
     static ActorSystem system;
 
+    /**
+     * Set up the actor system
+     */
     @BeforeAll
     public static void setup(){
         system = ActorSystem.create();
     }
 
+
+    /**
+     * Shut down the actor system
+     */
     @AfterAll
     public static void shutdown(){
         TestKit.shutdownActorSystem(system);
         system = null;
     }
 
+    /**
+     * Test for the Profile Actor
+     */
     @Test
     public void testProcessProfileActor() {
         TestKit testProbe = new TestKit(system);
