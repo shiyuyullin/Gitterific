@@ -59,7 +59,7 @@ public class DisplayActor extends AbstractActorWithTimers {
                     }
                 })
                 .match(newRepoMessage.class, msg -> {
-                    System.out.println(msg.repoInfo);
+//                    System.out.println(msg.repoInfo);
                     // Check if there are any new repos
                     int index = GeneralRepoInfo.getSearchKeywords(username).indexOf(msg.keywords);
                     List<GeneralRepoInfo> oldRepoInfo = GeneralRepoInfo.getRepoList(username).get(index);
