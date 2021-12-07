@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RetrieveSearchResultsActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actor</a> &gt; <span class="el_source">RetrieveSearchResultsActor.java</span></div><h1>RetrieveSearchResultsActor.java</h1><pre class="source lang-java linenums">package actor;
+
+import akka.actor.*;
+import model.RetrieveSearchResults;
+import play.mvc.Http;
+import scala.concurrent.ExecutionContext;
+import scala.concurrent.duration.Duration;
+
+import java.util.concurrent.TimeoutException;
+
+import static akka.actor.SupervisorStrategy.stop;
+import static akka.actor.SupervisorStrategy.restart;
+
+<span class="fc" id="L14">public class RetrieveSearchResultsActor extends AbstractActorWithTimers {</span>
+
+    public static class GetRepo{
+        private String username;
+        private String keywords;
+        private Http.Request request;
+        private RetrieveSearchResults client;
+
+<span class="fc" id="L22">        public GetRepo(String username, String keywords, Http.Request request, RetrieveSearchResults client){</span>
+<span class="fc" id="L23">            this.username = username;</span>
+<span class="fc" id="L24">            this.keywords = keywords;</span>
+<span class="fc" id="L25">            this.request = request;</span>
+<span class="fc" id="L26">            this.client = client;</span>
+<span class="fc" id="L27">        }</span>
+    }
+
+    public static class UpdateRepo{
+        private String keywords;
+<span class="nc" id="L32">        public UpdateRepo(String keywords){</span>
+<span class="nc" id="L33">            this.keywords = keywords;</span>
+<span class="nc" id="L34">        }</span>
+    }
+
+    private RetrieveSearchResults client;
+
+    public static Props getProps(){
+<span class="fc" id="L40">        return Props.create(RetrieveSearchResultsActor.class);</span>
+    }
+
+    @Override
+    public Receive createReceive(){
+
+<span class="fc" id="L46">        return receiveBuilder()</span>
+<span class="fc" id="L47">                .match(GetRepo.class,</span>
+                        msg -&gt; {
+                            client = msg.client;
+                            ActorRef sender = sender();
+                            msg.client.searchForRepo(msg.keywords, msg.username, msg.request, msg.client.getRepoInfoAsJsonNode(msg.keywords))
+                                    .thenAccept(result -&gt; sender.tell(result, self()));
+                        })
+<span class="fc" id="L54">                .match(String.class, msg -&gt;{</span>
+                    sender().tell(&quot;received hello from&quot; + sender(), self());
+                })
+<span class="fc" id="L57">                .match(UpdateRepo.class, msg-&gt;{</span>
+                    ActorRef sender = sender();
+                    client.getRepoAsAList(msg.keywords).thenAccept(listOfRepos -&gt;{
+                        sender.tell(new DisplayActor.newRepoMessage(listOfRepos, msg.keywords), self());
+                    });
+                })
+<span class="fc" id="L63">                .build();</span>
+
+    }
+
+    @Override
+    public SupervisorStrategy supervisorStrategy() {
+<span class="nc" id="L69">        return strategy;</span>
+    }
+
+<span class="fc" id="L72">    private static SupervisorStrategy strategy =</span>
+<span class="fc" id="L73">            new OneForOneStrategy(10, Duration.create(&quot;1 minute&quot;),</span>
+                    t -&gt; {
+                        if (t instanceof TimeoutException) {
+                            return restart();
+                        } else {
+                            return stop();
+                        }
+                    });
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

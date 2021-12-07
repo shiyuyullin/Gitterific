@@ -3,26 +3,22 @@ package actor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.testkit.javadsl.TestKit;
-import model.ProcessIssues;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 public class DisplayActorTest {
 
 
     static ActorSystem system;
 
-    @BeforeAll
+    @BeforeClass
     public static void setup(){
         system = ActorSystem.create();
     }
 
-    @AfterAll
+    @AfterClass
     public static void shutdown(){
         TestKit.shutdownActorSystem(system);
         system = null;

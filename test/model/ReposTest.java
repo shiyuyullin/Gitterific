@@ -1,18 +1,17 @@
 package model;
 
-import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-class ReposTest {
+public class ReposTest {
 
     @Test
-    void exceptionTest() {
-
+    public void exceptionTest() {
         Repos excp = new Repos("aaa", "aaa", "aaa", "aaa", "aaa","aaa","19999","19999","19999","aaa");
         assertNull(excp.getCreatedDate());
 
@@ -20,7 +19,7 @@ class ReposTest {
     }
 
     @Test
-    void getID() {
+    public void getID() {
         Repos repos = new Repos();
         repos.setID("1");
         String actual = repos.getID();
@@ -28,7 +27,7 @@ class ReposTest {
     }
 
     @Test
-    void getAuthorName() {
+    public void getAuthorName() {
         Repos repos = new Repos();
         repos.setAuthorName("1");
         String actual = repos.getAuthorName();
@@ -36,7 +35,7 @@ class ReposTest {
     }
 
     @Test
-    void getRepoName() {
+    public void getRepoName() {
         Repos repos = new Repos();
         repos.setRepoName("1");
         String actual = repos.getRepoName();
@@ -44,7 +43,7 @@ class ReposTest {
     }
 
     @Test
-    void getTopics() {
+    public void getTopics() {
         Repos repos = new Repos();
         repos.setTopics("1");
         String actual = repos.getTopics();
@@ -52,7 +51,7 @@ class ReposTest {
     }
 
     @Test
-    void getDescription() {
+    public void getDescription() {
         Repos repos = new Repos();
         repos.setDescription("1");
         String actual = repos.getDescription();
@@ -60,7 +59,7 @@ class ReposTest {
     }
 
     @Test
-    void getDefault_branch() {
+    public void getDefault_branch() {
         Repos repos = new Repos();
         repos.setDefault_branch("1");
         String actual = repos.getDefault_branch();
@@ -68,7 +67,7 @@ class ReposTest {
     }
 
     @Test
-    void getCreatedDate() throws ParseException {
+    public void getCreatedDate() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
         Repos repos = new Repos();
         repos.setCreatedDate(sdf.parse("\"2011-05-04T05:44:07Z\""));
@@ -77,7 +76,7 @@ class ReposTest {
     }
 
     @Test
-    void getUpdateDate() throws ParseException {
+    public void getUpdateDate() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
         Repos repos = new Repos();
         repos.setUpdateDate(sdf.parse("\"2011-05-04T05:44:07Z\""));
@@ -86,7 +85,7 @@ class ReposTest {
     }
 
     @Test
-    void getPushedDate() throws ParseException {
+    public void getPushedDate() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
         Repos repos = new Repos();
         repos.setPushedDate(sdf.parse("\"2011-05-04T05:44:07Z\""));
@@ -95,7 +94,7 @@ class ReposTest {
     }
 
     @Test
-    void getVisibility() {
+    public void getVisibility() {
         Repos repos = new Repos();
         repos.setVisibility("1");
         String actual = repos.getVisibility();

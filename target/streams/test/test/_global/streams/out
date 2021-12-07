@@ -1,0 +1,167 @@
+[0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector(-Djacoco-agent.destfile=/home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/jacoco/data/jacoco.exec)[0m
+[0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreate a single-thread test executor[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunner for com.novocode.junit.JUnitFramework produced 8 initial tasks for 8 tests.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.ProcessProfileTest, sbt.ForkMain$AnnotatedFingerscan@28535660, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessProfileTest[0m.[36mgenerateJN[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessProfileTest[0m.[36mgenerateJN[0m finished, took 0.004 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessProfileTest[0m.[36mprocessUsers[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessProfileTest[0m.[36mprocessUsers[0m finished, took 0.608 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 0.617s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 2 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.GeneralRepoInfoTest, sbt.ForkMain$AnnotatedFingerscan@718d111f, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mcontainsTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mcontainsTest[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mStaticMethodsTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mStaticMethodsTest[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mConstructorTests[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mConstructorTests[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mExceptionCaseTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mExceptionCaseTest[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mToStringTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mToStringTest[0m finished, took 0.024 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mSetterTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mGeneralRepoInfoTest[0m.[36mSetterTest[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 6 total, 0.029s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 6 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.ProfileTest, sbt.ForkMain$AnnotatedFingerscan@3e2bca68, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetFollowers[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetFollowers[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetFollowing[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetFollowing[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mConstructorTests[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mConstructorTests[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetLocation[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetLocation[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetCompany[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetCompany[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetLocation[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetLocation[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetName[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetId[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetId[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetId[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetId[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetFollowers[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetFollowers[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetFollowing[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetFollowing[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetEmail[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetEmail[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetLogin[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetLogin[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetHtml_url[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetHtml_url[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetHtml_url[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetHtml_url[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetEmail[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetEmail[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetLogin[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetLogin[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36msetName[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetCompany[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfileTest[0m.[36mgetCompany[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 19 total, 0.004s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 19 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.ProcessIssuesTest, sbt.ForkMain$AnnotatedFingerscan@337ea52d, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mRenderResultTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mRenderResultTest[0m finished, took 0.391 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mGetIssuesAsJsonNodeTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mGetIssuesAsJsonNodeTest[0m finished, took 0.015 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mSortWordCountTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mSortWordCountTest[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mGetIssuesTitlesTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mGetIssuesTitlesTest[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mCountingUniqueWordsTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProcessIssuesTest[0m.[36mCountingUniqueWordsTest[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 5 total, 0.409s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 5 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.ReposTest, sbt.ForkMain$AnnotatedFingerscan@221a7a26, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetAuthorName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetAuthorName[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetCreatedDate[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetCreatedDate[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetUpdateDate[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetUpdateDate[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetID[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetID[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mexceptionTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mexceptionTest[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetTopics[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetTopics[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetDefault_branch[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetDefault_branch[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetVisibility[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetVisibility[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetRepoName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetRepoName[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetPushedDate[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetPushedDate[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetDescription[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mReposTest[0m.[36mgetDescription[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 11 total, 0.003s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 11 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(actor.DisplayActorTest, sbt.ForkMain$AnnotatedFingerscan@f59bee8, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actor.[33mDisplayActorTest[0m.[36mtestProcessIssuesActor[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actor.[33mDisplayActorTest[0m.[36mtestProcessIssuesActor[0m finished, took 0.035 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.755s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.RetrieveSearchResultsTest, sbt.ForkMain$AnnotatedFingerscan@1c1ce9ac, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mRetrieveSearchResultsTest[0m.[36mSearchForRepoTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mRetrieveSearchResultsTest[0m.[36mSearchForRepoTest[0m finished, took 0.049 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mRetrieveSearchResultsTest[0m.[36mFormatKeywordStringTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mRetrieveSearchResultsTest[0m.[36mFormatKeywordStringTest[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mRetrieveSearchResultsTest[0m.[36mGetRepoInfoAsJsonNodeTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mRetrieveSearchResultsTest[0m.[36mGetRepoInfoAsJsonNodeTest[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 3 total, 0.052s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(model.Profile_RepoTest, sbt.ForkMain$AnnotatedFingerscan@5a93469f, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetPrivate[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetPrivate[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetPushed_at[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetPushed_at[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetUpdated_at[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetUpdated_at[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mExceptionCaseTest[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mExceptionCaseTest[0m finished, took 0.003 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetName[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetUpdated_at[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetUpdated_at[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetPrivate[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetPrivate[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetPushed_at[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetPushed_at[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetCreated_at[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetCreated_at[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetHtml_url[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetHtml_url[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetHtml_url[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36mgetHtml_url[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetCreated_at[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetCreated_at[0m finished, took 0.014 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetName[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest model.[33mProfile_RepoTest[0m.[36msetName[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 13 total, 0.023s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 13 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
+[0m[[0m[0minfo[0m] [0m[0mPassed: Total 60, Failed 0, Errors 0, Passed 60[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.ProcessProfileTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.GeneralRepoInfoTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.ProfileTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.ProcessIssuesTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.ReposTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	actor.DisplayActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.RetrieveSearchResultsTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	model.Profile_RepoTest[0m

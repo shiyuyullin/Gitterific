@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessProfileActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actor</a> &gt; <span class="el_source">ProcessProfileActor.java</span></div><h1>ProcessProfileActor.java</h1><pre class="source lang-java linenums">package actor;
+
+import akka.actor.*;
+import model.ProcessProfile;
+
+/**
+ * Tests for the ProcessProfileActor
+ * @author Yun Ni
+ */
+<span class="fc" id="L10">public class ProcessProfileActor extends AbstractActor {</span>
+
+    public static class profileProcess {
+        public String user;
+        public ProcessProfile processProfile;
+
+        /***
+         * the ctor of the class
+         * @param user
+         */
+<span class="fc" id="L20">        public profileProcess(String user) {</span>
+<span class="fc" id="L21">            this.user = user;</span>
+<span class="fc" id="L22">            this.processProfile = new ProcessProfile();</span>
+<span class="fc" id="L23">        }</span>
+    }
+
+    /***
+     * this action is used to create the ProfileActor for handling the request of the User
+     * @return Props
+     */
+    public static Props getProps() {
+<span class="fc" id="L31">        return Props.create(ProcessProfileActor.class);</span>
+    }
+
+    /***
+     * this action is used to send the message.
+     * @return Receive
+     */
+    @Override
+    public Receive createReceive() {
+<span class="fc" id="L40">        return receiveBuilder()</span>
+<span class="fc" id="L41">                .match(</span>
+                        profileProcess.class,
+                        profileProcess -&gt; {
+                            ActorRef sender = sender();
+                            profileProcess.processProfile.processUsers(profileProcess.user)
+                                    .thenAccept(result -&gt; sender.tell(result,self()));
+                        }
+<span class="fc" id="L48">                ).match(String.class, msg -&gt; getSender().tell(&quot;received&quot;, self())).build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -50,9 +50,6 @@ public class DisplayActor extends AbstractActorWithTimers {
     public Receive createReceive(){
 
         return receiveBuilder()
-                .match(String.class, msg ->{
-                    sender().tell("received",self());
-                })
                 .match(UpdateMessage.class, msg -> {
                     if(GeneralRepoInfo.getSearchKeywords(username)!=null && GeneralRepoInfo.getSearchKeywords(username).size()>=1){
                         for(String keywords : GeneralRepoInfo.getSearchKeywords(username)){
@@ -79,6 +76,9 @@ public class DisplayActor extends AbstractActorWithTimers {
                         oldRepoInfo.add(repo);
                     }
                     webSocket.tell(sb.toString(), self());
+                })
+                .match(String.class, msg ->{
+                    sender().tell("received",self());
                 })
                 .build();
     }

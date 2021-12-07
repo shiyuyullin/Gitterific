@@ -2,9 +2,10 @@ package model;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.junit.jupiter.api.Test;
 import play.mvc.Result;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
 import java.util.concurrent.CompletionStage;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,13 +16,13 @@ import static play.test.Helpers.contentAsString;
  * this class is for testing the ProcessProfile
  * @user Yun Ni
  */
-class ProcessProfileTest {
+public class ProcessProfileTest {
 
     /***
      *for testing the processUsers Method
      */
     @Test
-    void processUsers() {
+    public void processUsers() {
         JsonNodeFactory factory = JsonNodeFactory.instance;
         ObjectNode parent = factory.objectNode();
         ObjectNode index = factory.objectNode();
@@ -51,6 +52,6 @@ class ProcessProfileTest {
     }
 
     @Test
-    void generateJN() {
+    public void generateJN() {
     }
 }

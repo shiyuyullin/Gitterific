@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HomeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">controllers</a> &gt; <span class="el_source">HomeController.java</span></div><h1>HomeController.java</h1><pre class="source lang-java linenums">package controllers;
+
+import actor.*;
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import model.*;
+
+import java.util.Optional;
+import java.util.concurrent.CompletionStage;
+import javax.inject.Inject;
+
+import akka.stream.Materializer;
+
+import play.data.DynamicForm;
+import play.data.FormFactory;
+import play.libs.streams.ActorFlow;
+import play.mvc.*;
+import play.libs.ws.*;
+import scala.compat.java8.FutureConverters;
+import actor.ProcessIssuesActor.ProcessIssuesOfRepo;
+import actor.RetrieveSearchResultsActor.GetRepo;
+
+
+import static akka.pattern.Patterns.ask;
+
+/**
+ * This controller contains an action to handle HTTP requests
+ * to the application's home page.
+ */
+public class HomeController extends Controller {
+
+    private final ActorRef processIssuesActor;
+    private final ActorRef retrieveSearchResultsActor;
+    private final ActorRef processRepoActor;
+    private final ActorRef processProfileActor;
+    private final ActorSystem actorSystem;
+    private final Materializer materializer;
+
+    @Inject WSClient ws;
+    @Inject FormFactory formFactory;
+
+    @Inject
+<span class="fc" id="L43">    public HomeController(ActorSystem system, Materializer materializer){</span>
+<span class="fc" id="L44">        this.actorSystem = system;</span>
+<span class="fc" id="L45">        this.materializer = materializer;</span>
+<span class="fc" id="L46">        processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());</span>
+<span class="fc" id="L47">        retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps(), &quot;retrieveActor&quot;);</span>
+<span class="fc" id="L48">        processRepoActor = system.actorOf(ProcessRepoActor.getProps());</span>
+<span class="fc" id="L49">        processProfileActor = system.actorOf(ProcessProfileActor.getProps());</span>
+<span class="fc" id="L50">    }</span>
+
+
+    public Result index(String username, Http.Request request) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if(request.session().get(&quot;username&quot;).equals(Optional.empty())){</span>
+<span class="fc" id="L55">            return ok(views.html.index.render(null, null, request)).addingToSession(request, &quot;username&quot;, username);</span>
+        }
+        else{
+<span class="fc" id="L58">            return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username), request));</span>
+        }
+    }
+
+    public CompletionStage&lt;Result&gt; issue(String author, String repo){
+<span class="fc" id="L63">        ProcessIssues client = new ProcessIssues(ws);</span>
+<span class="fc" id="L64">        return FutureConverters.toJava(ask(processIssuesActor, new ProcessIssuesOfRepo(client, repo, author), 3000))</span>
+<span class="fc" id="L65">                .thenApply(reply -&gt; (Result) reply);</span>
+//        return client.renderResult(client.getIssuesTitles(client.getIssuesAsJsonNode(author, repo)));
+    }
+
+    public CompletionStage&lt;Result&gt; keyword(Http.Request request){
+
+<span class="fc" id="L71">        DynamicForm requestData = formFactory.form().bindFromRequest(request);</span>
+<span class="fc" id="L72">        String keywords = requestData.get(&quot;keywords&quot;);</span>
+<span class="fc" id="L73">        RetrieveSearchResults client = new RetrieveSearchResults(ws);</span>
+<span class="fc" id="L74">        return FutureConverters.toJava(ask(retrieveSearchResultsActor, new GetRepo(request.session().get(&quot;username&quot;).get(), keywords, request, client), 3000))</span>
+<span class="fc" id="L75">                .thenApply(reply -&gt; (Result) reply);</span>
+//        return client.searchForRepo(keywords, request.session().get(&quot;username&quot;).get(), client.getRepoInfoAsJsonNode(keywords));
+    }
+
+    public CompletionStage&lt;Result&gt; repos(String author,String repo) {
+<span class="fc" id="L80">        return FutureConverters.toJava(ask(processRepoActor, new ProcessRepoActor.repoProcess(author, repo), 3000))</span>
+<span class="fc" id="L81">                .thenApply(reply -&gt; (Result) reply);</span>
+//        return ProcessRepo.process(author,repo);
+//        Repos repos =  new Repos(repo);
+//        List&lt;Repo_issues&gt; repo_issues = repos.issues();
+//        return ok(views.html.repos.render(repos, repo_issues));
+    }
+
+    public CompletionStage&lt;Result&gt; userProfile(String user) {
+<span class="fc" id="L89">        return FutureConverters.toJava(ask(processProfileActor, new ProcessProfileActor.profileProcess(user),3000))</span>
+<span class="fc" id="L90">                .thenApply(reply -&gt; (Result) reply);</span>
+    }
+
+    public WebSocket socket(){
+<span class="nc" id="L94">        return WebSocket.Text.accept(request -&gt; {</span>
+            return ActorFlow.actorRef(actorRef -&gt; DisplayActor.getProps(actorRef, request.session().get(&quot;username&quot;).get()), actorSystem, materializer);
+        });
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

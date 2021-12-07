@@ -46,6 +46,7 @@ class ProcessProfileActorTest {
      */
     @Test
     public void testProcessProfileActor() {
+        System.out.println("aaaaaa");
         TestKit testProbe = new TestKit(system);
         ActorRef processProfileActor = system.actorOf(ProcessProfileActor.getProps());
         processProfileActor.tell(new ProcessProfileActor.profileProcess("ni"), testProbe.getRef());

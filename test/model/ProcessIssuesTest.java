@@ -3,7 +3,7 @@ package model;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import play.libs.ws.WSClient;
@@ -17,8 +17,8 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -37,8 +37,7 @@ public class ProcessIssuesTest {
      * This is the test case for rendering search result
      */
     @Test
-    void RenderResultTest() {
-
+    public void RenderResultTest() {
         CompletionStage<List<String>> list = CompletableFuture.completedStage(new ArrayList<String>());
         CompletionStage<Result> result = client.renderResult(list);
         Result actualResult = null;
@@ -56,7 +55,7 @@ public class ProcessIssuesTest {
      * This is the test case for retrieve issues as jsonnode
      */
     @Test
-    void GetIssuesAsJsonNodeTest() {
+    public void GetIssuesAsJsonNodeTest() {
         JsonNodeFactory factory = JsonNodeFactory.instance;
         ObjectNode parent = factory.objectNode();
         ObjectNode child = factory.objectNode();
@@ -74,7 +73,7 @@ public class ProcessIssuesTest {
      * This is the test case for processing jsonnode and retrieve meaningful information
      */
     @Test
-    void GetIssuesTitlesTest() {
+    public void GetIssuesTitlesTest() {
 
         JsonNodeFactory factory = JsonNodeFactory.instance;
         ObjectNode parent = factory.objectNode();
@@ -98,13 +97,13 @@ public class ProcessIssuesTest {
      * This is the test case for giving a list of string, count how many of them are unique
      */
     @Test
-    void CountingUniqueWordsTest(){
+    public void CountingUniqueWordsTest(){
 
         List<String> listOfWords = new ArrayList<>();
         listOfWords.add("hello--world");
         listOfWords.add("world-%^#@world");
         Map<String,Long> count = client.countUniqueWords(listOfWords);
-        assertEquals(3,count.get("world"));
+        assertEquals(Long.valueOf(3),count.get("world"));
         assertNull(count.get("notExists"));
         // case where the argument is null
         Map<String,Long> nullCaseMap = client.countUniqueWords(null);
@@ -115,7 +114,7 @@ public class ProcessIssuesTest {
      * This is the test case for sorting a map based on value of each entry
      */
     @Test
-    void SortWordCountTest(){
+    public void SortWordCountTest(){
         Map<String, Long> map = new HashMap<>();
         map.put("bbb", (long) 3);
         map.put("aaa", (long) 10);

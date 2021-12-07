@@ -108,6 +108,13 @@ public class GeneralRepoInfo {
         }
     }
 
+    /**
+     * This method will take a list of GeneralRepoInfo and a given GeneralRepoInfo
+     * checks if that given GeneralRepoInfo is in the list
+     * @param repo
+     * @param list
+     * @return
+     */
     public static boolean contains(GeneralRepoInfo repo, List<GeneralRepoInfo> list){
         return list.stream().anyMatch(obj -> obj.getRepoName().equals(repo.getRepoName())&&obj.getAuthorName().equals(repo.getAuthorName()));
     }

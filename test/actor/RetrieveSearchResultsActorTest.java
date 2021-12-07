@@ -27,6 +27,7 @@ public class RetrieveSearchResultsActorTest {
 
     @Test
     public void testProcessIssuesActor(){
+        System.out.println("aaaaaaa");
         TestKit testProbe = new TestKit(system);
         ActorRef retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps());
         retrieveSearchResultsActor.tell("here is a message", testProbe.getRef());

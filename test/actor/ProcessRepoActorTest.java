@@ -38,7 +38,7 @@ class ProcessRepoActorTest {
     @Test
     public void testProcessRepoActor(){
 
-
+        System.out.println("aaaaaa");
 
         TestKit testProbe = new TestKit(system);
         ActorRef processRepoActor = system.actorOf(ProcessRepoActor.getProps());

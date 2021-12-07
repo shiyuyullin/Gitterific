@@ -87,6 +87,17 @@ public class GeneralRepoInfoTest {
         assertNull(badRepo2.getCreatedDate());
     }
 
+    /**
+     * Test case for contains method
+     */
+    @Test
+    public void containsTest(){
+        GeneralRepoInfo repo2 = new GeneralRepoInfo("aaa", "bbb", "topics", "\"2018-08-29T17:15:57Z\"");
+        List<GeneralRepoInfo> list = new ArrayList<>();
+        list.add(repo2);
+        assertTrue(GeneralRepoInfo.contains(repo2, list));
+
+    }
 
 
 

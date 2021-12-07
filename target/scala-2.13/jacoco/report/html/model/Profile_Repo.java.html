@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Profile_Repo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Profile_Repo.java</span></div><h1>Profile_Repo.java</h1><pre class="source lang-java linenums">package model;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/***
+ * @author Yun Ni
+ * This class is used to handle the user's repo info in the user profile page
+ * it can show at most 30 repos
+ */
+public class Profile_Repo {
+    private String name;
+    private Boolean isPrivate;
+    private String html_url;
+    private Date created_at;
+    private Date updated_at;
+    private Date pushed_at;
+<span class="fc" id="L19">    private static SimpleDateFormat sdf = new SimpleDateFormat(&quot;\&quot;yyyy-MM-dd'T'HH:mm:ss'Z'\&quot;&quot;);</span>
+
+    /***
+     * the constructor
+     * @param name
+     * @param isPrivate
+     * @param html_url
+     * @param created_at
+     * @param updated_at
+     * @param pushed_at
+     */
+<span class="fc" id="L30">    public Profile_Repo(String name, Boolean isPrivate, String html_url, String  created_at, String updated_at, String pushed_at) {</span>
+<span class="fc" id="L31">        this.name = name;</span>
+<span class="fc" id="L32">        this.isPrivate = isPrivate;</span>
+<span class="fc" id="L33">        this.html_url = html_url;</span>
+        try{
+<span class="fc" id="L35">            this.created_at = sdf.parse(created_at);</span>
+<span class="fc" id="L36">            this.updated_at = sdf.parse(updated_at);</span>
+<span class="fc" id="L37">            this.pushed_at = sdf.parse(pushed_at);</span>
+<span class="fc" id="L38">        } catch (ParseException e) {</span>
+<span class="fc" id="L39">            System.out.println(&quot;Error occurred when parsing date!&quot;);</span>
+<span class="fc" id="L40">            e.printStackTrace();</span>
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">    }</span>
+
+
+    /***
+     *
+     * @return the repo name
+     */
+    public String getName() {
+<span class="fc" id="L50">        return name;</span>
+    }
+
+    /***
+     * set the repo name
+     * @param name
+     */
+    public void setName(String name) {
+<span class="fc" id="L58">        this.name = name;</span>
+<span class="fc" id="L59">    }</span>
+
+    /***
+     * get the repo's info
+     * @return
+     */
+    public Boolean getPrivate() {
+<span class="fc" id="L66">        return isPrivate;</span>
+    }
+
+    /***
+     * set the repo info
+     * @param aPrivate
+     */
+    public void setPrivate(Boolean aPrivate) {
+<span class="fc" id="L74">        isPrivate = aPrivate;</span>
+<span class="fc" id="L75">    }</span>
+
+    /***
+     *
+     * @return html link
+     */
+    public String getHtml_url() {
+<span class="fc" id="L82">        return html_url;</span>
+    }
+
+    /***
+     * set the html info
+     * @param html_url
+     */
+    public void setHtml_url(String html_url) {
+<span class="fc" id="L90">        this.html_url = html_url;</span>
+<span class="fc" id="L91">    }</span>
+
+    /***
+     *
+     * @return repo create date
+     */
+    public Date getCreated_at() {
+<span class="fc" id="L98">        return created_at;</span>
+    }
+
+    /***
+     * set repo  create date
+     * @param created_at
+     */
+    public void setCreated_at(String created_at) {
+        try{
+<span class="fc" id="L107">            this.created_at = sdf.parse(created_at);</span>
+<span class="fc" id="L108">        } catch (ParseException e) {</span>
+<span class="fc" id="L109">            System.out.println(&quot;Error occurred when parsing date.&quot;);</span>
+<span class="fc" id="L110">        }</span>
+
+<span class="fc" id="L112">    }</span>
+
+    /***
+     *
+     * @return the update date
+     */
+    public Date getUpdated_at() {
+<span class="fc" id="L119">        return updated_at;</span>
+    }
+
+    /***
+     * set the update date
+     * @param updated_at
+     */
+    public void setUpdated_at(String updated_at) {
+        try{
+<span class="fc" id="L128">            this.created_at = sdf.parse(updated_at);</span>
+<span class="fc" id="L129">        } catch (ParseException e) {</span>
+<span class="fc" id="L130">            System.out.println(&quot;Error occurred when parsing date.&quot;);</span>
+<span class="fc" id="L131">        }</span>
+<span class="fc" id="L132">    }</span>
+
+    /***
+     *
+     * @return the repo's push date
+     */
+    public Date getPushed_at() {
+<span class="fc" id="L139">        return pushed_at;</span>
+    }
+
+    /***
+     * get the push info
+     * @param pushed_at
+     */
+    public void setPushed_at(String pushed_at) {
+        try{
+<span class="fc" id="L148">            this.created_at = sdf.parse(pushed_at);</span>
+<span class="fc" id="L149">        } catch (ParseException e) {</span>
+<span class="fc" id="L150">            System.out.println(&quot;Error occurred when parsing date.&quot;);</span>
+<span class="fc" id="L151">        }</span>
+<span class="fc" id="L152">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

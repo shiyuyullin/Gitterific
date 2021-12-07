@@ -32,6 +32,7 @@ public class ProcessIssuesActorTest {
 
     @Test
     public void testProcessIssuesActor(){
+        System.out.println("aaaaaa");
         TestKit testProbe = new TestKit(system);
         ActorRef processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
         processIssuesActor.tell("here is a message", testProbe.getRef());

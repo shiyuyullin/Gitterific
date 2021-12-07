@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DisplayActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actor</a> &gt; <span class="el_source">DisplayActor.java</span></div><h1>DisplayActor.java</h1><pre class="source lang-java linenums">package actor;
+
+import akka.actor.AbstractActorWithTimers;
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import model.GeneralRepoInfo;
+import scala.concurrent.duration.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+public class DisplayActor extends AbstractActorWithTimers {
+
+<span class="fc" id="L15">    public static class UpdateMessage{</span>
+
+    }
+
+    public static class newRepoMessage{
+        private List&lt;GeneralRepoInfo&gt; repoInfo;
+        private String keywords;
+<span class="nc" id="L22">        public newRepoMessage(List&lt;GeneralRepoInfo&gt; repoInfo, String keywords){</span>
+<span class="nc" id="L23">            this.repoInfo = repoInfo;</span>
+<span class="nc" id="L24">            this.keywords = keywords;</span>
+<span class="nc" id="L25">        }</span>
+
+    }
+
+    private final ActorRef webSocket;
+    private String username;
+
+<span class="fc" id="L32">    public DisplayActor(ActorRef webSocket, String username){</span>
+<span class="fc" id="L33">        this.webSocket = webSocket;</span>
+        // we could use the username to access
+        // what are the keywords that this user have searched
+        // what are the repo that was retrieved by using that keywords
+<span class="fc" id="L37">        this.username = username;</span>
+<span class="fc" id="L38">    }</span>
+
+    public static Props getProps(ActorRef out, String username){
+<span class="fc" id="L41">        return Props.create(DisplayActor.class, out, username);</span>
+    }
+
+    @Override
+    public void preStart() {
+<span class="fc" id="L46">        getTimers().startPeriodicTimer(&quot;Timer&quot;, new UpdateMessage(), Duration.create(10, TimeUnit.SECONDS));</span>
+<span class="fc" id="L47">    }</span>
+
+    @Override
+    public Receive createReceive(){
+
+<span class="fc" id="L52">        return receiveBuilder()</span>
+<span class="fc" id="L53">                .match(UpdateMessage.class, msg -&gt; {</span>
+                    if(GeneralRepoInfo.getSearchKeywords(username)!=null &amp;&amp; GeneralRepoInfo.getSearchKeywords(username).size()&gt;=1){
+                        for(String keywords : GeneralRepoInfo.getSearchKeywords(username)){
+                            context().actorSelection(&quot;/user/retrieveActor/&quot;)
+                                    .tell(new RetrieveSearchResultsActor.UpdateRepo(keywords), self());
+                        }
+                    }
+                })
+<span class="fc" id="L61">                .match(newRepoMessage.class, msg -&gt; {</span>
+                    System.out.println(msg.repoInfo);
+                    // Check if there are any new repos
+                    int index = GeneralRepoInfo.getSearchKeywords(username).indexOf(msg.keywords);
+                    List&lt;GeneralRepoInfo&gt; oldRepoInfo = GeneralRepoInfo.getRepoList(username).get(index);
+                    // Start comparing between the repoInfo we just retrieved and the old repo info
+                    List&lt;GeneralRepoInfo&gt; newRepoInfo = new ArrayList&lt;&gt;();
+                    for(int i = 0; i &lt; msg.repoInfo.size(); i++){
+                        if(!GeneralRepoInfo.contains(msg.repoInfo.get(i), oldRepoInfo)) newRepoInfo.add(msg.repoInfo.get(i));
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(msg.keywords).append(&quot;\n&quot;);
+                    for(GeneralRepoInfo repo : newRepoInfo){
+                        sb.append(repo).append(&quot;\n&quot;);
+                        // Add the new repos into local storage(cache them)
+                        oldRepoInfo.add(repo);
+                    }
+                    webSocket.tell(sb.toString(), self());
+                })
+<span class="fc" id="L80">                .match(String.class, msg -&gt;{</span>
+                    sender().tell(&quot;received&quot;,self());
+                })
+<span class="fc" id="L83">                .build();</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

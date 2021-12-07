@@ -81,13 +81,13 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
         }
     }
 
-
+    /**
+     * Given some keywords, return list of GeneralRepoInfo
+     * @param keywords
+     * @return
+     */
     public CompletionStage<List<GeneralRepoInfo>> getRepoAsAList(String keywords){
-        String formattedKeywords = formatKeywordString(keywords);
-        CompletionStage<JsonNode> jsNode = ws.url("https://api.github.com/search/repositories?q=" + formattedKeywords + "&sort=updated")
-                .addHeader("Accept","application/vnd.github.v3+json")
-                .get()
-                .thenApply(WSResponse::asJson);
+        CompletionStage<JsonNode> jsNode = getRepoInfoAsJsonNode(keywords);
         CompletionStage<JsonNode> items = jsNode.thenApply(jsonNode -> jsonNode.get("items"));
         CompletionStage<List<GeneralRepoInfo>> listOfRepos = items.thenApply(nodes -> StreamSupport.stream(nodes.spliterator(), false)
                 .map(node -> new GeneralRepoInfo(

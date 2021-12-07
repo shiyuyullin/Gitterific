@@ -1,29 +1,29 @@
 package model;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import play.libs.Json;
 import play.libs.ws.WSClient;
 import play.libs.ws.WSRequest;
 import play.libs.ws.WSResponse;
 import play.mvc.Http;
 import play.mvc.Result;
-import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.*;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * Test cases for RetrieveSearchResults
  */
-class RetrieveSearchResultsTest{
+public class RetrieveSearchResultsTest{
 
     @Mock
     WSClient mockWS = mock(WSClient.class);
@@ -38,7 +38,7 @@ class RetrieveSearchResultsTest{
      * Since we do not want to call the live api, the test will mock results for each step
      */
     @Test
-    void GetRepoInfoAsJsonNodeTest(){
+    public void GetRepoInfoAsJsonNodeTest(){
         when(mockWS.url("https://api.github.com/search/repositories?q=java&sort=updated")).thenReturn(mockRequest);
         when(mockWS.url("https://api.github.com/search/repositories?q=&sort=updated")).thenReturn(mockRequest);
         when(mockRequest.addHeader("Accept","application/vnd.github.v3+json")).thenReturn(mockRequest);
@@ -53,7 +53,7 @@ class RetrieveSearchResultsTest{
      * we want at the end
      */
     @Test
-    void SearchForRepoTest(){
+    public void SearchForRepoTest(){
         // create a mock JsonNode
         JsonNodeFactory factory = JsonNodeFactory.instance;
         ObjectNode parent = factory.objectNode();
@@ -105,7 +105,7 @@ class RetrieveSearchResultsTest{
      * This is the test case for formatting an input string
      */
     @Test
-    void FormatKeywordStringTest(){
+    public void FormatKeywordStringTest(){
 
         String keywords1 = "java ai";
         String formatted = client.formatKeywordString(keywords1);
@@ -114,11 +114,7 @@ class RetrieveSearchResultsTest{
         assertEquals("python", client.formatKeywordString(keywords2));
         String keywords3 = null;
         assertEquals("", client.formatKeywordString(keywords3));
-
     }
-
-
-
 
 
 }

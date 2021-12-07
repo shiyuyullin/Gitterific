@@ -1,15 +1,14 @@
 package model;
 
 import org.hibernate.validator.internal.properties.Getter;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /***
  * test for the Profile class
  * @author Yun Ni
  */
-class ProfileTest {
+public class ProfileTest {
     /***
      * Getter test for ID
      */
@@ -24,7 +23,7 @@ class ProfileTest {
      * Setter test for ID
      */
     @Test
-    void setId() {
+    public void setId() {
         Profile profile = new Profile();
         profile.setId(1);
         assertEquals(1, profile.getId());
@@ -34,7 +33,7 @@ class ProfileTest {
      * Getter test for Location
      */
     @Test
-    void getLocation() {
+    public void getLocation() {
         Profile profile = new Profile();
         profile.setLocation("Montreal");
         assertEquals("Montreal", profile.getLocation());
@@ -44,7 +43,7 @@ class ProfileTest {
      * Setter test for Location
      */
     @Test
-    void setLocation() {
+    public void setLocation() {
         Profile profile = new Profile();
         profile.setLocation("Montreal");
         assertEquals("Montreal", profile.getLocation());
@@ -54,7 +53,7 @@ class ProfileTest {
      * Getter test for Email
      */
     @Test
-    void getEmail() {
+    public void getEmail() {
         Profile profile = new Profile();
         profile.setEmail("nina@gmai.com");
         assertEquals("nina@gmai.com", profile.getEmail());
@@ -64,7 +63,7 @@ class ProfileTest {
      * Setter test for Email
      */
     @Test
-    void setEmail() {
+    public void setEmail() {
         Profile profile = new Profile();
         profile.setEmail("nina@gmai.com");
         assertEquals("nina@gmai.com", profile.getEmail());
@@ -74,7 +73,7 @@ class ProfileTest {
      * Getter test for Company
      */
     @Test
-    void getCompany() {
+    public void getCompany() {
         Profile profile = new Profile();
         profile.setCompany("Ant");
         assertEquals("Ant", profile.getCompany());
@@ -84,7 +83,7 @@ class ProfileTest {
      * Setter test for Company
      */
     @Test
-    void setCompany() {
+    public void setCompany() {
         Profile profile = new Profile();
         profile.setCompany("Ant");
         assertEquals("Ant", profile.getCompany());
@@ -94,7 +93,7 @@ class ProfileTest {
      * Getter test for Login
      */
     @Test
-    void getLogin() {
+    public void getLogin() {
         Profile profile = new Profile();
         profile.setLogin("Nia");
         assertEquals("Nia", profile.getLogin());
@@ -104,7 +103,7 @@ class ProfileTest {
      * Setter test for Login
      */
     @Test
-    void setLogin() {
+    public void setLogin() {
         Profile profile = new Profile();
         profile.setLogin("Nia");
         assertEquals("Nia", profile.getLogin());
@@ -114,7 +113,7 @@ class ProfileTest {
      * Getter test for Name
      */
     @Test
-    void getName() {
+    public void getName() {
         Profile profile = new Profile();
         profile.setName("ning");
         assertEquals("ning", profile.getName());
@@ -124,7 +123,7 @@ class ProfileTest {
      * Setter test for Name
      */
     @Test
-    void setName() {
+    public void setName() {
         Profile profile = new Profile();
         profile.setName("ning");
         assertEquals("ning", profile.getName());
@@ -134,7 +133,7 @@ class ProfileTest {
      * Getter test for Followers
      */
     @Test
-    void getFollowers() {
+    public void getFollowers() {
         Profile profile = new Profile();
         profile.setFollowers(1);
         assertNotEquals(0, profile.getFollowers());
@@ -144,7 +143,7 @@ class ProfileTest {
      * Setter test for Followers
      */
     @Test
-    void setFollowers() {
+    public void setFollowers() {
         Profile profile = new Profile();
         profile.setFollowers(1);
         assertEquals(1, profile.getFollowers());
@@ -154,7 +153,7 @@ class ProfileTest {
      * Getter test for Following
      */
     @Test
-    void getFollowing() {
+    public void getFollowing() {
         Profile profile = new Profile();
         profile.setFollowing(11);
         assertEquals(11, profile.getFollowing());
@@ -164,7 +163,7 @@ class ProfileTest {
      * Setter test for Following
      */
     @Test
-    void setFollowing() {
+    public void setFollowing() {
         Profile profile = new Profile();
         profile.setFollowing(11);
         assertEquals(11, profile.getFollowing());
@@ -174,7 +173,7 @@ class ProfileTest {
      * Getter test for Html_url
      */
     @Test
-    void getHtml_url() {
+    public void getHtml_url() {
         Profile profile = new Profile();
         profile.setHtml_url("aaaa");
         assertEquals("aaaa", profile.getHtml_url());
@@ -184,14 +183,14 @@ class ProfileTest {
      * Setter test for Html_url
      */
     @Test
-    void setHtml_url() {
+    public void setHtml_url() {
         Profile profile = new Profile();
         profile.setHtml_url("aaaa");
         assertEquals("aaaa", profile.getHtml_url());
     }
 
     @Test
-    void ConstructorTests(){
+    public void ConstructorTests(){
         Profile profile1 = new Profile();
         Profile profile2 = new Profile("aa", "aaa", 1, 1, "aaa", 2, "Montreal", "sa", "aa");
         assertNull(profile1.getLogin());

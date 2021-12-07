@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RetrieveSearchResults.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">RetrieveSearchResults.java</span></div><h1>RetrieveSearchResults.java</h1><pre class="source lang-java linenums">package model;
+import javax.inject.Inject;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+import controllers.routes;
+import play.mvc.*;
+import play.libs.ws.*;
+
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import static play.mvc.Results.*;
+
+/**
+ * This class will be used for retrieving search results (repository information) from GitHub by using GitHub API
+ * in an asynchronous manner. Actual communication between the app and the GitHub server(Sending http request,etc.) is
+ * done through WSClient provided by play framework.
+ */
+public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
+
+    private final WSClient ws;
+
+    @Inject
+<span class="fc" id="L28">    public RetrieveSearchResults(WSClient ws){</span>
+<span class="fc" id="L29">        this.ws = ws;</span>
+<span class="fc" id="L30">    }</span>
+
+    /**
+     * Search for repository using some keywords, and retrieve them as JsonNode
+     * @param keywords
+     * @return future JsonNode(it will finally be a JsonNode)
+     */
+    public CompletionStage&lt;JsonNode&gt; getRepoInfoAsJsonNode(String keywords){
+<span class="fc" id="L38">        String formattedKeywords = formatKeywordString(keywords);</span>
+<span class="fc" id="L39">        return ws.url(&quot;https://api.github.com/search/repositories?q=&quot; + formattedKeywords + &quot;&amp;sort=updated&quot;)</span>
+<span class="fc" id="L40">                .addHeader(&quot;Accept&quot;,&quot;application/vnd.github.v3+json&quot;)</span>
+<span class="fc" id="L41">                .get()</span>
+<span class="fc" id="L42">                .thenApply(WSResponse::asJson);</span>
+    }
+
+    /**
+     * This method handle user session and caching. This method will take a future JsonNode, chain it with some method calls
+     * to retrieve what is needed to create a GeneralRepoInfo object (ex. author name, repo name, etc.) collect all GeneralRepoInfo
+     * objects into a list, sort the list based on the createdDate attribute of the objects, then cache the list to a local store(HashMap)
+     * , using the username as key. It would also cache the search keywords that is used to get the future JsonNode, using the username as
+     * key as well. After all, it renders the index page for the user with the given username.
+     * @param keywords
+     * @param username
+     * @param futureJson
+     * @return future Result(it will finally be a Result)
+     */
+    public CompletionStage&lt;Result&gt; searchForRepo(String keywords, String username, Http.Request request, CompletionStage&lt;JsonNode&gt; futureJson){
+
+<span class="pc bpc" id="L58" title="2 of 6 branches missed.">        if(keywords == null || username == null || futureJson == null){</span>
+<span class="fc" id="L59">            return CompletableFuture.completedStage(ok(views.html.index.render(null,null, request)));</span>
+        }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        else if(keywords.length() == 0){</span>
+<span class="fc" id="L62">            return CompletableFuture.completedStage(ok(views.html.index.render(GeneralRepoInfo.getRepoList(username), GeneralRepoInfo.getSearchKeywords(username), request)));</span>
+        }
+        else{
+<span class="fc" id="L65">            CompletionStage&lt;JsonNode&gt; items = futureJson.thenApply(jsonNode -&gt; jsonNode.get(&quot;items&quot;));</span>
+<span class="fc" id="L66">            CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos = items.thenApply(nodes -&gt; StreamSupport.stream(nodes.spliterator(), false)</span>
+                    .map(node -&gt; new GeneralRepoInfo(
+                                    node.get(&quot;owner&quot;).get(&quot;login&quot;).toString(),
+                                    node.get(&quot;name&quot;).toString(),
+                                    node.get(&quot;topics&quot;).toString(),
+                                    node.get(&quot;created_at&quot;).toString()
+                            )
+                    )
+                    .limit(10)
+                    .collect(Collectors.toList()));
+<span class="fc" id="L76">            return listOfRepos.thenApply(repo -&gt; {</span>
+                GeneralRepoInfo.addRepoList(username, repo);
+                GeneralRepoInfo.addSearchKeywords(username, keywords);
+                return redirect(routes.HomeController.index(username));
+            });
+        }
+    }
+
+    /**
+     * Given some keywords, return list of GeneralRepoInfo
+     * @param keywords
+     * @return
+     */
+    public CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; getRepoAsAList(String keywords){
+<span class="nc" id="L90">        CompletionStage&lt;JsonNode&gt; jsNode = getRepoInfoAsJsonNode(keywords);</span>
+<span class="nc" id="L91">        CompletionStage&lt;JsonNode&gt; items = jsNode.thenApply(jsonNode -&gt; jsonNode.get(&quot;items&quot;));</span>
+<span class="nc" id="L92">        CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos = items.thenApply(nodes -&gt; StreamSupport.stream(nodes.spliterator(), false)</span>
+                .map(node -&gt; new GeneralRepoInfo(
+                                node.get(&quot;owner&quot;).get(&quot;login&quot;).toString(),
+                                node.get(&quot;name&quot;).toString(),
+                                node.get(&quot;topics&quot;).toString(),
+                                node.get(&quot;created_at&quot;).toString()
+                        )
+                )
+                .limit(13)
+                .collect(Collectors.toList()));
+<span class="nc" id="L102">        return listOfRepos;</span>
+    }
+
+    /**
+     * Since what we get from the front-end form are words separated by space(ex. java ai DL)
+     * it could not be used directly to form a http request. This method will format what we got
+     * from the front-end form.(ex. java ai DL -&gt; java+ai+DL | java -&gt; java)
+     * @param keywords
+     * @return formatted keywords
+     */
+    public String formatKeywordString(String keywords){
+
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if(keywords == null) return &quot;&quot;;</span>
+<span class="fc" id="L115">        String[] keyword = keywords.split(&quot; &quot;);</span>
+<span class="fc" id="L116">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        for(int i = 0; i &lt; keyword.length; i++){</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            if(i == keyword.length - 1) sb.append(keyword[i]);</span>
+<span class="fc" id="L119">            else sb.append(keyword[i]).append(&quot;+&quot;);</span>
+        }
+<span class="fc" id="L121">        return sb.toString();</span>
+    }
+
+//    /**
+//     * This method will take a future List&lt;GeneralRepoInfo&gt;, chain it with another method to sort it
+//     * based on the createdDate attribute of the objects inside the list.
+//     * @param listOfRepos
+//     * @return future list of GeneralRepoInfo
+//     */
+//    public CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sortByDate(CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; listOfRepos){
+//        if(listOfRepos == null) return CompletableFuture.completedStage(new ArrayList&lt;&gt;());
+//        CompletionStage&lt;List&lt;GeneralRepoInfo&gt;&gt; sorted =  listOfRepos.thenApply(repos -&gt; repos.stream()
+//                .sorted(Comparator.comparing(GeneralRepoInfo::getCreatedDate).reversed())
+//                .collect(Collectors.toList()));
+//        return sorted;
+//    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
