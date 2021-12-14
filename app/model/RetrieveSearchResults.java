@@ -76,7 +76,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
             return listOfRepos.thenApply(repo -> {
                 GeneralRepoInfo.addRepoList(username, repo);
                 GeneralRepoInfo.addSearchKeywords(username, keywords);
-                return redirect(routes.HomeController.index(username));
+                return ok(views.html.index.render(GeneralRepoInfo.getRepoList(username),GeneralRepoInfo.getSearchKeywords(username), request));
             });
         }
     }
@@ -97,7 +97,7 @@ public class RetrieveSearchResults implements WSBodyReadables, WSBodyWritables {
                                 node.get("created_at").toString()
                         )
                 )
-                .limit(13)
+                .limit(10)
                 .collect(Collectors.toList()));
         return listOfRepos;
     }

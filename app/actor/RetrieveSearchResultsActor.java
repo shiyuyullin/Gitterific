@@ -64,19 +64,4 @@ public class RetrieveSearchResultsActor extends AbstractActorWithTimers {
 
     }
 
-    @Override
-    public SupervisorStrategy supervisorStrategy() {
-        return strategy;
-    }
-
-    private static SupervisorStrategy strategy =
-            new OneForOneStrategy(10, Duration.create("1 minute"),
-                    t -> {
-                        if (t instanceof TimeoutException) {
-                            return restart();
-                        } else {
-                            return stop();
-                        }
-                    });
-
 }

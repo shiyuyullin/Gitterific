@@ -18,8 +18,6 @@ import play.mvc.*;
 import play.libs.ws.*;
 import scala.compat.java8.FutureConverters;
 import actor.ProcessIssuesActor.ProcessIssuesOfRepo;
-import actor.RetrieveSearchResultsActor.GetRepo;
-
 
 import static akka.pattern.Patterns.ask;
 
@@ -30,7 +28,7 @@ import static akka.pattern.Patterns.ask;
 public class HomeController extends Controller {
 
     private final ActorRef processIssuesActor;
-    private final ActorRef retrieveSearchResultsActor;
+    private final ActorRef supervisorRSR;
     private final ActorRef processRepoActor;
     private final ActorRef processProfileActor;
     private final ActorSystem actorSystem;
@@ -44,9 +42,10 @@ public class HomeController extends Controller {
         this.actorSystem = system;
         this.materializer = materializer;
         processIssuesActor = system.actorOf(ProcessIssuesActor.getProps());
-        retrieveSearchResultsActor = system.actorOf(RetrieveSearchResultsActor.getProps(), "retrieveActor");
         processRepoActor = system.actorOf(ProcessRepoActor.getProps());
         processProfileActor = system.actorOf(ProcessProfileActor.getProps());
+        supervisorRSR = system.actorOf(SupervisorForRSR.getProps(), "supervisor");
+
     }
 
 
@@ -71,9 +70,8 @@ public class HomeController extends Controller {
         DynamicForm requestData = formFactory.form().bindFromRequest(request);
         String keywords = requestData.get("keywords");
         RetrieveSearchResults client = new RetrieveSearchResults(ws);
-        return FutureConverters.toJava(ask(retrieveSearchResultsActor, new GetRepo(request.session().get("username").get(), keywords, request, client), 3000))
+        return FutureConverters.toJava(ask(supervisorRSR, new SupervisorForRSR.forwardToChild(request.session().get("username").get(), keywords, request, client), 3000))
                 .thenApply(reply -> (Result) reply);
-//        return client.searchForRepo(keywords, request.session().get("username").get(), client.getRepoInfoAsJsonNode(keywords));
     }
 
     public CompletionStage<Result> repos(String author,String repo) {

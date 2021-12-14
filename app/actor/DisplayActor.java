@@ -53,7 +53,7 @@ public class DisplayActor extends AbstractActorWithTimers {
                 .match(UpdateMessage.class, msg -> {
                     if(GeneralRepoInfo.getSearchKeywords(username)!=null && GeneralRepoInfo.getSearchKeywords(username).size()>=1){
                         for(String keywords : GeneralRepoInfo.getSearchKeywords(username)){
-                            context().actorSelection("/user/retrieveActor/")
+                            context().actorSelection("/user/supervisor/retrieveActor")
                                     .tell(new RetrieveSearchResultsActor.UpdateRepo(keywords), self());
                         }
                     }
@@ -66,7 +66,9 @@ public class DisplayActor extends AbstractActorWithTimers {
                     // Start comparing between the repoInfo we just retrieved and the old repo info
                     List<GeneralRepoInfo> newRepoInfo = new ArrayList<>();
                     for(int i = 0; i < msg.repoInfo.size(); i++){
-                        if(!GeneralRepoInfo.contains(msg.repoInfo.get(i), oldRepoInfo)) newRepoInfo.add(msg.repoInfo.get(i));
+                        if(!GeneralRepoInfo.contains(msg.repoInfo.get(i), oldRepoInfo)) {
+                            newRepoInfo.add(msg.repoInfo.get(i));
+                        }
                     }
                     StringBuilder sb = new StringBuilder();
                     sb.append(msg.keywords).append("\n");
@@ -75,6 +77,7 @@ public class DisplayActor extends AbstractActorWithTimers {
                         // Add the new repos into local storage(cache them)
                         oldRepoInfo.add(repo);
                     }
+                    System.out.println(GeneralRepoInfo.getRepoList(username).get(index));
                     webSocket.tell(sb.toString(), self());
                 })
                 .match(String.class, msg ->{

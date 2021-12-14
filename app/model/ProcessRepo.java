@@ -62,7 +62,6 @@ public class ProcessRepo {
                         nodes.path("created_at").toString()
                 )).collect(Collectors.toList()));
 
-
         return IssueList.thenApply(repo_issues -> temp = repo_issues).thenCombine(ReposList, (repo_issues, repos) -> ok(views.html.repos.render(repos.get(0), repo_issues)));
 
 
