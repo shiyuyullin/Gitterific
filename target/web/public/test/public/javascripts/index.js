@@ -2,8 +2,6 @@
 const socketRoute = document.getElementById("ws-route").value;
 const socket = new WebSocket(socketRoute);
 
-//socket.onopen = () => socket.send("test message");
-
 
 socket.onmessage = function(event){
 
@@ -22,13 +20,13 @@ socket.onmessage = function(event){
         for(let j = 0; j < repoInfo.length; j++){
             if(j == 0){
                 const hyperlink1 = document.createElement("a");
-                hyperlink1.href = "@routes.HomeController.userProfile(repo.getAuthorName)";
+                hyperlink1.href = `/user/${repoInfo[j]}`;
                 hyperlink1.innerHTML = repoInfo[j];
                 cell1.appendChild(hyperlink1);
             }
             if(j == 1){
                 const hyperlink2 = document.createElement("a");
-                hyperlink2.href = "@routes.HomeController.repos(repo.getAuthorName().replaceAll(\"\\\"\", \"\"), repo.getRepoName().replaceAll(\"\\\"\", \"\"))";
+                hyperlink2.href = `/repo/${repoInfo[j-1]}/${repoInfo[j]}`;
                 hyperlink2.innerHTML = repoInfo[j];
                 cell2.appendChild(hyperlink2);
             }
@@ -36,11 +34,13 @@ socket.onmessage = function(event){
                 cell3.innerHTML = repoInfo[j];
             }
             if(j == 3){
-                cell4.innerHTML = repoInfo[j];
+                let date = "";
+                for(let k = j; k < repoInfo.length; k++){
+                    date = date + repoInfo[k] + " ";
+                }
+                cell4.innerHTML = date;
             }
         }
-
-
     }
 
 }

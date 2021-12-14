@@ -1,25 +1,32 @@
+[0m[[0m[0mdebug[0m] [0m[0mThe actor.RetrieveSearchResultsActor has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	.[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll member reference dependencies will be considered within this context.[0m
+[0m[[0m[0mdebug[0m] [0m[0mFiles invalidated by inheriting from (external) actor.RetrieveSearchResultsActor: Set(); now invalidating by inheritance (internally).[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting direct dependencies of all classes transitively invalidated by inheritance.[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting classes that directly depend on (external) actor.RetrieveSearchResultsActor.[0m
+[0m[[0m[0mdebug[0m] [0m[0mName hashing optimization doesn't apply to non-Scala dependency: actor.RetrieveSearchResultsActorTest[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes: [0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed:Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(/home/shiyu/Desktop/SOEN6441_Project/test/model/RetrieveSearchResultsTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(model.RetrieveSearchResultsTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set(NamesChange(actor.RetrieveSearchResultsActor,ModifiedNames(changes = )))[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set(/home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/classes)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(model.RetrieveSearchResultsTest)[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(/home/shiyu/Desktop/SOEN6441_Project/test/model/RetrieveSearchResultsTest.java)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: model.RetrieveSearchResultsTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	external source: Set(actor.RetrieveSearchResultsActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(actor.RetrieveSearchResultsActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: actor.RetrieveSearchResultsActorTest[0m
 [0m[[0m[0minfo[0m] [0m[0mCompiling 1 Java source to /home/shiyu/Desktop/SOEN6441_Project/target/scala-2.13/test-classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@3f5aab18 directly...[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.629228564 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.090120808 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.724386668 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@23039612 directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.586243201 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.06376136 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.655166292 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone compiling.[0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
