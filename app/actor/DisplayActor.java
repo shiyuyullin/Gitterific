@@ -77,7 +77,6 @@ public class DisplayActor extends AbstractActorWithTimers {
                         // Add the new repos into local storage(cache them)
                         oldRepoInfo.add(repo);
                     }
-                    System.out.println(GeneralRepoInfo.getRepoList(username).get(index));
                     webSocket.tell(sb.toString(), self());
                 })
                 .match(String.class, msg ->{

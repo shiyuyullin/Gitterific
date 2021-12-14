@@ -26,7 +26,9 @@ socket.onmessage = function(event){
             }
             if(j == 1){
                 const hyperlink2 = document.createElement("a");
-                hyperlink2.href = `/repo/${repoInfo[j-1]}/${repoInfo[j]}`;
+                let author = repoInfo[j-1].substring(1, repoInfo[j-1].length-1);
+                let repo = repoInfo[j].substring(1, repoInfo[j].length-1);
+                hyperlink2.href = `/repo/${author}/${repo}`;
                 hyperlink2.innerHTML = repoInfo[j];
                 cell2.appendChild(hyperlink2);
             }
