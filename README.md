@@ -1,8 +1,4 @@
-# SOEN6441_Project
-
-Currently, the sbt test & sbt jacoco are working; however, they do not generate correct result,
-to get test coverage/run tests, please use IDE intergrated coverage/run functions.
-
+# Gitterific
 o	1st Team member:
 	Yun Ni, 40179775
 	Individual Task #1
