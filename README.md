@@ -1,12 +1,13 @@
 # Gitterific
-o	1st Team member:
-	Yun Ni, 40179775
-	Individual Task #1
 
-o	2nd Team member:
-	Rui Wang, 40169195
-	Individual Task #2
+Collaborators: Shiyu Lin, Yun Ni, Rui Wang.
 
-o	3rd Team member:
-	Shiyu Lin, 40050199
-	Individual Task #3
+Gitterific is a full stack web application developed using Java Play framework and Akka library.
+
+Gitterific aims to help users that want to search for specific repositories using keywords to do search more efficiently. 
+
+Also several programming concepts were practiced during the development of this application, such as asynchronous programming, functional programming, etc.
+
+
+
+
